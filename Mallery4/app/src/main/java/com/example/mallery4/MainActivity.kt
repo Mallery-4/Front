@@ -1,0 +1,62 @@
+package com.example.mallery4
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        addFragment(HomeFragment.newInstance())
+
+        bottomNavigation.show(1)
+        //bottom navigation과 연결
+        bottomNavigation.add(MeowBottomNavigation.Model(0,R.drawable.deco))
+        bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.home))
+        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.id_card))
+
+        bottomNavigation.setOnClickMenuListener {
+            when(it.id){
+                0 -> {
+                    Toast.makeText(this,"꾸미기 화면", Toast.LENGTH_SHORT).show()
+                    // 이동되는 화면
+                    replaceFragment(DecorateFragment.newInstance())
+
+                }
+                1 -> {
+                    Toast.makeText(this,"홈 화면", Toast.LENGTH_SHORT).show()
+                    // 이동되는 화면
+                    replaceFragment(HomeFragment.newInstance())
+                }
+                2 -> {
+                    Toast.makeText(this,"마이페이지 화면", Toast.LENGTH_SHORT).show()
+                    // 이동되는 화면
+                    replaceFragment(MypageFragment.newInstance())
+                }
+                else-> {
+                    Toast.makeText(this,"홈 화면", Toast.LENGTH_SHORT).show()
+                    // 이동되는 화면
+                    replaceFragment(HomeFragment.newInstance())
+                }
+            }
+        }
+    }
+
+    // fragment 화면 전환 함수
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentTransition = supportFragmentManager.beginTransaction()
+        fragmentTransition.replace(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
+    }
+
+    // fragment 화면 전환 함수
+    private fun addFragment(fragment: Fragment){
+        val fragmentTransition = supportFragmentManager.beginTransaction()
+        fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
+    }
+
+}
