@@ -32,23 +32,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp">
 
         <EditText
             android:id="@+id/signup_id"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="45dp"
+            android:layout_width="210dp"
+            android:layout_height="45dp"
             android:background="@drawable/enroll_edittext_style"
             android:hint="아이디"
             android:paddingLeft="10dp"
             android:textColorHint="@color/browncolor"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/check_btn"
-            android:layout_width="65dp"
-            android:layout_height="35dp"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center"
             android:background="@drawable/rounded_pink"
@@ -58,37 +59,39 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
 
         <EditText
             android:id="@+id/signup_pw"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/enroll_edittext_style"
-            android:hint="비밀번호 (영문+숫자 조합 6자리 이상)"
+            android:hint="비밀번호 (영문+숫자 조합 6자리 이상, 12자리 이하)"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
             android:textColorHint="@color/browncolor"
-            android:textSize="16sp" />
+            android:textSize="13sp" />
 
         <ImageView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
+            android:padding="11dp"
+            android:layout_marginLeft="300dp"
             android:layout_weight="1.5"
             android:layout_height="match_parent"
             android:scaleType="fitStart"
             android:id="@+id/setImage"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/signup_hp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
@@ -96,12 +99,12 @@
         android:background="@drawable/enroll_edittext_style"
         android:hint="핸드폰번호"
         android:textColorHint="@color/browncolor"
-        android:textSize="16sp" />
+        android:textSize="13sp" />
 
     <EditText
         android:id="@+id/signup_nickname"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
@@ -109,7 +112,7 @@
         android:background="@drawable/enroll_edittext_style"
         android:hint="닉네임"
         android:textColorHint="@color/browncolor"
-        android:textSize="16sp" />
+        android:textSize="13sp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/enroll_btn"

@@ -2,20 +2,44 @@ package com.example.mallery4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.example.mallery4.datamodel.DefaultResponse
 import com.example.mallery4.retrofit.RetrofitClient
 import kotlinx.android.synthetic.main.activity_signup.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.regex.Pattern
 
 class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        
+        // 비밀번호 조건에 만족시 체크표시 이벤트
+        val pwpattern = "^[A-Za-z0-9]{6,12}$" // 영문+숫자 포함의 6~12자리 이내
+        val pattern = Pattern.compile(pwpattern) // 패턴 컴파일
+        signup_pw.addTextChangedListener(object  : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // 정규식 패턴 조건대로 pw 입력시,
+                if (pattern.matcher(signup_pw.text.toString().trim()).find().toString() == "true"){
+                    setImage.setImageResource(R.drawable.pw_approve)
+                    //Log.d("Is Match?", pattern.matcher(signup_pw.text.toString().trim()).find().toString())
+                }else{
+                    setImage.setImageResource(R.drawable.pw_cancel)
+                    //Log.d("Is Match?", pattern.matcher(signup_pw.text.toString().trim()).find().toString())
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
 
         //회원가입 버튼 클릭시
         enroll_btn.setOnClickListener {
