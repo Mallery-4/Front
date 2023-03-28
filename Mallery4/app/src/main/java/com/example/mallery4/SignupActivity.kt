@@ -6,10 +6,13 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
+import com.example.mallery4.datamodel.AlreadyInUserID
 import com.example.mallery4.datamodel.DefaultResponse
 import com.example.mallery4.retrofit.RetrofitClient
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_signup.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +22,39 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
+
+        //ID 중복확인 버튼 클릭시
+        enroll_btn.setOnClickListener {
+
+            val id = signup_id.text.toString().trim()
+
+            // 필수로 입력 조건 걸기
+            if (id.isEmpty()){
+                signup_id.error = "ID Required"
+                signup_id.requestFocus()
+                return@setOnClickListener
+            }
+
+            RetrofitClient.instance.alreadyInUserID(id)
+                .enqueue(object: Callback<AlreadyInUserID>{
+
+                    override fun onResponse(
+                        call: Call<AlreadyInUserID>,
+                        response: Response<AlreadyInUserID>
+                    ) {
+                        // 중복 ID 존재 O
+                        if (Gson().toJson(response.body()?.code).toString() == "4010"){
+                            Toast.makeText(applicationContext,response.body()?.message, Toast.LENGTH_SHORT).show()
+                            signup_id.setText("") //빈칸으로 초기화
+                        }else{  // 중복 ID 존재X
+                            Toast.makeText(applicationContext,"사용 가능한 ID 입니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<AlreadyInUserID>, t: Throwable) {}
+
+                })
+        }
 
         // 비밀번호 조건에 만족시 체크표시 이벤트
         val pwpattern = "^[A-Za-z0-9]{6,12}$" // 영문+숫자 포함의 6~12자리 이내
