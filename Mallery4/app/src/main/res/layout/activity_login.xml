@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:gravity="center"
+android:orientation="vertical"
+android:background="@color/background"
+tools:context=".LoginActivity">
+
+<ImageView
+    android:id="@+id/logo_img"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginBottom="8dp"
+    android:src="@drawable/deco" />
+
+<TextView
+    android:id="@+id/logo_txt"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:text="@string/login_logo"
+    android:textColor="@color/browncolor"
+    android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/login_id"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/edittext_style"
+        android:hint="아이디"
+        android:textColorHint="@color/browncolor"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/login_pw"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/edittext_style"
+        android:hint="비밀번호"
+        android:textColorHint="@color/browncolor"
+        android:textSize="16sp"
+        android:inputType="textPassword"/>
+
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/login_btn"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="60dp"
+    android:layout_marginLeft="70dp"
+    android:layout_marginRight="70dp"
+    android:background="@drawable/rounded_pink"
+    android:text="로그인"
+    android:textStyle="bold"
+    android:textSize="20dp"
+    android:textColor="@color/browncolor"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signup_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@color/background"
+        android:text="@string/signup_style"
+        android:stateListAnimator="@null"
+        android:textSize="14dp"
+        android:textColor="@color/browncolor"/>
+
+</LinearLayout>
