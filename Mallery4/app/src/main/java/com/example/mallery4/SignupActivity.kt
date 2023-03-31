@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import com.example.mallery4.datamodel.AlreadyInUserID
+import com.example.mallery4.datamodel.CreateUser
 import com.example.mallery4.datamodel.DefaultResponse
 import com.example.mallery4.retrofit.RetrofitClient
 import com.google.gson.Gson
@@ -24,7 +25,7 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         //ID 중복확인 버튼 클릭시
-        enroll_btn.setOnClickListener {
+        check_btn.setOnClickListener {
 
             val id = signup_id.text.toString().trim()
 
@@ -35,7 +36,7 @@ class SignupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            RetrofitClient.instance.alreadyInUserID(id)
+            RetrofitClient.instance.alreadyInUserID()
                 .enqueue(object: Callback<AlreadyInUserID>{
 
                     override fun onResponse(
@@ -47,6 +48,7 @@ class SignupActivity : AppCompatActivity() {
                             Toast.makeText(applicationContext,response.body()?.message, Toast.LENGTH_SHORT).show()
                             signup_id.setText("") //빈칸으로 초기화
                         }else{  // 중복 ID 존재X
+                            Toast.makeText(applicationContext,Gson().toJson(response.body()).toString(), Toast.LENGTH_SHORT).show()
                             Toast.makeText(applicationContext,"사용 가능한 ID 입니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -110,7 +112,7 @@ class SignupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            RetrofitClient.instance.createUser(id, pw, hp, nick)
+            RetrofitClient.instance.createUser(CreateUser(id, pw, hp, nick))
                 .enqueue(object: Callback<DefaultResponse>{
 
                     // 회원가입 성공시,
@@ -118,6 +120,11 @@ class SignupActivity : AppCompatActivity() {
                         call: Call<DefaultResponse>,
                         response: Response<DefaultResponse>
                     ) {
+                        Toast.makeText(applicationContext,response.toString(), Toast.LENGTH_SHORT).show()
+
+                        val userInfo = response.body()
+                        Log.d("response0", "${id}")
+                        Log.d("response1", "${userInfo} ${userInfo?.userId} ${userInfo?.phoneNumber}")
                         Toast.makeText(applicationContext,"회원가입 완료!", Toast.LENGTH_SHORT).show()
                     }
 

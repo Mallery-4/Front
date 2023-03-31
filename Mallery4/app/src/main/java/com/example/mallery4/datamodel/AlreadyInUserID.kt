@@ -1,3 +1,8 @@
 package com.example.mallery4.datamodel
 
-data class AlreadyInUserID (val isSuccess: Boolean, val status:Int, val code:Int, val message:String)
+import com.google.gson.annotations.SerializedName
+
+data class AlreadyInUserID (
+    @SerializedName("isSuccess") var isSuccess: Boolean,
+    @SerializedName("code") var code:Int,
+    @SerializedName("message") var message:String)

@@ -1,10 +1,11 @@
 package com.example.mallery4.datamodel
 
 import com.google.gson.annotations.SerializedName
+import retrofit2.http.Field
 
-data class DefaultResponse(
-    @SerializedName("result") var result: String,
+data class CreateUser (
     @SerializedName("userId") var userId:String,
     @SerializedName("username") var username:String,
-    @SerializedName("phone_number") var phoneNumber:String
-    )
+    @SerializedName("password") var password:String,
+    @SerializedName("phoneNumber") var phoneNumber:String
+)
