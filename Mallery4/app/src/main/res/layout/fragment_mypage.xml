@@ -3,14 +3,125 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MypageFragment">
+    tools:context=".MypageFragment"
+    android:orientation="vertical"
+    android:background="@color/background">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="마이페이지 Fragment"
-        android:textSize="50dp"
+        android:layout_height="wrap_content"
+        android:text="Mallery4"
+        android:textSize="40dp"
         android:textAlignment="center"
+        android:textColor="#766563"
         android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1.5"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="40dp"
+            android:textColor="#766563" />
+        <TextView
+            android:id="@+id/mypage_id"
+            android:layout_width="0px"
+            android:layout_weight="1.5"
+            android:layout_height="wrap_content"
+            android:text="아이디"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#766563" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="님"
+            android:textSize="25dp"
+            android:textColor="#766563" />
+        <TextView
+            android:layout_width="0px"
+            android:layout_weight="1.5"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="40dp"
+            android:gravity="left"
+            android:textColor="#766563" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="닉네임"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="45dp"
+        android:textColor="#766563" />
+    <TextView
+        android:id="@+id/mypage_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="3dp"
+        android:background="@drawable/enroll_edittext_style"
+        android:textColorHint="@color/browncolor"
+        android:textSize="28dp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="핸드폰번호"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="45dp"
+        android:textColor="#766563" />
+
+    <TextView
+        android:id="@+id/mypage_hp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="3dp"
+
+        android:background="@drawable/enroll_edittext_style"
+        android:textColorHint="@color/browncolor"
+        android:textSize="28dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/change_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:background="@drawable/rounded_pink"
+        android:text="변경하기"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/browncolor"/>
 
 </LinearLayout>

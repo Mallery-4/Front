@@ -8,7 +8,7 @@ import com.example.mallery4.datamodel.CreateUser
 import com.example.mallery4.datamodel.LoginResponse
 import com.example.mallery4.datamodel.LoginUser
 import com.example.mallery4.retrofit.RetrofitClient
-import com.example.mallery4.storage.SharedPrefManager
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Response
@@ -45,9 +45,14 @@ class LoginActivity : AppCompatActivity() {
                         response: Response<LoginResponse>
                     ) {
                         //로그인에 성공했다면,
+                        Toast.makeText(applicationContext, response.body()?.result.toString(), Toast.LENGTH_SHORT).show()
                         if (response.body()?.result.toString() == "success"){
-                            //SharedPrefManager.getInstance(applicationContext).saveUser(CreateUser())
                             Toast.makeText(applicationContext, "로그인 성공!", Toast.LENGTH_SHORT).show()
+                            
+                            // 로그인시 받는 access token으로 auth client 토큰, id 갱신
+                            RetrofitClient.AFTER_AUTH = "Bearer " + response.body()?.Logindata?.accessToken.toString()
+                            RetrofitClient.LoginUserId = response.body()?.userId.toString()
+
                             // 메인 화면으로 이동
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         }else{
