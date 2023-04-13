@@ -5,4 +5,5 @@ import com.google.gson.annotations.SerializedName
 data class AlreadyInUserID (
     @SerializedName("isSuccess") var isSuccess: Boolean,
     @SerializedName("code") var code:Int,
-    @SerializedName("message") var message:String)
+    @SerializedName("message") var message:String
+    )

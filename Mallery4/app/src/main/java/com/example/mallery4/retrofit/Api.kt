@@ -1,8 +1,6 @@
 package com.example.mallery4.retrofit
 
-import com.example.mallery4.datamodel.AlreadyInUserID
-import com.example.mallery4.datamodel.CreateUser
-import com.example.mallery4.datamodel.DefaultResponse
+import com.example.mallery4.datamodel.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -17,6 +15,18 @@ interface Api {
     ): Call<DefaultResponse>
 
     //회원가입 : ID 중복확인
-    @GET("member/authority")
-    fun alreadyInUserID(): Call<AlreadyInUserID>
+    @Headers("Content-Type: application/json")
+    @POST("member/idCheck")
+    fun alreadyInUserID(
+        @Body
+        IdCheck : IdCheck
+    ): Call<AlreadyInUserID>
+
+    //로그인
+    @Headers("Content-Type: application/json")
+    @POST("member/login")
+    fun userLogin(
+        @Body
+        LoginUser: LoginUser
+    ): Call<LoginResponse>
 }
