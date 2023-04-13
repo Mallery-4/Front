@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Mallery4</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login_logo"><b><i>Memory &amp; Gallery \n        for friends</i></b></string>
+    <string name="signup_style"><u>회원가입</u></string>
+
 </resources>

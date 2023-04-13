@@ -10,4 +10,5 @@
 
     <color name="background">#F9F8EE</color>
     <color name="pointcolor">#F7CCC7</color>
+    <color name="browncolor">#766563</color>
 </resources>
