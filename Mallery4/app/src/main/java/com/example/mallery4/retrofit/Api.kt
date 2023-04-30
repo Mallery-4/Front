@@ -34,4 +34,14 @@ interface Api {
     @Headers("Content-Type: application/json")
     @GET("member/{userId}")
     fun getUserInfo(@Path("userId") userId:String) : Call<MypageResponse>
+
+    //마이페이지-자신의 정보 수정하기
+    /*
+    @Headers("Content-Type: application/json")
+    @PUT("member/{userId}")
+    fun modify(
+        @Path(value="id",encoded=true) id:Int,
+        @Body writeDTO: writeDTO) : Call<writeDTO>
+
+     */
 }

@@ -14,6 +14,11 @@ object RetrofitClient {
     var LoginUserId = ""
     // server start 주소
     private const val BASE_URL = "http://ec2-3-39-19-70.ap-northeast-2.compute.amazonaws.com:8080"
+
+    //로그인한 회원 정보 변수
+    var public_id = ""
+    var public_username = ""
+    var public_hp = ""
     
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor { chain ->
