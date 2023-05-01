@@ -29,4 +29,18 @@ interface Api {
         @Body
         LoginUser: LoginUser
     ): Call<LoginResponse>
+
+    //마이페이지-자신의 정보 확인하기
+    @Headers("Content-Type: application/json")
+    @GET("member/{userId}")
+    fun getUserInfo(@Path("userId") userId:String) : Call<MypageResponse>
+
+    //마이페이지-자신의 정보 수정하기
+    @Headers("Content-Type: application/json")
+    @PUT("member/{userId}")
+    fun updateUserInfo(
+        @Path(value="userId",encoded=true) userId: String,
+        @Body UpdateUserInfo: UpdateUserInfo
+    ) : Call<MypageResponse2>
+
 }

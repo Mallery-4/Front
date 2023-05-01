@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         addFragment(HomeFragment.newInstance())
 
         bottomNavigation.show(1)
@@ -48,13 +50,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     // fragment 화면 전환 함수
-    private fun replaceFragment(fragment: Fragment){
+    fun replaceFragment(fragment: Fragment){
         val fragmentTransition = supportFragmentManager.beginTransaction()
         fragmentTransition.replace(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
     }
 
     // fragment 화면 전환 함수
-    private fun addFragment(fragment: Fragment){
+    fun addFragment(fragment: Fragment){
         val fragmentTransition = supportFragmentManager.beginTransaction()
         fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
     }
