@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
                         //로그인에 성공했다면,
                         //Toast.makeText(applicationContext, response.body()?.state.toString(), Toast.LENGTH_SHORT).show()
                         //Toast.makeText(applicationContext, response.body()?.result.toString(), Toast.LENGTH_SHORT).show()
+
                         if (response.body()?.result.toString() == "success"){
                             Toast.makeText(applicationContext, "로그인 성공!", Toast.LENGTH_SHORT).show()
                             

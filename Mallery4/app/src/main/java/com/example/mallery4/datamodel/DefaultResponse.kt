@@ -6,5 +6,5 @@ data class DefaultResponse(
     @SerializedName("result") var result: String,
     @SerializedName("userId") var userId:String,
     @SerializedName("username") var username:String,
-    @SerializedName("phone_number") var phoneNumber:String
+    @SerializedName("phone_number") var phone_number:String
     )
