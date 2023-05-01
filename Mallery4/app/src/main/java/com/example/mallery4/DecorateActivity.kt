@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_decorate.*
 
 class DecorateActivity: AppCompatActivity() {
@@ -35,6 +37,17 @@ class DecorateActivity: AppCompatActivity() {
                 PERMISSION_Album
             )
         }
+
+        // 완료 버튼 클릭 리스너 구현
+        val textdone = findViewById<TextView>(R.id.deco_done)
+        textdone.setOnClickListener {
+            //인텐트 선언 및 정의
+            val intent = Intent(this, DrawActivity::class.java)
+
+            //액티비티 이동
+            startActivity(intent)
+        }
+
     }
 
     override fun onRequestPermissionsResult(
@@ -79,16 +92,33 @@ class DecorateActivity: AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
+        val textView = findViewById<TextView>(R.id.deco_done)
         if (resultCode == RESULT_OK) {
             when (requestCode) {
                 REQUEST_STORAGE -> {
                     data?.data?.let { uri ->
                         imagePreview.setImageURI(uri)
+                        textView.setTextColor(ContextCompat.getColor(this, R.color.highlightcolor))
+
+                        textView.setOnClickListener {
+                            //인텐트 선언 및 정의
+                            val intent = Intent(this, DrawActivity::class.java)
+                            intent.apply {
+                                intent.putExtra("uri", data?.data.toString())
+
+                            }
+                            intent.putExtra("Uri", uri);
+                            //액티비티 이동
+                            startActivity(intent)
+                        }
                     }
                 }
             }
         }
     }
+
+
+
+
 }
 
