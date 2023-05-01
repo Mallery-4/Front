@@ -61,6 +61,7 @@
         tools:ignore="ExtraText">
 
         <LinearLayout
+            android:id="@+id/deco_layout"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -96,6 +97,7 @@
             android:background="#D6D6D6"/>
 
         <LinearLayout
+            android:id="@+id/cut4_layout"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
