@@ -7,63 +7,32 @@
     android:orientation="vertical"
     android:background="@color/background"
     tools:context=".DrawActivity">
+
+    <com.example.mallery4.CustomView
+        android:id="@+id/customView"
+        android:background="@color/black"
+        android:layout_width="200dp"
+        android:layout_height="300dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#cccccc"
-        android:gravity="center"
-        android:orientation="horizontal">
-
+        android:layout_height="50dp">
         <Button
-            android:id="@+id/btnTh"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="Thin"/>
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnRed"
-                android:checked="true"
-                android:text="RED"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnGreen"
-                android:text="GREEN"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnBlue"
-                android:text="BLUE"/>
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/btnClear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="CLEAR"/>
+            android:layout_height="50dp"
+            android:id="@+id/clear"
+            android:textColor="@color/black"
+            android:text="지우기"/>
     </LinearLayout>
 
-    <LinearLayout
+
+
+
+    <ImageView
+        android:id="@+id/imagecanvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/paintLayout"
-        android:layout_gravity="center">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:id="@+id/imagecanvas"
-            android:src="@drawable/camera"/>
-
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:src="@drawable/camera" />
 
 </LinearLayout>

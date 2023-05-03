@@ -54,6 +54,7 @@
 
         <activity android:name=".DecorateActivity"/>
         <activity android:name=".DrawActivity"/>
+
     </application>
 
 </manifest>
