@@ -1,5 +1,6 @@
 package com.example.mallery4
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
@@ -16,22 +17,27 @@ import kotlinx.android.synthetic.main.activity_draw.*
 
 class DrawActivity : AppCompatActivity() {
     private var myView: MyPaintView? = null
+    override fun onDestroy() {
+        super.onDestroy()
+        myView = null
+    }
+
     private var count = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw)
         myView = MyPaintView(this)
-
+/*
         if(intent.hasExtra("uri")) {
             val uriString = this.intent.getStringExtra("uri")
             if (uriString != null) {
                 val uri = Uri.parse(uriString)
                 imagecanvas.setImageURI(uri)
             }
-        }
+        }*/
 
-        findViewById<LinearLayout>(R.id.imagecanvas).addView(myView)
+        findViewById<LinearLayout>(R.id.paintLayout).addView(myView)
         findViewById<RadioGroup>(R.id.radioGroup).setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.btnRed -> myView?.mPaint?.color = Color.RED
@@ -74,15 +80,22 @@ class DrawActivity : AppCompatActivity() {
 
         override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
             super.onSizeChanged(w, h, oldw, oldh)
-            mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+            if (w <= 0 || h <= 0) {
+                // 기본값 설정
+                mBitmap = Bitmap.createBitmap(5, 5, Bitmap.Config.ARGB_8888)
+            } else {
+                mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
+            }
             mCanvas = Canvas(mBitmap!!)
         }
+
 
         override fun onDraw(canvas: Canvas) {
             canvas.drawBitmap(mBitmap!!, 0f, 0f, null) //지금까지 그려진 내용
             canvas.drawPath(mPath!!, mPaint) //현재 그리고 있는 내용
         }
 
+        @SuppressLint("ClickableViewAccessibility")
         override fun onTouchEvent(event: MotionEvent): Boolean {
             val x = event.x.toInt()
             val y = event.y.toInt()
