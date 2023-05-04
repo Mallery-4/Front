@@ -9,9 +9,9 @@ import android.view.MotionEvent
 import android.view.View
 
 
-class CustomView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
+class CustomView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
-    private var path = Path()
+    /*private var path = Path()
 
     private var paint = Paint()
     private var bitmap: Bitmap? = null
@@ -303,6 +303,87 @@ class CustomView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
 
     fun clearCanvas() {
        invalidate()
-    }
+    }*/
 }
-*/
+
+
+
+     */
+
+
+    private val p1 = Paint()
+    private val p2 = Paint()
+    private val p3 = Paint()
+    private val p4 = Paint()
+    private val p5 = Paint()
+
+
+    private val DATA_MAX_SIZE = 30000
+    private var myData_x = IntArray(DATA_MAX_SIZE)
+    private var myData_y = IntArray(DATA_MAX_SIZE)
+    private var myData_color = IntArray(DATA_MAX_SIZE)
+
+    var radius = 20
+    var whatColor = 0
+
+    var dataNumber = 0
+
+
+    private var mx = 0
+    private var my = 0
+
+    init {
+        p1.color = Color.RED
+        p2.color = Color.BLUE
+        p3.color = Color.YELLOW
+        p4.color = Color.GREEN
+        p5.color = Color.BLACK
+
+        myData_x[0] = 0
+        myData_y[0] = 0
+        myData_color[0] = 5
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        for (i in 1..dataNumber) {
+            when (myData_color[i]) {
+                1 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p1)
+                2 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p2)
+                3 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p3)
+                4 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p4)
+                5 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p5)
+            }
+        }
+        invalidate()
+    }
+
+    fun saveData() {
+        myData_x[dataNumber] = mx
+        myData_y[dataNumber] = my
+        myData_color[dataNumber] = whatColor
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        mx = event.x.toInt()
+        my = event.y.toInt()
+
+        dataNumber++
+        saveData()
+
+        return true
+    }
+
+
+    fun clearPaint() {
+        myData_x = IntArray(DATA_MAX_SIZE)
+        myData_y = IntArray(DATA_MAX_SIZE)
+        myData_color = IntArray(DATA_MAX_SIZE)
+    }
+
+}
+
+
+
+
+
