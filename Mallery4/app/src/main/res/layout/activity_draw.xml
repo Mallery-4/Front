@@ -8,17 +8,150 @@
     android:background="@color/background"
     tools:context=".DrawActivity">
 
+    <!--상단안내-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp">
         <ImageView
-            android:layout_width="match_parent"
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/backarrow"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:id="@+id/imagecanvas"
-            android:src="@drawable/camera"/>
+            android:layout_gravity="right"
+            android:text="저장"
+            android:textSize="20dp"
+            android:textColor="@color/highlightcolor" />
 
     </LinearLayout>
+
+    <!--그림도구-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/draw_erase"
+            android:id="@+id/erase"
+            android:onClick="clearPaint"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:id="@+id/pen"
+            android:src="@drawable/draw_pen" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sticker"
+            android:src="@drawable/draw_sticker" />
+    </LinearLayout>
+
+    <!--빈여백용-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/erase_margin"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+    </LinearLayout>
+
+    <!--색-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/pen_color"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pen_red"
+            android:layout_marginRight="20dp"
+            android:onClick="setRed"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pen_orange"
+            android:layout_marginRight="20dp"
+            android:onClick="setOrange"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/pen_yellow"
+            android:onClick="setYellow"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/pen_green"
+            android:onClick="setGreen"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/pen_blue"
+            android:onClick="setBlue"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pen_purple"
+            android:layout_marginRight="20dp"
+            android:onClick="setPurple"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pen_black"
+            android:layout_marginRight="20dp"
+            android:onClick="setBlack"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pen_white"
+            android:onClick="setWhite"/>
+
+    </LinearLayout>
+
+    <!--이미지-->
+    <com.example.mallery4.CustomView
+        android:id="@+id/customView"
+        android:layout_width="400dp"
+        android:layout_height="600dp" />
+
+
+
 
 </LinearLayout>
