@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.AttributeSet
@@ -35,13 +36,23 @@ class DrawActivity : AppCompatActivity() {
         clearButton.setOnClickListener {
             customView.clearCanvas()
         }*/
-        if (intent.hasExtra("uri")) {
+     /*   if (intent.hasExtra("uri")) {
             val uriString = this.intent.getStringExtra("uri")
             if (uriString != null) {
                 val uri = Uri.parse(uriString)
                 imagecanvas.setImageURI(uri)
+               // imagecanvas.setBackgroundResource()
+            }
+        }*/
+        if (intent.hasExtra("uri")) {
+            val uriString = intent.getStringExtra("uri")
+            if (uriString != null) {
+                val uri = Uri.parse(uriString)
+                val drawable = Drawable.createFromStream(contentResolver.openInputStream(uri), uri.toString())
+                imagecanvas.background = drawable
             }
         }
+
 
 
 
