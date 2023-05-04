@@ -28,7 +28,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/deco_done"
+            android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right"
@@ -146,17 +146,11 @@
     </LinearLayout>
 
     <!--이미지-->
-    <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="600dp"
-        android:layout_gravity="center"
-        android:id="@+id/imagecanvas">
-
     <com.example.mallery4.CustomView
         android:id="@+id/customView"
         android:layout_width="400dp"
         android:layout_height="600dp" />
-    </LinearLayout>
+
 
 
 
