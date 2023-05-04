@@ -38,7 +38,7 @@
 
     </LinearLayout>
 
-    <!--도구-->
+    <!--그림도구-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -65,6 +65,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/sticker"
             android:src="@drawable/draw_sticker" />
+    </LinearLayout>
+
+    <!--빈여백용-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:id="@+id/erase_margin"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
     </LinearLayout>
 
     <!--색-->

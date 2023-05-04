@@ -23,6 +23,7 @@ import javax.microedition.khronos.opengles.GL10
 
 class DrawActivity : AppCompatActivity() {
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw)
@@ -44,11 +45,13 @@ class DrawActivity : AppCompatActivity() {
         val sticker = findViewById<ImageView>(R.id.sticker)
         val pen_color = findViewById<LinearLayout>(R.id.pen_color)
         pen_color.visibility = View.GONE //처음에는 안보임
+        val erase_margin = findViewById<LinearLayout>(R.id.erase_margin)
 
         pen.setOnClickListener {
             pen.setImageDrawable(resources.getDrawable(R.drawable.draw_pen2))
             erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase))
             pen_color.visibility = View.VISIBLE
+            erase_margin.visibility = View.GONE
         }
 
        /* erase.setOnClickListener {
@@ -61,6 +64,7 @@ class DrawActivity : AppCompatActivity() {
             pen.setImageDrawable(resources.getDrawable(R.drawable.draw_pen))
             erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase))
             pen_color.visibility = View.GONE
+            erase_margin.visibility = View.GONE
         }
 
     }
@@ -120,6 +124,7 @@ class DrawActivity : AppCompatActivity() {
         pen.setImageDrawable(resources.getDrawable(R.drawable.draw_pen))
         erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase2))
         pen_color.visibility = View.GONE
+        erase_margin.visibility = View.VISIBLE
     }
 
 }
