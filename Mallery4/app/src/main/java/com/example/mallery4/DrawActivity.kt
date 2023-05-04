@@ -29,6 +29,7 @@ class DrawActivity : AppCompatActivity() {
 
         val customView = findViewById<CustomView>(R.id.customView)
 
+
         if (intent.hasExtra("uri")) {
             val uriString = intent.getStringExtra("uri")
             if (uriString != null) {
@@ -37,18 +38,31 @@ class DrawActivity : AppCompatActivity() {
                 imagecanvas.background = drawable
             }
         }
-    }
 
-    fun increaseValue(v: View) {
-        val customView = findViewById<CustomView>(R.id.customView)
-        customView.radius += 2
-        println(customView.radius)
-    }
+        val pen = findViewById<ImageView>(R.id.pen)
+        val erase = findViewById<ImageView>(R.id.erase)
+        val sticker = findViewById<ImageView>(R.id.sticker)
+        val pen_color = findViewById<LinearLayout>(R.id.pen_color)
+        pen_color.visibility = View.GONE //처음에는 안보임
 
-    fun decreaseValue(v: View) {
-        val customView = findViewById<CustomView>(R.id.customView)
-        customView.radius -= 2
-        println(customView.radius)
+        pen.setOnClickListener {
+            pen.setImageDrawable(resources.getDrawable(R.drawable.draw_pen2))
+            erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase))
+            pen_color.visibility = View.VISIBLE
+        }
+
+       /* erase.setOnClickListener {
+            pen.setImageDrawable(resources.getDrawable(R.drawable.draw_pen))
+            erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase2))
+            pen_color.visibility = View.GONE
+        }*/
+
+        sticker.setOnClickListener {
+            pen.setImageDrawable(resources.getDrawable(R.drawable.draw_pen))
+            erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase))
+            pen_color.visibility = View.GONE
+        }
+
     }
 
     fun setRed(v: View) {
@@ -57,7 +71,7 @@ class DrawActivity : AppCompatActivity() {
         println(customView.whatColor)
     }
 
-    fun setBlue(v: View) {
+    fun setOrange(v: View) {
         val customView = findViewById<CustomView>(R.id.customView)
         customView.whatColor = 2
         println(customView.whatColor)
@@ -75,15 +89,37 @@ class DrawActivity : AppCompatActivity() {
         println(customView.whatColor)
     }
 
-    fun setBlack(v: View) {
+    fun setBlue(v: View) {
         val customView = findViewById<CustomView>(R.id.customView)
         customView.whatColor = 5
+        println(customView.whatColor)
+    }
+
+    fun setPurple(v: View) {
+        val customView = findViewById<CustomView>(R.id.customView)
+        customView.whatColor = 6
+        println(customView.whatColor)
+    }
+
+
+    fun setBlack(v: View) {
+        val customView = findViewById<CustomView>(R.id.customView)
+        customView.whatColor = 7
+        println(customView.whatColor)
+    }
+
+    fun setWhite(v: View) {
+        val customView = findViewById<CustomView>(R.id.customView)
+        customView.whatColor = 8
         println(customView.whatColor)
     }
 
     fun clearPaint(v: View) {
         val customView = findViewById<CustomView>(R.id.customView)
         customView.clearPaint()
+        pen.setImageDrawable(resources.getDrawable(R.drawable.draw_pen))
+        erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase2))
+        pen_color.visibility = View.GONE
     }
 
 }

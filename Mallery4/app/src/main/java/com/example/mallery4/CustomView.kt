@@ -316,6 +316,9 @@ class CustomView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
     private val p3 = Paint()
     private val p4 = Paint()
     private val p5 = Paint()
+    private val p6 = Paint()
+    private val p7 = Paint()
+    private val p8 = Paint()
 
 
     private val DATA_MAX_SIZE = 30000
@@ -333,11 +336,14 @@ class CustomView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
     private var my = 0
 
     init {
-        p1.color = Color.RED
-        p2.color = Color.BLUE
-        p3.color = Color.YELLOW
-        p4.color = Color.GREEN
-        p5.color = Color.BLACK
+        p1.color = Color.parseColor("#F44336")
+        p2.color = Color.parseColor("#F49136")
+        p3.color = Color.parseColor("#FFEE58")
+        p4.color = Color.parseColor("#00CC00")
+        p5.color = Color.parseColor("#00BEEA")
+        p6.color = Color.parseColor("#7F0099")
+        p7.color = Color.parseColor("#000000")
+        p8.color = Color.parseColor("#ffffff")
 
         myData_x[0] = 0
         myData_y[0] = 0
@@ -352,6 +358,10 @@ class CustomView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
                 3 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p3)
                 4 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p4)
                 5 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p5)
+                6 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p6)
+                7 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p7)
+                8 -> canvas.drawCircle(myData_x[i].toFloat(), myData_y[i].toFloat(), radius.toFloat(), p8)
+
             }
         }
         invalidate()

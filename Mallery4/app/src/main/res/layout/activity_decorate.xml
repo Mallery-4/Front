@@ -8,29 +8,37 @@
     android:background="@color/background"
     tools:context=".DecorateActivity">
 
+    <!--상단안내-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp">
         <ImageView
             android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/backarrow"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/deco_done"
-            android:layout_marginLeft="50dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/background"
-            android:text="완료"/>
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:text="완료"
+            android:textSize="20dp"
+            android:textColor="@color/background" />
 
     </LinearLayout>
 
+    <!--안내문구-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,15 +64,24 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="600dp"
+        android:layout_width="300dp"
+        android:layout_height="450dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
         android:layout_gravity="center">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:id="@+id/imagePreview"
             android:src="@drawable/camera"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
     </LinearLayout>
 
@@ -78,10 +95,11 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/camera_btn"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:background="#FFFFFF"
-            android:text="꾸미기"
+            android:text="사진선택"
             android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/browncolor"/>
