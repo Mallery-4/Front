@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
         addFragment(HomeFragment.newInstance())
 
         bottomNavigation.show(1)
@@ -59,6 +58,46 @@ class MainActivity : AppCompatActivity() {
     fun addFragment(fragment: Fragment){
         val fragmentTransition = supportFragmentManager.beginTransaction()
         fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
+    }
+
+    // 그룹 생성 페이지 fragment 이동 함수
+    fun MakingGroupFragment(albumid:Long){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainer,MakeGroupFragment2(albumid)).addToBackStack(Fragment::class.java.simpleName)
+                .commit()
+    }
+
+    // 친구추가 페이지 fragment 이동 함수
+    fun AddFriend(albumid: Long){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,AddFriendFragment(albumid)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
+    // 세부 그룹항목 클릭시 이동 fragment
+    fun MoveGroups(groupname: String, groupcount: String, groupid: String, groupmembers: String){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,DetailGroupFragment(groupname, groupcount, groupid, groupmembers)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
+    // 탈퇴하기클릭시 이동 fragment
+    fun DeleteAlbum(groupid: Long){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,DeleteAlbumFragment(groupid)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
+    // 그룹이름 변경하기 이동 fragment
+    fun ChangeAlbumName(groupid: Long){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,ChangeAlbumNameFragment(groupid)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
     }
 
 }

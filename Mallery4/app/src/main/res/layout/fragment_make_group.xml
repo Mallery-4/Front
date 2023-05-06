@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MakeGroupFragment"
+    android:background="@color/background">
+
+    <ImageButton
+        android:id="@+id/btn_backtohome"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:background="@color/background"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="그룹 만들기"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginLeft="28dp"
+        android:textColor="#766563" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추억을 생성할 그룹을 만들어볼까요?"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginLeft="28dp"
+        android:textColor="#766563" />
+
+    <EditText
+        android:id="@+id/write_groupname"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="45dp"
+        android:paddingLeft="10dp"
+        android:hint="그룹 이름"
+        android:background="@drawable/enroll_edittext_style"
+        android:textColorHint="@color/browncolor"
+        android:textSize="18dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/newgroup_enroll_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:background="@drawable/rounded_pink"
+        android:text="완료"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/browncolor"/>
+
+</LinearLayout>

@@ -43,4 +43,41 @@ interface Api {
         @Body UpdateUserInfo: UpdateUserInfo
     ) : Call<MypageResponse2>
 
+    //그룹 앨범 생성하기 - 앨범생성
+    @Headers("Content-Type: application/json")
+    @POST("album/new")
+    fun createAlbum(
+        @Body
+        CreateAlbum: CreateAlbum
+    ): Call<CreateAlbumResponse>
+
+    //그룹 앨범 생성하기 - 친구추가
+    @Headers("Content-Type: application/json")
+    @PUT("album/member/add")
+    fun addFriend(
+        @Body
+        AddFriend: AddFriend
+    ): Call<AddFriendResponse>
+
+    //홈페이지-자신이 속한 전체 그룹 확인하기
+    @Headers("Content-Type: application/json")
+    @GET("album/member/{userId}")
+    fun getAllAlbumInfo(@Path("userId") userId:String) : Call<AllAlbumResponse>
+
+    // 그룹 삭제하기
+    // delete는 body 없으나, 현재의 경우 body 필요해서 해당 http로 메서드 구현해야 오류 안남.
+    @Headers("Content-Type: application/json")
+    @HTTP(method = "DELETE", path="album/{albumId}",hasBody = true)
+    fun deletealbum(
+        @Path("albumId") albumId:Long,
+        @Body DeleteUser: DeleteUser
+    ): Call<DeleteAlbumResponse>
+
+    // 그룹 이름 변경하기
+    @Headers("Content-Type: application/json")
+    @PUT("album/{albumId}")
+    fun updateAlbumName(
+        @Path(value="albumId") albumId: Long,
+        @Body UpdateAlbumname: UpdateAlbumname
+    ) : Call<CreateAlbumResponse>
 }
