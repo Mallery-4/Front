@@ -127,6 +127,7 @@ class SignupActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext,"회원가입 완료!", Toast.LENGTH_SHORT).show()
                         // 로그인 화면으로 이동
                         startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
+
                     }
 
                     // 회원가입 실패시,

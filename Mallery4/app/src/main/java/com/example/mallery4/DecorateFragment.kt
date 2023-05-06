@@ -1,5 +1,6 @@
 package com.example.mallery4
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,8 +13,21 @@ class DecorateFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_decorate, container, false)
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_decorate, container, false)
+
+        val decoLayout = view.findViewById<View>(R.id.deco_layout)
+        decoLayout.setOnClickListener {
+            val intent = Intent(activity, DecorateActivity::class.java)
+            startActivity(intent)
+        }
+
+        return view
+
+
     }
+
+
 
     companion object {
         @JvmStatic
