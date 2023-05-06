@@ -59,4 +59,14 @@ interface Api {
         AddFriend: AddFriend
     ): Call<AddFriendResponse>
 
+    //홈페이지-자신이 속한 전체 그룹 확인하기
+    @Headers("Content-Type: application/json")
+    @GET("album/member/{userId}")
+    fun getAllAlbumInfo(@Path("userId") userId:String) : Call<AllAlbumResponse>
+
+    // 그룹 삭제하기
+    @Headers("Content-Type: application/json")
+    @DELETE("album/{albumId}")
+    fun deletealbum(@Path("albumId") albumId:String): Call<DeleteAlbumResponse>
+
 }

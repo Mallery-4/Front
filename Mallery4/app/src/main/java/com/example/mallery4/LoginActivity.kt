@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import com.example.mallery4.datamodel.CreateUser
 import com.example.mallery4.datamodel.LoginResponse
@@ -57,6 +58,7 @@ class LoginActivity : AppCompatActivity() {
                             // 메인 화면으로 이동
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         }else{
+                            response.let { it1 -> Log.d("###############", it1.toString()) }
                             Toast.makeText(applicationContext, "다시 한번 시도해주세요.", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -64,7 +66,6 @@ class LoginActivity : AppCompatActivity() {
                     // 로그인 버튼 응답 실패시,
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                         Toast.makeText(applicationContext, "아이디, 패스워드를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
-
                     }
 
                 })

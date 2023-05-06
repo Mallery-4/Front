@@ -76,4 +76,20 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    // 세부 그룹항목 클릭시 이동 fragment
+    fun MoveGroups(groupname: String, groupcount: String, groupid: String, groupmembers: String){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,DetailGroupFragment(groupname, groupcount, groupid, groupmembers)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
+    // 탈퇴하기클릭시 이동 fragment
+    fun DeleteAlbum(groupid: Long){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,DeleteAlbumFragment(groupid)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
 }

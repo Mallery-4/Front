@@ -51,7 +51,7 @@ class AddFriendFragment(albumid: Long) : Fragment(){
                 return@setOnClickListener
             }
 
-            RetrofitClient.instance.alreadyInUserID(IdCheck(friend_id))
+            RetrofitClient.afterinstance.alreadyInUserID(IdCheck(friend_id))
                 .enqueue(object: Callback<AlreadyInUserID> {
 
                     override fun onResponse(

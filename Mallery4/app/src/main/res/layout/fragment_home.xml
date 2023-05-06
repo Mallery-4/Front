@@ -31,7 +31,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
         <TextView
             android:id="@+id/home_nickname"
             android:layout_width="wrap_content"
@@ -49,5 +50,13 @@
             android:textSize="25dp"
             android:textColor="#766563" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        tools:listitem="@layout/main_items">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>
