@@ -47,8 +47,6 @@ class LoginActivity : AppCompatActivity() {
                         response: Response<LoginResponse>
                     ) {
                         //로그인에 성공했다면,
-                        //Toast.makeText(applicationContext, response.body()?.state.toString(), Toast.LENGTH_SHORT).show()
-                        //Toast.makeText(applicationContext, response.body()?.result.toString(), Toast.LENGTH_SHORT).show()
                         if (response.body()?.result.toString() == "success"){
                             Toast.makeText(applicationContext, "로그인 성공!", Toast.LENGTH_SHORT).show()
                             
@@ -66,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                     // 로그인 버튼 응답 실패시,
                     override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                         Toast.makeText(applicationContext, "아이디, 패스워드를 다시 확인해주세요.", Toast.LENGTH_SHORT).show()
-                        //Toast.makeText(applicationContext, t.message, Toast.LENGTH_SHORT).show()
+
                     }
 
                 })

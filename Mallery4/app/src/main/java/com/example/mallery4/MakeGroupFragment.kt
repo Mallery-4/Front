@@ -1,6 +1,10 @@
 package com.example.mallery4
 
+import android.icu.util.UniversalTimeScale.toLong
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +15,11 @@ import com.example.mallery4.MakeGroupFragment.Companion.newInstance
 import com.example.mallery4.datamodel.CreateAlbum
 import com.example.mallery4.datamodel.CreateAlbumResponse
 import com.example.mallery4.retrofit.RetrofitClient
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_make_group.*
 import retrofit2.Call
 import retrofit2.Response
+import kotlin.properties.Delegates
 
 class MakeGroupFragment : Fragment() {
 
@@ -37,8 +43,6 @@ class MakeGroupFragment : Fragment() {
         // 레트로핏으로 정보 post + 화면이동까지 이벤트 넣기
         newgroup_enroll_btn.setOnClickListener {
 
-
-
             // 그룹 이름 정보 -> 서버로 변경된 정보 보내기
             val albumname = write_groupname.text.toString().trim()
 
@@ -49,7 +53,7 @@ class MakeGroupFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            RetrofitClient.afterinstance.createAlbum(CreateAlbum(albumname,RetrofitClient.public_id))
+            RetrofitClient.afterinstance.createAlbum(CreateAlbum(albumname,RetrofitClient.public_id)).clone()
                 .enqueue(object : retrofit2.Callback<CreateAlbumResponse>{
 
                     // 올바른 응답이었을 경우
@@ -57,19 +61,23 @@ class MakeGroupFragment : Fragment() {
                         call: Call<CreateAlbumResponse>,
                         response: Response<CreateAlbumResponse>
                     ) {
-                        Toast.makeText(getActivity(), "그룹이 생성되었습니다.", Toast.LENGTH_LONG).show()
+
+                        val albumid = Gson().toJson(response.body()?.albumId).toLong()
+                        Toast.makeText(context, "그룹이 생성되었습니다.", Toast.LENGTH_LONG).show()
+                        // 화면 이동
+                        (context as MainActivity).MakingGroupFragment(albumid) //변경하는 페이지로 이동
                     }
 
 
                     // 서버 오류
                     override fun onFailure(call: Call<CreateAlbumResponse>, t: Throwable) {
+                        t.message?.let { it1 -> Log.d("###############", it1) }
 
                     }
 
                 })
 
-            // 화면 이동
-            (context as MainActivity).MakingGroupFragment(2, albumname) //변경하는 페이지로 이동
+
 
         }
     }

@@ -51,4 +51,12 @@ interface Api {
         CreateAlbum: CreateAlbum
     ): Call<CreateAlbumResponse>
 
+    //그룹 앨범 생성하기 - 친구추가
+    @Headers("Content-Type: application/json")
+    @PUT("album/member/add")
+    fun addFriend(
+        @Body
+        AddFriend: AddFriend
+    ): Call<AddFriendResponse>
+
 }

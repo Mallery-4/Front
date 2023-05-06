@@ -40,12 +40,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_margin="12dp"
+            android:layout_margin="20dp"
             android:id="@+id/btn_later"
-            android:layout_width="180dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/round_white"
             android:text="나중에"
@@ -54,9 +56,9 @@
             android:textColor="@color/browncolor"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_margin="12dp"
+            android:layout_margin="20dp"
             android:id="@+id/btn_addfriend"
-            android:layout_width="180dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_pink"
             android:text="친구추가"

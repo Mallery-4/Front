@@ -61,29 +61,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 그룹 생성 페이지 fragment 이동 함수
-    fun MakingGroupFragment(index:Int, albumname:String){
-        when(index){
-            1 -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.fragmentContainer,MakeGroupFragment()).addToBackStack(Fragment::class.java.simpleName)
-                    .commit()
-            }
-
-            2 -> {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.fragmentContainer,MakeGroupFragment2(albumname)).addToBackStack(Fragment::class.java.simpleName)
-                    .commit()
-            }
-        }
+    fun MakingGroupFragment(albumid:Long){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainer,MakeGroupFragment2(albumid)).addToBackStack(Fragment::class.java.simpleName)
+                .commit()
     }
 
     // 친구추가 페이지 fragment 이동 함수
-    fun AddFriend(albumname: String){
+    fun AddFriend(albumid: Long){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,AddFriendFragment(albumname)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,AddFriendFragment(albumid)).addToBackStack(Fragment::class.java.simpleName)
             .commit()
     }
 

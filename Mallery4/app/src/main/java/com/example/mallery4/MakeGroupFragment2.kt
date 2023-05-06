@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.fragment_make_group2.*
 import retrofit2.Call
 import retrofit2.Response
 
-class MakeGroupFragment2(albumname: String) : Fragment(){
+class MakeGroupFragment2(albumid: Long) : Fragment(){
 
-    val album_name = albumname
+    val album_id = albumid
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +37,8 @@ class MakeGroupFragment2(albumname: String) : Fragment(){
         }
 
         // 친구추가 버튼 클릭시, 친구추가하기 화면으로 이동
-        btn_later.setOnClickListener {
-            (context as MainActivity).AddFriend(album_name)
+        btn_addfriend.setOnClickListener {
+            (context as MainActivity).AddFriend(album_id)
         }
 
     }
