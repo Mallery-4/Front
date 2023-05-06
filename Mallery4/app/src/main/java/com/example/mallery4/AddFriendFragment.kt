@@ -89,7 +89,7 @@ class AddFriendFragment(albumname: String) : Fragment(){
 
                 /////////////////////////////////////////////////////////
                 // album_name과 userId로 그룹생성하기
-                
+
                 // 화면 이동
                 (context as MainActivity).replaceFragment(HomeFragment.newInstance()) // 홈화면으로 이동
             }
