@@ -43,4 +43,12 @@ interface Api {
         @Body UpdateUserInfo: UpdateUserInfo
     ) : Call<MypageResponse2>
 
+    //그룹 앨범 생성하기 - 앨범생성
+    @Headers("Content-Type: application/json")
+    @POST("album/new")
+    fun createAlbum(
+        @Body
+        CreateAlbum: CreateAlbum
+    ): Call<CreateAlbumResponse>
+
 }

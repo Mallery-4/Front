@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
         addFragment(HomeFragment.newInstance())
 
         bottomNavigation.show(1)
@@ -59,6 +58,33 @@ class MainActivity : AppCompatActivity() {
     fun addFragment(fragment: Fragment){
         val fragmentTransition = supportFragmentManager.beginTransaction()
         fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
+    }
+
+    // 그룹 생성 페이지 fragment 이동 함수
+    fun MakingGroupFragment(index:Int, albumname:String){
+        when(index){
+            1 -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer,MakeGroupFragment()).addToBackStack(Fragment::class.java.simpleName)
+                    .commit()
+            }
+
+            2 -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer,MakeGroupFragment2(albumname)).addToBackStack(Fragment::class.java.simpleName)
+                    .commit()
+            }
+        }
+    }
+
+    // 친구추가 페이지 fragment 이동 함수
+    fun AddFriend(albumname: String){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,AddFriendFragment(albumname)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
     }
 
 }

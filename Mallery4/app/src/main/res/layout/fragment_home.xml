@@ -3,14 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:orientation="vertical"
+    tools:context=".HomeFragment"
+    android:background="@color/background">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="홈화면 Fragment"
-        android:textSize="50dp"
+        android:layout_height="wrap_content"
+        android:text="Mallery4"
+        android:textSize="40dp"
         android:textAlignment="center"
+        android:textColor="#766563"
         android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/home_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginLeft="28dp"
+            android:textColor="#766563" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 님의 그룹"
+            android:textSize="25dp"
+            android:textColor="#766563" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_makegroup"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="70dp"
+            android:background="@drawable/rounded_pink"
+            android:text="그룹만들기"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/browncolor"/>
+    </LinearLayout>
 
 </LinearLayout>

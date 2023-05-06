@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MakeGroupFragment2"
+    android:background="@color/background">
+
+
+    <ImageView
+        android:layout_marginTop="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/noto_partying_face"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="그룹 생성이 완료되었습니다!"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="#766563" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="함께 추억을 기록할 친구들을 추가해볼까요?"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:textColor="#766563" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_margin="12dp"
+            android:id="@+id/btn_later"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_white"
+            android:text="나중에"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/browncolor"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_margin="12dp"
+            android:id="@+id/btn_addfriend"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_pink"
+            android:text="친구추가"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/browncolor"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -53,7 +53,7 @@ object RetrofitClient {
         }.build()
 
 
-    // 최종 id, 회원가입, 로그인 인스턴스
+    // 로그인 성공 이후 사용 인스턴스
     val afterinstance: Api by lazy {
         val retrofit2 = Retrofit.Builder()
             .baseUrl(BASE_URL)
