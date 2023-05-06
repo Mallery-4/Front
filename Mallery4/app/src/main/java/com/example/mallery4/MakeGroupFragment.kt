@@ -53,7 +53,7 @@ class MakeGroupFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            RetrofitClient.afterinstance.createAlbum(CreateAlbum(albumname,RetrofitClient.public_id)).clone()
+            RetrofitClient.afterinstance.createAlbum(CreateAlbum(albumname, RetrofitClient.LoginUserId))
                 .enqueue(object : retrofit2.Callback<CreateAlbumResponse>{
 
                     // 올바른 응답이었을 경우

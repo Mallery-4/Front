@@ -65,9 +65,13 @@ interface Api {
     fun getAllAlbumInfo(@Path("userId") userId:String) : Call<AllAlbumResponse>
 
     // 그룹 삭제하기
+    // delete는 body 없으나, 현재의 경우 body 필요해서 해당 http로 메서드 구현해야 오류 안남.
     @Headers("Content-Type: application/json")
-    @DELETE("album/{albumId}")
-    fun deletealbum(@Path("albumId") albumId:Long): Call<DeleteAlbumResponse>
+    @HTTP(method = "DELETE", path="album/{albumId}",hasBody = true)
+    fun deletealbum(
+        @Path("albumId") albumId:Long,
+        @Body DeleteUser: DeleteUser
+    ): Call<DeleteAlbumResponse>
 
     // 그룹 이름 변경하기
     @Headers("Content-Type: application/json")
