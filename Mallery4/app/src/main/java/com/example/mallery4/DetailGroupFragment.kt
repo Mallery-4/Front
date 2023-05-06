@@ -50,13 +50,11 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
 
         }
 
-        // 닉네임 변경하기 버튼 클릭시
-        /*
+        // 그룹이름 변경하기 버튼 클릭시
         ch_nick.setOnClickListener {
-            (context as MainActivity).replaceFragment(HomeFragment.newInstance())
+            (context as MainActivity).ChangeAlbumName(group_id)
         }
 
-         */
 
         // 친구추가 버튼 클릭시, 친구추가하기 화면으로 이동
         ad_fri.setOnClickListener {

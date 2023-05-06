@@ -38,7 +38,7 @@ class DeleteAlbumFragment (albumid: Long) : Fragment(){
         // 탈퇴하기 누르면,
         del_true.setOnClickListener {
 
-            RetrofitClient.afterinstance.deletealbum(album_id.toString())
+            RetrofitClient.afterinstance.deletealbum(album_id)
                 .enqueue(object: Callback<DeleteAlbumResponse> {
 
                     override fun onResponse(

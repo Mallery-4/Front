@@ -67,6 +67,13 @@ interface Api {
     // 그룹 삭제하기
     @Headers("Content-Type: application/json")
     @DELETE("album/{albumId}")
-    fun deletealbum(@Path("albumId") albumId:String): Call<DeleteAlbumResponse>
+    fun deletealbum(@Path("albumId") albumId:Long): Call<DeleteAlbumResponse>
 
+    // 그룹 이름 변경하기
+    @Headers("Content-Type: application/json")
+    @PUT("album/{albumId}")
+    fun updateAlbumName(
+        @Path(value="albumId") albumId: Long,
+        @Body UpdateAlbumname: UpdateAlbumname
+    ) : Call<CreateAlbumResponse>
 }

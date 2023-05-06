@@ -92,4 +92,12 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    // 그룹이름 변경하기 이동 fragment
+    fun ChangeAlbumName(groupid: Long){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,ChangeAlbumNameFragment(groupid)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
 }
