@@ -100,4 +100,27 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    // post 글쓰기(날짜) 이동 fragment
+    fun Post1(groupname: String, groupcount: String, groupid: Long, groupmembers: String){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,WritePostFragment1(groupname, groupcount, groupid, groupmembers)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
+    // post 글쓰기(함께한친구)페이지로 이동 fragment
+    fun Post2(groupname: String, groupcount: String, groupid: Long, groupmembers: String, postdate: String){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,WritePostFragment2(groupname, groupcount, groupid, groupmembers, postdate)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
+    // post 글쓰기(장소, 사진등록)페이지로 이동 fragment
+    fun Post3(groupname: String, groupcount: String, groupid: Long, groupmembers: String, postdate: String, participants: List<String>){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,WritePostFragment3(groupname, groupcount, groupid, groupmembers, postdate, participants)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
 }
