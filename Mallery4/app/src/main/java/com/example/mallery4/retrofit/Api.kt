@@ -1,6 +1,7 @@
 package com.example.mallery4.retrofit
 
 import com.example.mallery4.datamodel.*
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -80,4 +81,15 @@ interface Api {
         @Path(value="albumId") albumId: Long,
         @Body UpdateAlbumname: UpdateAlbumname
     ) : Call<CreateAlbumResponse>
+
+    // 새글쓰기(post)
+    /*
+    @Multipart
+    @POST("")
+    fun writeText(
+        @Part("userId") userId: String,
+        @Part imageFile : MultipartBody.Part
+    ) : Call<Response>
+
+     */
 }
