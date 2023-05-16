@@ -29,9 +29,10 @@ class WritePostFragment2 (groupname: String, groupcount: String, groupid: Long, 
     var group_members = groupmembers
     lateinit var member_list : List<String>
     var post_date = postdate
-    lateinit var participants: MutableList<String>
 
-    lateinit var itemList: ArrayList<FriendItem>
+    var participants: MutableList<String> = mutableListOf()
+    var itemList: ArrayList<FriendItem> = ArrayList()
+
 
 
     override fun onCreateView(
@@ -45,6 +46,9 @@ class WritePostFragment2 (groupname: String, groupcount: String, groupid: Long, 
         super.onViewCreated(view, savedInstanceState)
         member_list = group_members.split(",")
 
+        for (i in 0 until member_list.size){
+            itemList.add(FriendItem(member_list[i], false))
+        }
 
         // back 뒤로가기 버튼 클릭시, 이전 날짜 선택 post 화면으로 이동
         btn_post2_backhome.setOnClickListener {
@@ -54,12 +58,14 @@ class WritePostFragment2 (groupname: String, groupcount: String, groupid: Long, 
         // 동적으로 버튼 생성
         // member을 ,을 구분자로 string 구분 + 동적으로 친구 이름 버튼 만들기
         friend_recyclerview.layoutManager = LinearLayoutManager(context)
-        friend_recyclerview.adapter = FriendItemAdapter(getData())
+        friend_recyclerview.adapter = FriendItemAdapter(itemList)
 
 
         // 선택한 친구들과 추억 기록하기 버튼 클릭시
         btn_post_friend.setOnClickListener {
             // 클릭된 함께한 친구 목록 추가
+
+
             for ((index, item) in itemList.withIndex().reversed()){
                 val item : FriendItem = item
 
@@ -75,14 +81,4 @@ class WritePostFragment2 (groupname: String, groupcount: String, groupid: Long, 
 
     }
 
-    // recyclerview 내의 친구 목록 데이터 생성
-    private fun getData(): ArrayList<FriendItem>{
-        val itemList: ArrayList<FriendItem> = ArrayList()
-
-        for (i in 0 until member_list.size){
-            itemList.add(FriendItem(member_list[i], false))
-        }
-
-        return itemList
-    }
 }
