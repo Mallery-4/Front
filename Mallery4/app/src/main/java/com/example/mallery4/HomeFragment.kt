@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
                         var album_id= Gson().toJson(response.body()?.albums?.get(i)?.albumId).toString()
                         var album_name=Gson().toJson(response.body()?.albums?.get(i)?.albumName).toString()
                         var album_count=Gson().toJson(response.body()?.albums?.get(i)?.memberCnt).toString()
-                        var album_members=response.body()?.albums?.get(i)?.members?.joinToString(", ").toString()
+                        var album_members=response.body()?.albums?.get(i)?.members?.joinToString(",").toString()
 
                         //recyclerview 연결
                         MainItemList.add(MainItem(album_name,album_count,album_id,album_members))
