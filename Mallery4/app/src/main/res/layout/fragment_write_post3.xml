@@ -74,7 +74,7 @@
         android:id="@+id/post_place"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/edittext_style"
@@ -100,6 +100,6 @@
         android:id="@+id/photo_viewpager"
         android:layout_margin="28dp"
         android:layout_width="match_parent"
-        android:layout_height="280dp"/>
+        android:layout_height="300dp"/>
 
 </LinearLayout>

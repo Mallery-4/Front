@@ -45,7 +45,7 @@ class WritePostFragment1 (groupname: String, groupcount: String, groupid: Long, 
 
         // calendarview 날짜 변환 이벤트 : 버튼 텍스트, backgroundcolor 변경
         calendarview.setOnDateChangeListener{ calendarview, year, month, dayOfMonth ->
-            day = "${year}년 ${month}월 ${dayOfMonth}일"
+            day = "${year}년 ${month+1}월 ${dayOfMonth}일"
             btn_post_date.setText(day+" 추억 기록하기")
             btn_post_date.setBackgroundResource(R.drawable.rounded_pink)
 
