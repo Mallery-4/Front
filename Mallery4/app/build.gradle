@@ -57,4 +57,7 @@ dependencies {
     //meow buttom navigation
     //implementation 'com.etebarian:meow-bottom-navigation:1.3.1'
     implementation 'com.etebarian:meow-bottom-navigation:1.0.2'
+
+    // viewpager: recyclerview 가로로 쓰기 위함(사진정렬)
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }

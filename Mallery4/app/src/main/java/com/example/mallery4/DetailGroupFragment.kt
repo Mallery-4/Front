@@ -14,6 +14,8 @@ import com.example.mallery4.datamodel.DeleteAlbumResponse
 import com.example.mallery4.recyclerview.MainItem
 import com.example.mallery4.recyclerview.MainItemAdapter
 import com.example.mallery4.retrofit.RetrofitClient
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_detail_group.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -33,6 +35,7 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
         savedInstanceState: Bundle?
     ): View? {
 
+
         return inflater.inflate(R.layout.fragment_detail_group, container, false)
     }
 
@@ -45,9 +48,7 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
 
         // 탈퇴하기 버튼 클릭시, 탈퇴 확인 fragment로 이동
         delete_btn.setOnClickListener {
-
             (context as MainActivity).DeleteAlbum(group_id)
-
         }
 
         // 그룹이름 변경하기 버튼 클릭시
@@ -59,6 +60,11 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
         // 친구추가 버튼 클릭시, 친구추가하기 화면으로 이동
         ad_fri.setOnClickListener {
             (context as MainActivity).AddFriend(group_id)
+        }
+
+        // 게시물 추가하기 (floating button 클릭시), post의 날짜 캘린더뷰 fragment로 이동
+        add_post.setOnClickListener { view ->
+            (context as MainActivity).Post1(group_name, group_count, group_id, group_members)
         }
 
     }
