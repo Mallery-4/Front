@@ -23,8 +23,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.getSystemService
-import androidx.core.view.doOnLayout
+
+
 import kotlinx.android.synthetic.main.activity_draw.*
 import java.io.File
 import java.io.FileOutputStream
@@ -34,10 +34,37 @@ import javax.microedition.khronos.opengles.GL10
 
 class DrawActivity : AppCompatActivity() {
 
-    @SuppressLint("MissingInflatedId")
+    private lateinit var stickerView: StickerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw)
+
+        stickerView=findViewById<StickerView>(R.id.stickerView)
+        val btnAddSticker=findViewById<Button>(R.id.btnAddSticker)
+
+        //아이콘 설정
+        val deleteIcon= BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.home)
+            ,BitmapStickerIcon.LEFT_TOP)
+        val flipIcon=BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.deco)
+            ,BitmapStickerIcon.RIGHT_BOTOM)
+        val scaleIcon=BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.noto_partying_face)
+            ,BitmapStickerIcon.LEFT_BOTTOM)
+
+        val iconList=listOf(deleteIcon,flipIcon,scaleIcon)
+
+        //아이콘에 이벤트 할당
+        deleteIcon.setIconEvent(DeleteIconEvent())
+        flipIcon.iconEvent= FlipHorizontallyEvent()
+        scaleIcon.setIconEvent(ZoomIconEvent())
+
+        //스티커뷰에 아이콘연결
+        stickerView.setIcons(iconList)
+
+
+        //버튼 눌리면 스티커추가
+        btnAddSticker.setOnClickListener {
+            loadSticker()
+        }
 
         // 뒤로가기 버튼
         val back = findViewById<ImageView>(R.id.back)
@@ -71,7 +98,9 @@ class DrawActivity : AppCompatActivity() {
         val erase = findViewById<ImageView>(R.id.erase)
         val sticker = findViewById<ImageView>(R.id.sticker)
         val pen_color = findViewById<LinearLayout>(R.id.pen_color)
+        val sticker_img = findViewById<LinearLayout>(R.id.sticker_img)
         pen_color.visibility = View.GONE //처음에는 안보임
+        sticker_img.visibility = View.GONE
         val erase_margin = findViewById<LinearLayout>(R.id.erase_margin)
 
         pen.setOnClickListener {
@@ -79,18 +108,26 @@ class DrawActivity : AppCompatActivity() {
             erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase))
             pen_color.visibility = View.VISIBLE
             erase_margin.visibility = View.GONE
+            sticker_img.visibility = View.GONE
         }
 
         sticker.setOnClickListener {
             pen.setImageDrawable(resources.getDrawable(R.drawable.draw_pen))
             erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase))
+            sticker_img.visibility = View.VISIBLE
             pen_color.visibility = View.GONE
             erase_margin.visibility = View.GONE
         }
 
     }
 
-   private fun saveImage() {
+    fun loadSticker(){
+        val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_heart)
+        val drawableSticker= DrawableSticker(drawable)
+        stickerView.addSticker(drawableSticker)
+    }
+
+    private fun saveImage() {
        customView.setDrawingCacheEnabled(true) // 캐쉬허용
        // 캐쉬에서 가져온 비트맵을 복사해서 새로운 비트맵(스크린샷) 생성
        val screenshot = Bitmap.createBitmap(customView.drawingCache)
@@ -176,6 +213,7 @@ class DrawActivity : AppCompatActivity() {
         erase.setImageDrawable(resources.getDrawable(R.drawable.draw_erase2))
         pen_color.visibility = View.GONE
         erase_margin.visibility = View.VISIBLE
+        sticker_img.visibility = View.GONE
     }
 
 
