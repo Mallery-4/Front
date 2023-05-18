@@ -161,36 +161,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:onClick="setRed"
+            android:id="@+id/sticker_heart"
             android:src="@drawable/sticker_heart" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_sunglass"
+            android:src="@drawable/sticker_sunglass" />
 
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnAddSticker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="스티커 추가"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-    <!--이미지-->
-    <com.example.mallery4.CustomView
-        android:id="@+id/customView"
-        android:layout_width="40dp"
-        android:layout_height="60dp">
-
-    </com.example.mallery4.CustomView>
-
-    <com.example.mallery4.StickerView
-        android:id="@+id/stickerView"
+    <!--캔버스-->
+    <FrameLayout
+        android:id="@+id/canvas_back"
         android:layout_width="400dp"
         android:layout_height="600dp"
-        app:showBorder="true"
-        app:showIcons="true" />
-
+        android:layout_gravity="center">
+        <com.example.mallery4.CustomView
+            android:id="@+id/customView"
+            android:layout_width="400dp"
+            android:layout_height="600dp"/>
+        <com.example.mallery4.StickerView
+            android:id="@+id/stickerView"
+            android:layout_width="400dp"
+            android:layout_height="600dp"
+            app:showBorder="true"
+            app:showIcons="true" />
+    </FrameLayout>
 
 </LinearLayout>

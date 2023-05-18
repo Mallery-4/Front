@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64aee578-d144-44ab-b499-39ec4dfbaf90" name="Changes" comment="" />
+    <list default="true" id="64aee578-d144-44ab-b499-39ec4dfbaf90" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Mallery4/app/src/main/res/drawable/sticker_ic_close_white_18dp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mallery4/app/src/main/res/drawable/sticker_ic_flip_white_18dp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Mallery4/app/src/main/res/drawable/sticker_ic_scale_white_18dp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mallery4/app/src/main/java/com/example/mallery4/DrawActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mallery4/app/src/main/java/com/example/mallery4/DrawActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mallery4/app/src/main/res/layout/activity_draw.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Mallery4/app/src/main/res/layout/activity_draw.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +32,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Mallery4" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

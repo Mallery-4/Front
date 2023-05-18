@@ -35,19 +35,19 @@ import javax.microedition.khronos.opengles.GL10
 class DrawActivity : AppCompatActivity() {
 
     private lateinit var stickerView: StickerView
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw)
 
         stickerView=findViewById<StickerView>(R.id.stickerView)
-        val btnAddSticker=findViewById<Button>(R.id.btnAddSticker)
 
         //아이콘 설정
-        val deleteIcon= BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.home)
+        val deleteIcon= BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.sticker_ic_close_white_18dp)
             ,BitmapStickerIcon.LEFT_TOP)
-        val flipIcon=BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.deco)
+        val flipIcon=BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.sticker_ic_flip_white_18dp)
             ,BitmapStickerIcon.RIGHT_BOTOM)
-        val scaleIcon=BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.noto_partying_face)
+        val scaleIcon=BitmapStickerIcon(ContextCompat.getDrawable(this,R.drawable.sticker_ic_scale_white_18dp)
             ,BitmapStickerIcon.LEFT_BOTTOM)
 
         val iconList=listOf(deleteIcon,flipIcon,scaleIcon)
@@ -60,11 +60,6 @@ class DrawActivity : AppCompatActivity() {
         //스티커뷰에 아이콘연결
         stickerView.setIcons(iconList)
 
-
-        //버튼 눌리면 스티커추가
-        btnAddSticker.setOnClickListener {
-            loadSticker()
-        }
 
         // 뒤로가기 버튼
         val back = findViewById<ImageView>(R.id.back)
@@ -83,16 +78,17 @@ class DrawActivity : AppCompatActivity() {
         }
 
         // 선택한 사진 가져오기
-        val customView = findViewById<CustomView>(R.id.customView)
+        val canvas = findViewById<FrameLayout>(R.id.canvas_back)
         if (intent.hasExtra("uri")) {
             val uriString = intent.getStringExtra("uri")
             if (uriString != null) {
                 val uri = Uri.parse(uriString)
                 val drawable = Drawable.createFromStream(contentResolver.openInputStream(uri), uri.toString())
-                customView.background = drawable
+                canvas.background = drawable
             }
         }
 
+        val customView = findViewById<CustomView>(R.id.customView)
         // 꾸미기 속성들
         val pen = findViewById<ImageView>(R.id.pen)
         val erase = findViewById<ImageView>(R.id.erase)
@@ -117,21 +113,34 @@ class DrawActivity : AppCompatActivity() {
             sticker_img.visibility = View.VISIBLE
             pen_color.visibility = View.GONE
             erase_margin.visibility = View.GONE
+            stickerload()
         }
 
     }
 
-    fun loadSticker(){
-        val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_heart)
-        val drawableSticker= DrawableSticker(drawable)
-        stickerView.addSticker(drawableSticker)
+    fun stickerload(){
+        val sticker_heart = findViewById<ImageView>(R.id.sticker_heart)
+        sticker_heart.setOnClickListener {
+            val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_heart)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+        }
+
+        val sticker_sunglass = findViewById<ImageView>(R.id.sticker_sunglass)
+        sticker_sunglass.setOnClickListener {
+            val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_sunglass)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+        }
     }
 
+
+
     private fun saveImage() {
-       customView.setDrawingCacheEnabled(true) // 캐쉬허용
+       canvas_back.setDrawingCacheEnabled(true) // 캐쉬허용
        // 캐쉬에서 가져온 비트맵을 복사해서 새로운 비트맵(스크린샷) 생성
-       val screenshot = Bitmap.createBitmap(customView.drawingCache)
-       customView.setDrawingCacheEnabled(false) // 캐쉬닫기
+       val screenshot = Bitmap.createBitmap(canvas_back.drawingCache)
+       canvas_back.setDrawingCacheEnabled(false) // 캐쉬닫기
 
 
        // 이미지 저장 정보
