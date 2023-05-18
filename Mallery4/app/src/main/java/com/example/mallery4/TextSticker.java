@@ -73,7 +73,7 @@ public class TextSticker extends Sticker {
     this.context = context;
     this.drawable = drawable;
     if (drawable == null) {
-      this.drawable = ContextCompat.getDrawable(context, R.drawable.sticker_transparent_background);
+      this.drawable = ContextCompat.getDrawable(context, R.drawable.sticker_save);
     }
     textPaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
     realBounds = new Rect(0, 0, getWidth(), getHeight());

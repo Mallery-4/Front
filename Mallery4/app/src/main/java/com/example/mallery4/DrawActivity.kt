@@ -35,6 +35,7 @@ import javax.microedition.khronos.opengles.GL10
 class DrawActivity : AppCompatActivity() {
 
     private lateinit var stickerView: StickerView
+    private lateinit var stickerView_save: StickerView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +71,17 @@ class DrawActivity : AppCompatActivity() {
         // 저장
         val saveText = findViewById<TextView>(R.id.save)
         saveText.setOnClickListener {
+            //저장전 스티커 조절 없애야함
+            val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_save)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+            stickerView.removeCurrentSticker()
             saveImage()
+
             val choice = Intent(this, DecorateActivity::class.java)
 
             //액티비티 이동
-            startActivity(choice)
+           startActivity(choice)
         }
 
         // 선택한 사진 가져오기
