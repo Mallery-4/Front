@@ -158,19 +158,61 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/sticker_heart"
             android:src="@drawable/sticker_heart" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_heart2"
+            android:src="@drawable/sticker_heart2" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginRight="20dp"
             android:id="@+id/sticker_sunglass"
             android:src="@drawable/sticker_sunglass" />
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_face1"
+            android:src="@drawable/sticker_face1" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_face2"
+            android:src="@drawable/sticker_face2" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_face3"
+            android:src="@drawable/sticker_face3" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_noonsong"
+            android:src="@drawable/sticker_noonsong" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/sticker_logo"
+            android:src="@drawable/logo" />
 
     </LinearLayout>
 

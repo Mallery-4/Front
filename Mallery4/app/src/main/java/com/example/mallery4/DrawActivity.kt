@@ -133,9 +133,51 @@ class DrawActivity : AppCompatActivity() {
             stickerView.addSticker(drawableSticker)
         }
 
+        val sticker_heart2 = findViewById<ImageView>(R.id.sticker_heart2)
+        sticker_heart2.setOnClickListener {
+            val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_heart2)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+        }
+
         val sticker_sunglass = findViewById<ImageView>(R.id.sticker_sunglass)
         sticker_sunglass.setOnClickListener {
             val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_sunglass)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+        }
+
+        val sticker_face1 = findViewById<ImageView>(R.id.sticker_face1)
+        sticker_face1.setOnClickListener {
+            val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_face1)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+        }
+
+        val sticker_face2 = findViewById<ImageView>(R.id.sticker_face2)
+        sticker_face2.setOnClickListener {
+            val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_face2)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+        }
+
+        val sticker_face3 = findViewById<ImageView>(R.id.sticker_face3)
+        sticker_face3.setOnClickListener {
+            val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_face3)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+        }
+
+        val sticker_noonsong= findViewById<ImageView>(R.id.sticker_noonsong)
+        sticker_noonsong.setOnClickListener {
+            val drawable=ContextCompat.getDrawable(this,R.drawable.sticker_noonsong)
+            val drawableSticker= DrawableSticker(drawable)
+            stickerView.addSticker(drawableSticker)
+        }
+
+        val sticker_logo= findViewById<ImageView>(R.id.sticker_logo)
+        sticker_logo.setOnClickListener {
+            val drawable=ContextCompat.getDrawable(this,R.drawable.logo)
             val drawableSticker= DrawableSticker(drawable)
             stickerView.addSticker(drawableSticker)
         }
