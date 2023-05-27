@@ -4,24 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
+    android:orientation="vertical"
     tools:context=".DrawActivity">
 
     <!--상단안내-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/backarrow"/>
+            android:src="@drawable/backarrow" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -33,8 +35,8 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:text="저장"
-            android:textSize="20dp"
-            android:textColor="@color/highlightcolor" />
+            android:textColor="@color/highlightcolor"
+            android:textSize="20dp" />
 
     </LinearLayout>
 
@@ -42,47 +44,47 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:layout_gravity="center"
         android:layout_marginLeft="20dp"
-        android:layout_gravity="center">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/draw_erase"
-            android:id="@+id/erase"
-            android:onClick="clearPaint"/>
+        android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/erase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
+            android:onClick="clearPaint"
+            android:src="@drawable/draw_erase" />
+
+        <ImageView
             android:id="@+id/pen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:src="@drawable/draw_pen" />
 
         <ImageView
+            android:id="@+id/sticker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/sticker"
             android:src="@drawable/draw_sticker" />
     </LinearLayout>
 
     <!--빈여백용-->
     <LinearLayout
+        android:id="@+id/erase_margin"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:id="@+id/erase_margin"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
-    </LinearLayout>
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"></LinearLayout>
 
     <!--색-->
     <LinearLayout
+        android:id="@+id/pen_color"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:id="@+id/pen_color"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
@@ -91,67 +93,145 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pen_red"
             android:layout_marginRight="20dp"
-            android:onClick="setRed"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pen_orange"
-            android:layout_marginRight="20dp"
-            android:onClick="setOrange"/>
+            android:onClick="setRed"
+            android:src="@drawable/pen_red" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:src="@drawable/pen_yellow"
-            android:onClick="setYellow"/>
+            android:onClick="setOrange"
+            android:src="@drawable/pen_orange" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:src="@drawable/pen_green"
-            android:onClick="setGreen"/>
+            android:onClick="setYellow"
+            android:src="@drawable/pen_yellow" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:src="@drawable/pen_blue"
-            android:onClick="setBlue"/>
+            android:onClick="setGreen"
+            android:src="@drawable/pen_green" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pen_purple"
             android:layout_marginRight="20dp"
-            android:onClick="setPurple"/>
+            android:onClick="setBlue"
+            android:src="@drawable/pen_blue" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pen_black"
             android:layout_marginRight="20dp"
-            android:onClick="setBlack"/>
+            android:onClick="setPurple"
+            android:src="@drawable/pen_purple" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pen_white"
-            android:onClick="setWhite"/>
+            android:layout_marginRight="20dp"
+            android:onClick="setBlack"
+            android:src="@drawable/pen_black" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="setWhite"
+            android:src="@drawable/pen_white" />
 
     </LinearLayout>
 
-    <!--이미지-->
-    <com.example.mallery4.CustomView
-        android:id="@+id/customView"
+    <!--스티커-->
+    <LinearLayout
+        android:id="@+id/sticker_img"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/sticker_heart"
+            android:src="@drawable/sticker_heart" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_heart2"
+            android:src="@drawable/sticker_heart2" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_sunglass"
+            android:src="@drawable/sticker_sunglass" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_face1"
+            android:src="@drawable/sticker_face1" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_face2"
+            android:src="@drawable/sticker_face2" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_face3"
+            android:src="@drawable/sticker_face3" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/sticker_noonsong"
+            android:src="@drawable/sticker_noonsong" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/sticker_logo"
+            android:src="@drawable/logo" />
+
+    </LinearLayout>
+
+    <!--캔버스-->
+    <FrameLayout
+        android:id="@+id/canvas_back"
         android:layout_width="400dp"
-        android:layout_height="600dp" />
-
-
-
+        android:layout_height="600dp"
+        android:layout_gravity="center">
+        <com.example.mallery4.CustomView
+            android:id="@+id/customView"
+            android:layout_width="400dp"
+            android:layout_height="600dp"/>
+        <com.example.mallery4.StickerView
+            android:id="@+id/stickerView"
+            android:layout_width="400dp"
+            android:layout_height="600dp"
+            app:showBorder="true"
+            app:showIcons="true" />
+    </FrameLayout>
 
 </LinearLayout>
