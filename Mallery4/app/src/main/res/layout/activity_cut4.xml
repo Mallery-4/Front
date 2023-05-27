@@ -90,13 +90,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="225dp"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
                     android:id="@+id/cut4_1"
                     android:src="@drawable/sticker_save"/>
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="225dp"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
                     android:id="@+id/cut4_2"
                     android:src="@drawable/sticker_save"/>
             </LinearLayout>
@@ -106,13 +106,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="225dp"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
                     android:id="@+id/cut4_3"
                     android:src="@drawable/sticker_save"/>
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="225dp"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
                     android:id="@+id/cut4_4"
                     android:src="@drawable/sticker_save"/>
             </LinearLayout>
