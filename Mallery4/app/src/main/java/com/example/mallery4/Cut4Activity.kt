@@ -6,14 +6,14 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.activity_cut4.*
 import kotlinx.android.synthetic.main.activity_decorate.*
+import kotlinx.android.synthetic.main.activity_decorate.imagePreview
 
 class Cut4Activity: AppCompatActivity() {
     private val PERMISSION_Album = 101 // 앨범 권한 처리
@@ -99,6 +99,7 @@ class Cut4Activity: AppCompatActivity() {
         if (resultCode == AppCompatActivity.RESULT_OK) {
             when (requestCode) {
                 REQUEST_STORAGE -> {
+                    resetSelectedImages()
                     data?.clipData?.let { clipData ->
                         for (i in 0 until clipData.itemCount) {
                             val uri = clipData.getItemAt(i).uri
@@ -114,9 +115,32 @@ class Cut4Activity: AppCompatActivity() {
 
                     if (selectedImages.isNotEmpty()) {
                         val firstImageUri = selectedImages[0]
-                        imagePreview.setImageURI(firstImageUri)
+                        val secondImageUri = selectedImages[1]
+                        val thirdImageUri = selectedImages[2]
+                        val fourthImageUri = selectedImages[3]
+
                         textView.setTextColor(ContextCompat.getColor(this, R.color.highlightcolor))
+
+                        val image4 = findViewById<LinearLayout>(R.id.image4)
+                        val imagePreview = findViewById<ImageView>(R.id.imagePreview)
+                        imagePreview.visibility = View.GONE
+
+                        image4.visibility = View.VISIBLE
+                        cut4_1.setImageURI(firstImageUri)
+                        cut4_1.visibility = View.VISIBLE
+                        cut4_2.setImageURI(secondImageUri)
+                        cut4_2.visibility = View.VISIBLE
+                        cut4_3.setImageURI(thirdImageUri)
+                        cut4_3.visibility = View.VISIBLE
+                        cut4_4.setImageURI(fourthImageUri)
+                        cut4_4.visibility = View.VISIBLE
+
+
+                    } else {
+                        image4.visibility = View.VISIBLE
+                        imagePreview.visibility = View.GONE // Hide the image preview if no image is selected
                     }
+
 
                     textView.setOnClickListener {
                         if (selectedImages.size == 4) {
@@ -131,5 +155,17 @@ class Cut4Activity: AppCompatActivity() {
         }
         }
 
+    }
+
+    private fun resetSelectedImages() {
+        selectedImages.clear()
+
+        val image4 = findViewById<LinearLayout>(R.id.image4)
+        val imagePreview = findViewById<ImageView>(R.id.imagePreview)
+        val textView = findViewById<TextView>(R.id.deco_done)
+        imagePreview.visibility = View.GONE
+        image4.visibility = View.GONE
+
+    textView.setTextColor(ContextCompat.getColor(this, R.color.background))
     }
 }
