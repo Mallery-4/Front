@@ -83,13 +83,15 @@ interface Api {
     ) : Call<CreateAlbumResponse>
 
     // 새글쓰기(post)
-    /*
     @Multipart
-    @POST("")
+    @POST("post/new")
     fun writeText(
-        @Part("userId") userId: String,
-        @Part imageFile : MultipartBody.Part
-    ) : Call<Response>
+        @Part("albumId") albumId: Long,
+        @Part("postLocation") postLocation: String,
+        @Part("postDate") postDate: String,
+        @Part("userId") userId:String,
+        @Part("participants") participants: List<String>,
+        @Part images: List<MultipartBody.Part>
+    ) : Call<PostWriteResponse>
 
-     */
 }

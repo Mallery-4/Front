@@ -21,12 +21,13 @@ import kotlin.collections.ArrayList
 
 
 // 함께한 친구 작성하는 post page
-class WritePostFragment2 (groupname: String, groupcount: String, groupid: Long, groupmembers: String, postdate: String) : Fragment(){
+class WritePostFragment2 (groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames: String, postdate: String) : Fragment(){
 
     var group_name = groupname
     var group_id = groupid
     var group_count = groupcount
     var group_members = groupmembers
+    var group_nicknames = groupnicknames
     lateinit var member_list : List<String>
     var post_date = postdate
 
@@ -52,7 +53,7 @@ class WritePostFragment2 (groupname: String, groupcount: String, groupid: Long, 
 
         // back 뒤로가기 버튼 클릭시, 이전 날짜 선택 post 화면으로 이동
         btn_post2_backhome.setOnClickListener {
-            (context as MainActivity).Post1(group_name, group_count, group_id, group_members)
+            (context as MainActivity).Post1(group_name, group_count, group_id, group_members, group_nicknames)
         }
 
         // 동적으로 버튼 생성
@@ -75,7 +76,7 @@ class WritePostFragment2 (groupname: String, groupcount: String, groupid: Long, 
             }
 
             // 다음 화면으로 이동
-            (context as MainActivity).Post3(group_name, group_count, group_id, group_members, post_date, participants)
+            (context as MainActivity).Post3(group_name, group_count, group_id, group_members, group_nicknames, post_date, participants)
         }
 
 

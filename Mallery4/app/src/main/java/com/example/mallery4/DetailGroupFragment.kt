@@ -23,12 +23,13 @@ import kotlinx.android.synthetic.main.fragment_make_group2.*
 import retrofit2.Call
 import retrofit2.Response
 
-class DetailGroupFragment (groupname: String, groupcount: String, groupid: String, groupmembers: String) : Fragment(){
+class DetailGroupFragment (groupname: String, groupcount: String, groupid: String, groupmembers: String, groupnicknames:String) : Fragment(){
 
     var group_name = groupname
     var group_id = groupid.toLong()
     var group_count = groupcount
     var group_members = groupmembers
+    var group_nicknames = groupnicknames
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +65,7 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
 
         // 게시물 추가하기 (floating button 클릭시), post의 날짜 캘린더뷰 fragment로 이동
         add_post.setOnClickListener { view ->
-            (context as MainActivity).Post1(group_name, group_count, group_id, group_members)
+            (context as MainActivity).Post1(group_name, group_count, group_id, group_members, group_nicknames)
         }
 
     }

@@ -29,10 +29,11 @@ class MainItemAdapter(val MainItemList:ArrayList<MainItem>) : RecyclerView.Adapt
         holder.group_count.text=MainItemList.get(position).groupcount
         holder.group_id.text=MainItemList.get(position).groupid
         holder.group_members.text= MainItemList.get(position).groupmembers
+        holder.group_nicknames.text= MainItemList.get(position).groupnicknames
 
         //해당 recyclerview 클릭시 fragment 화면 이동
         holder.itemView.setOnClickListener {
-            (holder.itemView?.context as MainActivity).MoveGroups(holder.group_name.text.toString(),holder.group_count.text.toString(),holder.group_id.text.toString(),holder.group_members.text.toString())
+            (holder.itemView?.context as MainActivity).MoveGroups(holder.group_name.text.toString(),holder.group_count.text.toString(),holder.group_id.text.toString(),holder.group_members.text.toString(),holder.group_nicknames.text.toString())
         }
     }
 
@@ -41,7 +42,8 @@ class MainItemAdapter(val MainItemList:ArrayList<MainItem>) : RecyclerView.Adapt
         var group_name=itemView.findViewById<TextView>(R.id.gp_name) //그룹이름
         var group_count=itemView.findViewById<TextView>(R.id.gp_cnt) //그룹명수
         var group_id=itemView.findViewById<TextView>(R.id.gp_id) //그룹id
-        var group_members=itemView.findViewById<TextView>(R.id.gp_members) //그룹멤버들
+        var group_members=itemView.findViewById<TextView>(R.id.gp_members) //그룹멤버 아이디
+        var group_nicknames=itemView.findViewById<TextView>(R.id.gp_nicknames) //그룹멤버닉네임
 
     }
 

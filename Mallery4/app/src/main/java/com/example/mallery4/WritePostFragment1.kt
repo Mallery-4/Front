@@ -14,12 +14,13 @@ import java.util.*
 
 
 // 날짜 작성하는 post page
-class WritePostFragment1 (groupname: String, groupcount: String, groupid: Long, groupmembers: String) : Fragment(){
+class WritePostFragment1 (groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames: String) : Fragment(){
 
     var group_name = groupname
     var group_id = groupid
     var group_count = groupcount
     var group_members = groupmembers
+    var group_nicknames = groupnicknames
     var day=""
 
     override fun onCreateView(
@@ -34,7 +35,7 @@ class WritePostFragment1 (groupname: String, groupcount: String, groupid: Long, 
 
         // back 뒤로가기 버튼 클릭시, 이전 세부 그룹 화면으로 이동
         btn_post1_backhome.setOnClickListener {
-            (context as MainActivity).MoveGroups(group_name, group_count, group_id.toString(), group_members)
+            (context as MainActivity).MoveGroups(group_name, group_count, group_id.toString(), group_members, group_nicknames)
         }
 
         // calendarview event
@@ -54,7 +55,7 @@ class WritePostFragment1 (groupname: String, groupcount: String, groupid: Long, 
         // 추억 기록하기 버튼 클릭시, 함께한 멤버 선택하는 post fragment로 이동
         btn_post_date.setOnClickListener {
             /// 이동할 fragment 추가하기
-            (context as MainActivity).Post2(group_name, group_count, group_id, group_members, day)
+            (context as MainActivity).Post2(group_name, group_count, group_id, group_members, group_nicknames, day)
         }
 
     }
