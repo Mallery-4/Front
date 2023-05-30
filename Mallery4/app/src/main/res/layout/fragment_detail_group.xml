@@ -74,4 +74,14 @@
             android:textColor="@color/browncolor"/>
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_baseline_add_24"
+        android:backgroundTint="@color/pointcolor"
+        android:contentDescription="new_post"
+        android:layout_margin="16dp" />
+
 </LinearLayout>
