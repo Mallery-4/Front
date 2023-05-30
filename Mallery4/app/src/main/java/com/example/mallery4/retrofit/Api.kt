@@ -92,4 +92,9 @@ interface Api {
         @Part images: List<MultipartBody.Part?>
     ) : Call<PostWriteResponse>
 
+    //해당 앨범의 전체 대표 post만 확인하기
+    @Headers("Content-Type: application/json")
+    @GET("post/{albumId}/list")
+    fun getAllPostInfo(@Path("albumId") albumId:Long) : Call<getAllPostResponse>
+
 }

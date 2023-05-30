@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mallery4.datamodel.AllAlbumResponse
 import com.example.mallery4.datamodel.DeleteAlbumResponse
+import com.example.mallery4.datamodel.getAllPostResponse
 import com.example.mallery4.recyclerview.MainItem
 import com.example.mallery4.recyclerview.MainItemAdapter
+import com.example.mallery4.recyclerview.PostItem
+import com.example.mallery4.recyclerview.PostItemAdapter
 import com.example.mallery4.retrofit.RetrofitClient
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -30,6 +34,9 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
     var group_count = groupcount
     var group_members = groupmembers
     var group_nicknames = groupnicknames
+
+    //recycycler view list
+    val PostItemList= arrayListOf<PostItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +74,48 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
         add_post.setOnClickListener { view ->
             (context as MainActivity).Post1(group_name, group_count, group_id, group_members, group_nicknames)
         }
+
+
+        // 서버의 정보로 해당 앨범의 모든 post 정보 get +
+        // 서버에서 받은 정보로, 해당 홈페이지에 정보 띄우기
+        RetrofitClient.afterinstance.getAllPostInfo(group_id)
+            .enqueue(object : retrofit2.Callback<getAllPostResponse>{
+
+                // 올바른 응답이었을 경우
+                override fun onResponse(
+                    call: Call<getAllPostResponse>,
+                    response: Response<getAllPostResponse>
+                ) {
+
+                    //recycler view 안의 객체 만들기
+                    for (i in 0 until response.body()?.posts?.size!!){
+                        var post_id= Gson().toJson(response.body()?.posts?.get(i)?.postId).toInt()
+                        var post_date=Gson().toJson(response.body()?.posts?.get(i)?.postDate)
+                        var post_img=Gson().toJson(response.body()?.posts?.get(i)?.mainImage)
+
+
+                        //recyclerview 연결
+                        PostItemList.add(PostItem(post_id,post_img,post_date))
+
+                        grid_rv.layoutManager = GridLayoutManager(context,2, GridLayoutManager.VERTICAL,false)
+                        grid_rv.setHasFixedSize(true)
+                        grid_rv.adapter= PostItemAdapter(PostItemList)
+                    }
+
+                }
+
+
+                // 서버 오류 or 올바르지 않은 userid인 경우
+                override fun onFailure(call: Call<getAllPostResponse>, t: Throwable) {
+
+                }
+
+            })
+
+
+        grid_rv.layoutManager = GridLayoutManager(context,2)
+        grid_rv.setHasFixedSize(true)
+        grid_rv.adapter= PostItemAdapter(PostItemList)
 
     }
 

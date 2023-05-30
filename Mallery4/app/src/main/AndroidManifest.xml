@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mallery4"
         android:requestLegacyExternalStorage="true"
+        android:preserveLegacyExternalStorage="true"
         tools:targetApi="29">
 
         <activity
