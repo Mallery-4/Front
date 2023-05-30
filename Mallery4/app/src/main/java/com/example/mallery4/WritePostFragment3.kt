@@ -9,10 +9,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color.red
 import android.net.Uri
-import android.os.Build
-import android.os.Bundle
+import android.os.*
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.OpenableColumns
@@ -25,6 +26,8 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.net.toFile
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mallery4.datamodel.AddFriend
@@ -43,8 +46,7 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Part
-import java.io.File
-import java.io.FileInputStream
+import java.io.*
 
 
 class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames:String, postdate: String, participants: List<String>) : Fragment(){
@@ -58,14 +60,15 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
     var participants_ = participants
     var imagesource: MutableList<MultipartBody.Part> = mutableListOf()
 
+    //
+    val map = HashMap<String, RequestBody>()
+
     // external storage 권한 확인받기
     private val REQUEST_EXTERNAL_STORAGE = 1
     private val PERMISSIONS_STORAGE = arrayOf(
         android.Manifest.permission.READ_EXTERNAL_STORAGE,
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
-
-
 
 
     lateinit var galleryAdapter: GalleryAdapter
@@ -75,31 +78,14 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         return inflater.inflate(R.layout.fragment_write_post3, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // 권한 확인
-        val permission = activity?.let {
-            ActivityCompat.checkSelfPermission(
-                it,
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-        }
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            activity?.let {
-                ActivityCompat.requestPermissions(
-                    it,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-                )
-            }
-        }
-
-
         galleryAdapter = context?.let { GalleryAdapter(imageList, it) }!!
 
         photo_viewpager.adapter = galleryAdapter
@@ -127,22 +113,69 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
 
         }
 
+
         // 완료 버튼 클릭시: 지금까지의 post 모든 정보를 서버에 보내기
         btn_posting.setOnClickListener {
 
+            // 절대경로 변경시 시간지연
+            val permission = android.Manifest.permission.READ_EXTERNAL_STORAGE
+            // 권한이 허용되어 있는지 확인
+            val granted = ContextCompat.checkSelfPermission(requireContext(), permission) == PackageManager.PERMISSION_GRANTED
+            if (granted) {
+                // 권한이 허용된 경우에 수행할 작업
+                // imagelist에 있는 uri -> 주소 절대경로로 변경
+                for (i in 0 until imageList.size) {
 
-            // imagelist에 있는 uri -> 주소 절대경로로 변경
-            for (i in 0 until imageList.size) {
-                val imagePath = imageList[i]
-                val file = File(absolutelyPath(requireContext(),imagePath))
-                val requestFile = RequestBody.create(MediaType.parse("image/*"), file)
-                val body = MultipartBody.Part.createFormData("profile", file.name, requestFile)
-                imagesource.add(body)
+                    val imagePath = imageList[i]
+                    val file: File = File(imagePath.path)
+                    val inputStream: InputStream? =
+                        try {
+                            requireContext().contentResolver.openInputStream(imagePath)
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                            null
+                        }
+
+                    // 사진 압축
+                    val bitmap: Bitmap? = BitmapFactory.decodeStream(inputStream)
+                    val byteArrayOutputStream = ByteArrayOutputStream()
+                    bitmap?.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
+                    val requestBody = RequestBody.create(MediaType.parse("image/*"), byteArrayOutputStream.toByteArray())
+                    val uploadFile = MultipartBody.Part.createFormData("images", file.name, requestBody)
+                    imagesource.add(uploadFile)
+
+
+                }
+            } else {
+                // 권한이 허용되지 않은 경우, 권한 요청을 진행해야 함
+                activity?.let {
+                    ActivityCompat.requestPermissions(
+                        it,
+                        PERMISSIONS_STORAGE,
+                        REQUEST_EXTERNAL_STORAGE
+                    )
+                }
             }
-
 
             // 버튼 클릭시의 입력된 장소 정보를 서버로 보내면 된다.
             val place = post_place.text.toString().trim()
+
+
+            // Hashmap data
+            var GroupId : RequestBody = RequestBody.create(MediaType.parse("text/plain"), group_id.toString())
+            var PostLocation : RequestBody  = RequestBody.create(MediaType.parse("text/plain"),place)
+            var PostDate : RequestBody = RequestBody.create(MediaType.parse("text/plain"),post_date)
+            var UserId : RequestBody = RequestBody.create(MediaType.parse("text/plain"), RetrofitClient.LoginUserId)
+            var Participants : RequestBody = RequestBody.create(MediaType.parse("text/plain"),participants_.joinToString(separator = ","))
+
+
+            map["albumId"] = GroupId
+            map["postLocation"] = PostLocation
+            map["postDate"] = PostDate
+            map["userId"] = UserId
+            map["participants"] = Participants
+
+
             Log.d("####################", group_id.toString())
             Log.d("####################", post_date)
             Log.d("####################", participants_.toString())
@@ -150,8 +183,8 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
             Log.d("####################", RetrofitClient.LoginUserId)
             Log.d("####################", imageList.toString())
             Log.d("####################", imagesource.toString())
+            Log.d("####################", map.toString())
 
-    /////////////////////////////////////////////
             // 서버로 파일 정보 전송하기
             sendImage(place)
         }
@@ -190,21 +223,9 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
 
     }
 
-    // 절대경로 변환
-    fun absolutelyPath(context : Context, path: Uri?): String {
-        var proj: Array<String> = arrayOf(MediaStore.Images.Media.DATA)
-        var c: Cursor? = context.contentResolver.query(path!!, proj, null, null, null)
-        var index = c?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        c?.moveToFirst()
-
-        var result = c?.getString(index!!)
-
-        return result!!
-    }
-
     //웹서버로 이미지전송
     fun sendImage(place: String) {
-        RetrofitClient.afterinstance.writeText(group_id,place,post_date,RetrofitClient.LoginUserId,participants_,imagesource)
+        RetrofitClient.afterinstance.writeText(/*group_id,place,post_date,RetrofitClient.LoginUserId,participants_,*/ map,imagesource)
             .enqueue(object : retrofit2.Callback<PostWriteResponse>{
 
                 // 올바른 응답이었을 경우
@@ -233,4 +254,3 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
             })
     }
 }
-
