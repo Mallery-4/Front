@@ -28,7 +28,7 @@
             android:text="졸업프로젝트 14팀"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_weight="4"
             android:layout_marginLeft="38dp"
             android:textColor="#766563" />
 
@@ -36,9 +36,8 @@
                 android:id="@+id/gp_cnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="135dp"
-                android:gravity="center"
                 android:text="3명"
+                android:layout_weight="1"
                 android:textColor="#766563"
                 android:textSize="15dp" />
         </LinearLayout>
@@ -51,7 +50,7 @@
             android:layout_height="wrap_content"
             android:text="group_id"
             android:textSize="8dp"
-            android:textColor="#766563" />
+            android:textColor="@color/background"/>
 
         <TextView
             android:id="@+id/gp_members"
@@ -61,8 +60,9 @@
             android:layout_height="wrap_content"
             android:text="id"
             android:textSize="15dp"
-            android:gravity="center"
-            android:textColor="#766563" />
+            android:textColor="@color/background"
+            android:gravity="center" />
+
         <TextView
             android:id="@+id/gp_nicknames"
             android:layout_marginTop="5dp"
