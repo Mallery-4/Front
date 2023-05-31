@@ -27,10 +27,10 @@ import kotlinx.android.synthetic.main.fragment_make_group2.*
 import retrofit2.Call
 import retrofit2.Response
 
-class DetailGroupFragment (groupname: String, groupcount: String, groupid: String, groupmembers: String, groupnicknames:String) : Fragment(){
+class DetailGroupFragment (groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames:String) : Fragment(){
 
     var group_name = groupname
-    var group_id = groupid.toLong()
+    var group_id = groupid
     var group_count = groupcount
     var group_members = groupmembers
     var group_nicknames = groupnicknames
@@ -53,6 +53,11 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
         // 앞에서 클릭한 해당 detail group 정보로 화면 띄우기
         de_groupname.setText(group_name)
         de_cnt.setText(group_count)
+
+        // 뒤로가기 버튼 클릭시, 뒤로가기 fragment로 이동
+        btn_home_backhome.setOnClickListener{
+            (context as MainActivity).replaceFragment(HomeFragment.newInstance())
+        }
 
         // 탈퇴하기 버튼 클릭시, 탈퇴 확인 fragment로 이동
         delete_btn.setOnClickListener {
@@ -89,7 +94,7 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
 
                     //recycler view 안의 객체 만들기
                     for (i in 0 until response.body()?.posts?.size!!){
-                        var post_id= Gson().toJson(response.body()?.posts?.get(i)?.postId).toInt()
+                        var post_id= Gson().toJson(response.body()?.posts?.get(i)?.postId).toLong()
                         var post_date=Gson().toJson(response.body()?.posts?.get(i)?.postDate)
                         var post_img=Gson().toJson(response.body()?.posts?.get(i)?.mainImage)
 

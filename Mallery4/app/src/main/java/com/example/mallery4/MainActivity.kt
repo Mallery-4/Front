@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 세부 그룹항목 클릭시 이동 fragment
-    fun MoveGroups(groupname: String, groupcount: String, groupid: String, groupmembers: String, groupnicknames:String){
+    fun MoveGroups(groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames:String){
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentContainer,DetailGroupFragment(groupname, groupcount, groupid, groupmembers, groupnicknames)).addToBackStack(Fragment::class.java.simpleName)
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 세부 post 내용 확인 페이지로 이동 fragment
-    fun MoveDetailPost(groupname: String, groupcount: String, groupmembers: String, groupnicknames : String, groupid: String, postid: String){
+    fun MoveDetailPost(groupname: String, groupcount: String, groupmembers: String, groupnicknames : String, groupid: Long, postid: Long){
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentContainer,DetailPostFragment(groupname, groupcount,groupmembers, groupnicknames,  groupid, postid)).addToBackStack(Fragment::class.java.simpleName)
