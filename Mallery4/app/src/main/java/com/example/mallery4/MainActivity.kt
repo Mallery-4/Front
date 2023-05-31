@@ -123,4 +123,13 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainer,WritePostFragment3(groupname, groupcount, groupid, groupmembers, groupnicknames, postdate, participants)).addToBackStack(Fragment::class.java.simpleName)
             .commit()
     }
+
+    // 세부 post 내용 확인 페이지로 이동 fragment
+    fun MoveDetailPost(groupname: String, groupcount: String, groupmembers: String, groupnicknames : String, groupid: String, postid: String){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,DetailPostFragment(groupname, groupcount,groupmembers, groupnicknames,  groupid, postid)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
 }

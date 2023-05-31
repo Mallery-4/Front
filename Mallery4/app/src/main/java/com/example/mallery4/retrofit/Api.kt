@@ -97,4 +97,12 @@ interface Api {
     @GET("post/{albumId}/list")
     fun getAllPostInfo(@Path("albumId") albumId:Long) : Call<getAllPostResponse>
 
+    //해당 앨범의 세부 post 내용 확인하기
+    @Headers("Content-Type: application/json")
+    @GET("post/{albumId}/{postId}")
+    fun getDetailPostInfo(
+        @Path("albumId") albumId:Long,
+        @Path("postId") postId:Long
+    ) : Call<getDetailPostResponse>
+
 }

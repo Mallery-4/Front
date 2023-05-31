@@ -95,7 +95,7 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Strin
 
 
                         //recyclerview 연결
-                        PostItemList.add(PostItem(post_id,post_img,post_date))
+                        PostItemList.add(PostItem(group_name, group_id,group_count,group_members,group_nicknames,post_id,post_img,post_date))
 
                         grid_rv.layoutManager = GridLayoutManager(context,2, GridLayoutManager.VERTICAL,false)
                         grid_rv.setHasFixedSize(true)

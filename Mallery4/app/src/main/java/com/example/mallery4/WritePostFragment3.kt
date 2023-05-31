@@ -78,9 +78,6 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-
         return inflater.inflate(R.layout.fragment_write_post3, container, false)
     }
 
