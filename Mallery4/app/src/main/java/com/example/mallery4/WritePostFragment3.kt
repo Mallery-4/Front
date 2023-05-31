@@ -78,9 +78,6 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-
         return inflater.inflate(R.layout.fragment_write_post3, container, false)
     }
 
@@ -237,8 +234,8 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
                     if (response?.body()?.state.toString() == "200"){
                         Toast.makeText(context, "게시글을 등록하였습니다.", Toast.LENGTH_LONG).show()
                         // 화면 이동
-                        //////////////////////////////////////////
                         (context as MainActivity).replaceFragment(HomeFragment.newInstance()) // 홈화면으로 이동
+                        response.let { it -> Log.d("###############", response.body()?.imagePaths.toString()) }
                     }
                     // post 실패
                     else{

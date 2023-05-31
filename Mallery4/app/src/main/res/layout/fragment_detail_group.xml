@@ -11,18 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <TextView
+
+        <ImageButton
+            android:id="@+id/btn_home_backhome"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:background="@color/background"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
         android:id="@+id/de_groupname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="졸업프로젝트 14팀"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:textAlignment="center"
         android:textColor="#766563"
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="28dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_weight="8"
+        android:layout_marginTop="20dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/delete_btn"
@@ -31,8 +40,8 @@
             android:background="@color/background"
             android:text="@string/delete_group"
             android:stateListAnimator="@null"
-            android:layout_marginLeft="90dp"
             android:layout_marginTop="15dp"
+            android:layout_weight="1"
             android:textColor="@color/browncolor"/>
     </LinearLayout>
 
@@ -48,7 +57,8 @@
             android:layout_height="wrap_content"
             android:text="3명"
             android:textSize="15dp"
-            android:layout_marginLeft="28dp"
+            android:layout_marginLeft="38dp"
+            android:layout_weight="10"
             android:textColor="#766563" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -59,7 +69,7 @@
             android:text="그룹이름변경"
             android:textStyle="bold"
             android:textSize="10dp"
-            android:layout_marginLeft="150dp"
+            android:layout_weight="1"
             android:layout_marginRight="10dp"
             android:textColor="@color/browncolor"/>
 
@@ -71,17 +81,31 @@
             android:text="친구추가"
             android:textStyle="bold"
             android:textSize="10dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
             android:textColor="@color/browncolor"/>
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/ic_baseline_add_24"
-        android:backgroundTint="@color/pointcolor"
-        android:contentDescription="new_post"
-        android:layout_margin="16dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/grid_rv"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/grid_items" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_add_24"
+            android:backgroundTint="@color/pointcolor"
+            android:contentDescription="new_post"
+            android:layout_margin="16dp" />
+    </RelativeLayout>
 </LinearLayout>

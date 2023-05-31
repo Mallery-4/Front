@@ -25,25 +25,33 @@ class MainItemAdapter(val MainItemList:ArrayList<MainItem>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: CustomViewHolder, position:Int){
         //현재 클릭한 위치와 연동
-        holder.group_name.text=MainItemList.get(position).groupname
-        holder.group_count.text=MainItemList.get(position).groupcount
-        holder.group_id.text=MainItemList.get(position).groupid
-        holder.group_members.text= MainItemList.get(position).groupmembers
-        holder.group_nicknames.text= MainItemList.get(position).groupnicknames
+
+        val data = MainItemList.get(position)
+
+        holder.group_name.text=MainItemList.get(position).groupname.trim('"')
+        holder.group_count.text=MainItemList.get(position).groupcount.trim('"')
+        holder.setGroupData(data)
+        holder.group_nicknames.text= MainItemList.get(position).groupnicknames.trim('"')
 
         //해당 recyclerview 클릭시 fragment 화면 이동
         holder.itemView.setOnClickListener {
-            (holder.itemView?.context as MainActivity).MoveGroups(holder.group_name.text.toString(),holder.group_count.text.toString(),holder.group_id.text.toString(),holder.group_members.text.toString(),holder.group_nicknames.text.toString())
+            (holder.itemView?.context as MainActivity).MoveGroups(holder.group_name.text.toString(),holder.group_count.text.toString(),holder.group_id,holder.group_members,holder.group_nicknames.text.toString())
         }
     }
 
     class CustomViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
 
+        var group_id: Long = 0 // long 자료형 멤버 변수 추가
+        var group_members: String = ""
+
         var group_name=itemView.findViewById<TextView>(R.id.gp_name) //그룹이름
         var group_count=itemView.findViewById<TextView>(R.id.gp_cnt) //그룹명수
-        var group_id=itemView.findViewById<TextView>(R.id.gp_id) //그룹id
-        var group_members=itemView.findViewById<TextView>(R.id.gp_members) //그룹멤버 아이디
         var group_nicknames=itemView.findViewById<TextView>(R.id.gp_nicknames) //그룹멤버닉네임
+
+        fun setGroupData(data: MainItem){
+            group_id = data.groupid
+            group_members = data.groupmembers
+        }
 
     }
 

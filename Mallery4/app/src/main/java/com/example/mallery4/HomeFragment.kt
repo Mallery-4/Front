@@ -46,8 +46,8 @@ class HomeFragment : Fragment() {
                     home_nickname.setText(response.body()?.userId.toString())
 
                     //recycler view 안의 객체 만들기
-                   /* for (i in 0 until response.body()?.albums?.size!!){
-                        var album_id= Gson().toJson(response.body()?.albums?.get(i)?.albumId).toString()
+                    for (i in 0 until response.body()?.albums?.size!!){
+                        var album_id= Gson().toJson(response.body()?.albums?.get(i)?.albumId).toLong()
                         var album_name=Gson().toJson(response.body()?.albums?.get(i)?.albumName).toString()
                         var album_count=Gson().toJson(response.body()?.albums?.get(i)?.memberCnt).toString()
                         var album_members=response.body()?.albums?.get(i)?.members?.joinToString(",").toString()
@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
                         list_rv.layoutManager = LinearLayoutManager(context)
                         list_rv.setHasFixedSize(true)
                         list_rv.adapter= MainItemAdapter(MainItemList)
-                    }*/
+                    }
 
                 }
 
