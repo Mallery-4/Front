@@ -73,7 +73,7 @@
     </LinearLayout>
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/photo_viewpager"
+        android:id="@+id/post_viewpager"
         android:layout_margin="28dp"
         android:layout_width="match_parent"
         android:layout_height="300dp"/>

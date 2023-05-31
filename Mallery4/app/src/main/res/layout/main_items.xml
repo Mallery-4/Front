@@ -43,29 +43,8 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/gp_id"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="38dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="group_id"
-            android:textSize="8dp"
-            android:textColor="@color/background"/>
-
-        <TextView
-            android:id="@+id/gp_members"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="38dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="id"
-            android:textSize="15dp"
-            android:textColor="@color/background"
-            android:gravity="center" />
-
-        <TextView
             android:id="@+id/gp_nicknames"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="18dp"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="38dp"
             android:layout_width="wrap_content"

@@ -32,13 +32,9 @@ class PostItemAdapter(val PostItemList:ArrayList<PostItem>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: CustomViewHolder, position:Int){
         //현재 클릭한 위치와 연동
-        holder.groupName.text = PostItemList.get(position).groupName.trim('"')
-        holder.groupCount.text= PostItemList.get(position).groupCount.trim('"')
-        holder.groupMembers.text = PostItemList.get(position).groupMembers.trim('"')
-        holder.groupNicknames.text = PostItemList.get(position).groupNicknames.trim('"')
+        val data = PostItemList.get(position)
+        holder.setPostData(data)
 
-        holder.groupId.text = PostItemList.get(position).groupId.toString().trim('"')
-        holder.postId.text= PostItemList.get(position).postId.toString().trim('"')
         holder.postDate.text= PostItemList.get(position).postDate.trim('"')
 
         // 이미지 링크가 없는 경우
@@ -62,20 +58,31 @@ class PostItemAdapter(val PostItemList:ArrayList<PostItem>) : RecyclerView.Adapt
         holder.itemView.setOnClickListener {
             Log.d("####################", PostItemList.get(position).postImg)
             Log.d("####################", holder.postDate.text.toString())
-            (holder.itemView?.context as MainActivity).MoveDetailPost(holder.groupName.toString(),holder.groupCount.toString(),holder.groupMembers.toString(),holder.groupNicknames.toString(),holder.groupId.toString(),holder.postId.toString())
+            (holder.itemView?.context as MainActivity).MoveDetailPost(holder.groupName,holder.groupCount,holder.groupMembers,holder.groupNicknames,holder.groupId,holder.postId)
         }
 
     }
 
     class CustomViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var groupName = itemView.findViewById<TextView>(R.id.groupname) //groupname
-        var groupId = itemView.findViewById<TextView>(R.id.groupid) //groupid
-        var groupCount = itemView.findViewById<TextView>(R.id.groupcount) //groupcount
-        var groupMembers = itemView.findViewById<TextView>(R.id.groupmembers) //groupmembers
-        var groupNicknames = itemView.findViewById<TextView>(R.id.groupnicknames) //groupnicknames
-        var postId=itemView.findViewById<TextView>(R.id.postid) //postid
+        var groupName: String = "" //groupname
+        var groupId: Long = 0  //groupid
+        var groupCount: String = "" //groupcount
+        var groupMembers: String = ""//groupmembers
+        var groupNicknames: String = "" //groupnicknames
+        var postId: Long = 0  //postid
+
         var postDate=itemView.findViewById<TextView>(R.id.postdate) //postdate
         var postImg = itemView.findViewById<ImageView>(R.id.gridImg) // postimg (대표이미지)
+
+
+        fun setPostData(data: PostItem){
+            groupName= data.groupName
+            groupId = data.groupId
+            groupCount = data.groupCount
+            groupMembers = data.groupMembers
+            groupNicknames = data.groupNicknames
+            postId = data.postId
+        }
 
     }
 

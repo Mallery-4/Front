@@ -35,7 +35,7 @@ class WritePostFragment1 (groupname: String, groupcount: String, groupid: Long, 
 
         // back 뒤로가기 버튼 클릭시, 이전 세부 그룹 화면으로 이동
         btn_post1_backhome.setOnClickListener {
-            (context as MainActivity).MoveGroups(group_name, group_count, group_id.toString(), group_members, group_nicknames)
+            (context as MainActivity).MoveGroups(group_name, group_count, group_id, group_members, group_nicknames)
         }
 
         // calendarview event

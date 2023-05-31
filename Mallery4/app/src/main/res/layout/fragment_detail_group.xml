@@ -11,7 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <TextView
+
+        <ImageButton
+            android:id="@+id/btn_home_backhome"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:background="@color/background"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
         android:id="@+id/de_groupname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +29,7 @@
         android:textSize="25dp"
         android:textStyle="bold"
         android:textColor="#766563"
-        android:layout_marginLeft="38dp"
+        android:layout_marginLeft="8dp"
         android:layout_weight="8"
         android:layout_marginTop="20dp" />
 
