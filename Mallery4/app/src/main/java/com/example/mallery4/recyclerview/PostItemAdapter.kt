@@ -32,8 +32,8 @@ class PostItemAdapter(val PostItemList:ArrayList<PostItem>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: CustomViewHolder, position:Int){
         //현재 클릭한 위치와 연동
-        holder.postId.text= PostItemList.get(position).postId.toString()
-        holder.postDate.text= PostItemList.get(position).postDate
+        holder.postId.text= PostItemList.get(position).postId.toString().trim('"')
+        holder.postDate.text= PostItemList.get(position).postDate.trim('"')
 
         // 이미지 링크가 없는 경우
         if(PostItemList.get(position).postImg.isNullOrEmpty()) {
@@ -41,25 +41,14 @@ class PostItemAdapter(val PostItemList:ArrayList<PostItem>) : RecyclerView.Adapt
         }
         // 링크가 있는 경우 링크에서 이미지를 가져와서 보여준다.
         else {
-//            Glide.with(holder.postImg.context)
-//                .load(PostItemList.get(position).postImg)
-//                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                .skipMemoryCache(true)
-//                .centerCrop()
-//                .placeholder(R.drawable.camera)
-//                .into(holder.postImg)
-
-            try {
-                val url = URL(PostItemList.get(position).postImg)
-                val conn = url.openConnection()
-                conn.connect()
-                val bis = BufferedInputStream(conn.getInputStream())
-                val bm = BitmapFactory.decodeStream(bis)
-                bis.close()
-                holder.postImg.setImageBitmap(bm)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            Log.d("####################", PostItemList.get(position).postImg.trim('"'))
+            Glide.with(holder.postImg.context)
+                .load(PostItemList.get(position).postImg.trim('"'))
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .centerCrop()
+                .placeholder(R.drawable.camera)
+                .into(holder.postImg)
         }
 
         //////

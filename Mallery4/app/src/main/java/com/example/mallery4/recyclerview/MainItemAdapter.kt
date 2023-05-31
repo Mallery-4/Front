@@ -25,11 +25,11 @@ class MainItemAdapter(val MainItemList:ArrayList<MainItem>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: CustomViewHolder, position:Int){
         //현재 클릭한 위치와 연동
-        holder.group_name.text=MainItemList.get(position).groupname
-        holder.group_count.text=MainItemList.get(position).groupcount
-        holder.group_id.text=MainItemList.get(position).groupid
-        holder.group_members.text= MainItemList.get(position).groupmembers
-        holder.group_nicknames.text= MainItemList.get(position).groupnicknames
+        holder.group_name.text=MainItemList.get(position).groupname.trim('"')
+        holder.group_count.text=MainItemList.get(position).groupcount.trim('"')
+        holder.group_id.text=MainItemList.get(position).groupid.trim('"')
+        holder.group_members.text= MainItemList.get(position).groupmembers.trim('"')
+        holder.group_nicknames.text= MainItemList.get(position).groupnicknames.trim('"')
 
         //해당 recyclerview 클릭시 fragment 화면 이동
         holder.itemView.setOnClickListener {
