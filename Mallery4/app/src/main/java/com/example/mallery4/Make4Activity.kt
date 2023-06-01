@@ -1,5 +1,6 @@
 package com.example.mallery4
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
@@ -18,6 +19,7 @@ import org.chromium.base.Log
 class Make4Activity: AppCompatActivity() {
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make4)
@@ -29,7 +31,15 @@ class Make4Activity: AppCompatActivity() {
         }
 
         // 처음에 안보여야 함
+        val cut4_frame2 = findViewById<LinearLayout>(R.id.cut4_frame2)
         cut4_frame2.visibility = View.GONE
+        val cut4_frame1 = findViewById<LinearLayout>(R.id.cut4_frame1)
+        cut4_frame1.visibility = View.VISIBLE
+
+        val title1=findViewById<TextView>(R.id.title1)
+        title1.visibility= View.VISIBLE
+        val title2=findViewById<TextView>(R.id.title2)
+        title2.visibility= View.GONE
 
         //프레임 선택
         val frame1 = findViewById<ImageView>(R.id.frame1)
@@ -40,6 +50,8 @@ class Make4Activity: AppCompatActivity() {
             frame2.setImageDrawable(resources.getDrawable(R.drawable.frame2))
             cut4_frame1.visibility = View.VISIBLE
             cut4_frame2.visibility = View.GONE
+            title1.visibility= View.VISIBLE
+            title2.visibility= View.GONE
         }
 
         frame2.setOnClickListener {
@@ -47,6 +59,8 @@ class Make4Activity: AppCompatActivity() {
             frame2.setImageDrawable(resources.getDrawable(R.drawable.frame22))
             cut4_frame2.visibility = View.VISIBLE
             cut4_frame1.visibility = View.GONE
+            title2.visibility= View.VISIBLE
+            title1.visibility= View.GONE
         }
 
 
@@ -72,18 +86,17 @@ class Make4Activity: AppCompatActivity() {
                     findViewById<ImageView>(R.id.cut4_1),
                     findViewById<ImageView>(R.id.cut4_2),
                     findViewById<ImageView>(R.id.cut4_3),
-                    findViewById<ImageView>(R.id.cut4_4),
-                    findViewById<ImageView>(R.id.cut4_2_1),
+                    findViewById<ImageView>(R.id.cut4_4),                    findViewById<ImageView>(R.id.cut4_2_1),
                     findViewById<ImageView>(R.id.cut4_2_2),
                     findViewById<ImageView>(R.id.cut4_2_3),
                     findViewById<ImageView>(R.id.cut4_2_4),
-                    findViewById<ImageView>(R.id.cut4_2_1),
-                    findViewById<ImageView>(R.id.cut4_2),
-                    findViewById<ImageView>(R.id.cut4_3),
-                    findViewById<ImageView>(R.id.cut4_4)
+                    findViewById<ImageView>(R.id.cut4_22_1),
+                    findViewById<ImageView>(R.id.cut4_22_2),
+                    findViewById<ImageView>(R.id.cut4_22_3),
+                    findViewById<ImageView>(R.id.cut4_22_4)
                 )
-                for (i in 0 until selectedImages.size) {
-                    val uri = selectedImages[i]
+                for (i in 0 until imageViews.size) {
+                    val uri = selectedImages[i % selectedImages.size] // 순환하여 사진을 가져옴
                     val inputStream = contentResolver.openInputStream(uri)
                     val bitmap = BitmapFactory.decodeStream(inputStream)
                     imageViews[i].setImageBitmap(bitmap)
