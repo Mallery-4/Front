@@ -30,7 +30,7 @@ object RetrofitClient {
         }.build()
     
 
-    // 최종 id, 회원가입, 로그인 인스턴스
+    // 회원가입, 로그인시의 인스턴스
     val instance: Api by lazy {
         val retrofit2 = Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -39,6 +39,7 @@ object RetrofitClient {
             .build()
             retrofit2.create(Api::class.java)
     }
+
 
     //로그인 후 사용 client, instance
     private val AfterHttpClient = OkHttpClient.Builder()
