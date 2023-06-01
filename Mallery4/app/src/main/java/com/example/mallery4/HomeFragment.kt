@@ -45,8 +45,8 @@ class HomeFragment : Fragment() {
                     //homepage의 text를 user 정보로 저장
                     home_nickname.setText(response.body()?.userId.toString())
 
-                    //recycler view 안의 객체 만들기
-                   /* for (i in 0 until response.body()?.albums?.size!!){
+                    //recycler view 안의 객체 만들기 //main 작업시 주석 처리할 것
+                   for (i in 0 until response.body()?.albums?.size!!){
                         var album_id= Gson().toJson(response.body()?.albums?.get(i)?.albumId).toString()
                         var album_name=Gson().toJson(response.body()?.albums?.get(i)?.albumName).toString()
                         var album_count=Gson().toJson(response.body()?.albums?.get(i)?.memberCnt).toString()
@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
                         list_rv.layoutManager = LinearLayoutManager(context)
                         list_rv.setHasFixedSize(true)
                         list_rv.adapter= MainItemAdapter(MainItemList)
-                    }*/
+                    }
 
                 }
 
