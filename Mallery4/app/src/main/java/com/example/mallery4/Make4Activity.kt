@@ -4,12 +4,11 @@ import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -17,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_make4.*
 import org.chromium.base.Log
 
 class Make4Activity: AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,28 @@ class Make4Activity: AppCompatActivity() {
         back.setOnClickListener {
             onBackPressed()
         }
+
+        // 처음에 안보여야 함
+        cut4_frame2.visibility = View.GONE
+
+        //프레임 선택
+        val frame1 = findViewById<ImageView>(R.id.frame1)
+        val frame2 = findViewById<ImageView>(R.id.frame2)
+
+        frame1.setOnClickListener {
+            frame1.setImageDrawable(resources.getDrawable(R.drawable.frame12))
+            frame2.setImageDrawable(resources.getDrawable(R.drawable.frame2))
+            cut4_frame1.visibility = View.VISIBLE
+            cut4_frame2.visibility = View.GONE
+        }
+
+        frame2.setOnClickListener {
+            frame1.setImageDrawable(resources.getDrawable(R.drawable.frame1))
+            frame2.setImageDrawable(resources.getDrawable(R.drawable.frame22))
+            cut4_frame2.visibility = View.VISIBLE
+            cut4_frame1.visibility = View.GONE
+        }
+
 
         val saveText = findViewById<TextView>(R.id.save)
         saveText.setOnClickListener {
@@ -48,6 +70,14 @@ class Make4Activity: AppCompatActivity() {
             if (selectedImages != null && selectedImages.size == 4) {
                 val imageViews = listOf(
                     findViewById<ImageView>(R.id.cut4_1),
+                    findViewById<ImageView>(R.id.cut4_2),
+                    findViewById<ImageView>(R.id.cut4_3),
+                    findViewById<ImageView>(R.id.cut4_4),
+                    findViewById<ImageView>(R.id.cut4_2_1),
+                    findViewById<ImageView>(R.id.cut4_2_2),
+                    findViewById<ImageView>(R.id.cut4_2_3),
+                    findViewById<ImageView>(R.id.cut4_2_4),
+                    findViewById<ImageView>(R.id.cut4_2_1),
                     findViewById<ImageView>(R.id.cut4_2),
                     findViewById<ImageView>(R.id.cut4_3),
                     findViewById<ImageView>(R.id.cut4_4)
