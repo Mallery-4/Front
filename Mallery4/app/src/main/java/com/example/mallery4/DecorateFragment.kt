@@ -22,6 +22,11 @@ class DecorateFragment : Fragment() {
             startActivity(intent)
         }
 
+        val cut4Layout = view.findViewById<View>(R.id.cut4_layout)
+        cut4Layout.setOnClickListener {
+            val intent = Intent(activity, Cut4Activity::class.java)
+            startActivity(intent)
+        }
         return view
 
 

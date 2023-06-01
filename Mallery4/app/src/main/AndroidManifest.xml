@@ -59,6 +59,8 @@
 
         <activity android:name=".DecorateActivity"/>
         <activity android:name=".DrawActivity"/>
+        <activity android:name=".Cut4Activity"/>
+        <activity android:name=".Make4Activity"/>
 
     </application>
 
