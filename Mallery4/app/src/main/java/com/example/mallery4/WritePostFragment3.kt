@@ -60,7 +60,6 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
     var participants_ = participants
     var imagesource: MutableList<MultipartBody.Part> = mutableListOf()
 
-    //
     val map = HashMap<String, RequestBody>()
 
     // external storage 권한 확인받기
@@ -157,7 +156,6 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
             // 버튼 클릭시의 입력된 장소 정보를 서버로 보내면 된다.
             val place = post_place.text.toString().trim()
 
-
             // Hashmap data
             var GroupId : RequestBody = RequestBody.create(MediaType.parse("text/plain"), group_id.toString())
             var PostLocation : RequestBody  = RequestBody.create(MediaType.parse("text/plain"),place)
@@ -172,16 +170,6 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
             map["userId"] = UserId
             map["participants"] = Participants
 
-
-            Log.d("####################", group_id.toString())
-            Log.d("####################", post_date)
-            Log.d("####################", participants_.toString())
-            Log.d("####################", place)
-            Log.d("####################", RetrofitClient.LoginUserId)
-            Log.d("####################", imageList.toString())
-            Log.d("####################", imagesource.toString())
-            Log.d("####################", map.toString())
-
             // 서버로 파일 정보 전송하기
             sendImage(place)
         }
@@ -191,6 +179,7 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
     // 갤러리 다중 이미지 선택:
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        imageList= ArrayList() //기존 올려놨던 사진 초기화
 
         if (resultCode == RESULT_OK && requestCode == 500) {
             if (data?.clipData != null) {
@@ -205,6 +194,7 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
                     val imageUri = data.clipData!!.getItemAt(i).uri
                     imageList.add(imageUri)
                 }
+
             } else {
                 data?.data?.let { uri ->
                     val imageUri: Uri? = data?.data
@@ -216,6 +206,11 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
             }
 
             galleryAdapter.notifyDataSetChanged()
+            galleryAdapter = context?.let { GalleryAdapter(imageList, it) }!!
+
+            photo_viewpager.adapter = galleryAdapter
+            photo_viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL // ViewPager의 Paging 방향은 Horizontal
+            photo_viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {})
         }
 
     }
