@@ -32,6 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/decorate_nickname"
             android:text="닉네임"
             android:gravity="left"
             android:textColorHint="@color/browncolor"
