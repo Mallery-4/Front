@@ -81,7 +81,7 @@ class DrawActivity : AppCompatActivity() {
             val choice = Intent(this, DecorateActivity::class.java)
 
             //액티비티 이동
-           startActivity(choice)
+            startActivity(choice)
         }
 
         // 선택한 사진 가져오기
