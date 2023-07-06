@@ -7,9 +7,12 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.mallery4.datamodel.DeleteAlbumResponse
+import com.example.mallery4.datamodel.DeleteUser
 import com.example.mallery4.datamodel.getAllPostResponse
 import com.example.mallery4.datamodel.getDetailPostResponse
 import com.example.mallery4.recyclerview.PostItem
@@ -22,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_detail_group.*
 import kotlinx.android.synthetic.main.fragment_detail_post.*
 import kotlinx.android.synthetic.main.fragment_write_post3.*
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import java.net.URL
 
@@ -57,12 +61,24 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
 
         // 수정하기 버튼 클릭시, 수정 fragment로 이동
         ch_post.setOnClickListener {
-            //(context as MainActivity).DeleteAlbum(group_id)
+            (context as MainActivity).PutDetailPage(group_name,group_count, group_id, post_id,group_members, group_nicknames, post_date.text.toString(), post_members.text.split(",").toList())
         }
 
-        // 삭제하기 버튼 클릭시, 삭제 fragment로 이동
+        // 삭제하기 버튼 클릭시, 삭제후 홈으로 이동
         del_post.setOnClickListener {
-            //(context as MainActivity).ChangeAlbumName(group_id)
+            RetrofitClient.afterinstance.deleteText(group_id, post_id)
+                .enqueue(object: Callback<Void> {
+
+                    override fun onResponse(
+                        call: Call<Void>,
+                        response: Response<Void>
+                    ) {
+                        (context as MainActivity).replaceFragment(HomeFragment.newInstance())
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {}
+
+                })
         }
 
 

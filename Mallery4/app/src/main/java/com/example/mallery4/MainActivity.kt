@@ -132,4 +132,12 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    // 세부 post 내용 수정 페이지로 이동 fragment
+    fun PutDetailPage(groupname: String, groupcount: String, groupid: Long, postid: Long,groupmembers: String, groupnicknames : String, postdate: String, participants: List<String>){
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainer,DetailPutFragment(groupname, groupcount, groupid, postid,groupmembers, groupnicknames, postdate, participants)).addToBackStack(Fragment::class.java.simpleName)
+            .commit()
+    }
+
 }
