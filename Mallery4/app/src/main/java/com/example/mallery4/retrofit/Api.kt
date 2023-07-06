@@ -105,4 +105,22 @@ interface Api {
         @Path("postId") postId:Long
     ) : Call<getDetailPostResponse>
 
+    // 글쓰기 수정(put)
+    @Headers("Content-Type: application/json")
+    @Multipart
+    @PUT("post/{albumId}/{postId}")
+    fun updateText(
+        @Path("albumId") albumId: Long,
+        @Path("postId") postId:Long,
+        @PartMap data : HashMap<String, RequestBody>,
+        @Part images: List<MultipartBody.Part?>
+    ) : Call<PutWriteResponse>
+
+    @Headers("Content-Type: application/json")
+    @HTTP(method = "DELETE", path="post/{albumId}/{postId}")
+    fun deleteText(
+        @Path("albumId") albumId:Long,
+        @Path("postId") postId:Long,
+    ): Call<Void>
+
 }
