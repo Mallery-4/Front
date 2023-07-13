@@ -9,9 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mallery4.datamodel.getAllPostResponse
 import com.example.mallery4.datamodel.getDetailPostResponse
+import com.example.mallery4.recyclerview.Comment
+import com.example.mallery4.recyclerview.CommentAdapter
 import com.example.mallery4.recyclerview.PostItem
 import com.example.mallery4.recyclerview.PostItemAdapter
 import com.example.mallery4.retrofit.RetrofitClient
@@ -38,6 +42,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
     lateinit var detailPostAdapter: DetailPostAdapter
     var imageLists: ArrayList<String> = ArrayList()
 
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +53,21 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // RecyclerView 초기화
+        recyclerView = view.findViewById(R.id.commentRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // 댓글 데이터 생성
+        val comments = listOf(
+            Comment("사용자1", "첫 번째 댓글", "10:00 AM"),
+            Comment("사용자2", "두 번째 댓글", "11:30 AM"),
+            Comment("사용자3", "세 번째 댓글", "12:45 PM")
+        )
+
+        // CommentAdapter 설정
+        val adapter = CommentAdapter(comments)
+        recyclerView.adapter = adapter
 
 
         // 뒤로가기 버튼 클릭시, 이전 화면으로 이동
