@@ -7,17 +7,21 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.mallery4.datamodel.Comment
 import com.example.mallery4.datamodel.CommentResponse
+import com.example.mallery4.datamodel.MypageResponse
 import com.example.mallery4.datamodel.getDetailPostResponse
 import com.example.mallery4.recyclerview.CommentR
 import com.example.mallery4.recyclerview.CommentAdapter
 import com.example.mallery4.retrofit.RetrofitClient
+import com.example.mallery4.retrofit.RetrofitClient.LoginUserId
 import com.example.mallery4.viewpager.DetailPostAdapter
+import kotlinx.android.synthetic.main.comment_item.*
 import kotlinx.android.synthetic.main.fragment_detail_post.*
 import org.chromium.base.Log
 import retrofit2.Call
@@ -45,6 +49,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.fragment_detail_post, container, false)
     }
 
@@ -66,54 +71,29 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
         val adapter = CommentAdapter(comments)
         recyclerView.adapter = adapter
 
-        //현재 시간
-        val now = System.currentTimeMillis()
-        val date = Date(now)
-        val dateFormat = SimpleDateFormat("yyyy/mm/dd hh:mm")
-        val getTime = dateFormat.format(date).toString()
+
 
         // 댓글 전송 버튼 클릭 이벤트 처리
         comment_btn.setOnClickListener {
             // EditText에서 댓글 내용 가져오기
             val commentText = comment_box.text.toString()
 
-            // 댓글 데이터 생성
-            val comment = Comment(post_id, "사용자",commentText)
-            println(comment)
-
             // Retrofit을 사용하여 서버에 댓글 전송
-            RetrofitClient.afterinstance.comment(Comment(post_id, "mall",commentText))
-                .enqueue(object : retrofit2.Callback<CommentResponse> {
+            RetrofitClient.afterinstance.comment(Comment(post_id, LoginUserId,commentText))
+                .enqueue(object : Callback<CommentResponse> {
                 override fun onResponse(
                     call: Call<CommentResponse>,
                     response: Response<CommentResponse>
                 ) {
-                    val commentResponse = response.body()
-                    println(response.body()?.toString())
+                    if (response.body()?.comment_text == commentText) {
+                        Toast.makeText(context, "댓글 작성 완료! ", Toast.LENGTH_LONG).show()
 
-                    if (response.body()?.comment_text == commentText){
-
-
-                        if (commentResponse?.comment_text == "200") {
-                            val commentId = commentResponse?.comment_text
-                            if (commentId != null) {
-                                println("댓글 작성 성공! ID: $commentId")
-                            }
-                        }
-
-                        else {
-                            val errorMessage = response.errorBody()?.string()
-                            println("댓글 작성 실패1: $errorMessage")
-                        }
                     }
 
-                    else if (response.body()?.comment_text.toString() == "200") {
-                        println("ji")
-                    }
                     else {
                         // 서버 응답이 실패한 경우 처리
                         val errorMessage = response.errorBody()?.string()
-                        println("댓글 작성 실패2: $errorMessage")
+                        println("댓글 작성 실패: $errorMessage")
                     }
                 }
 
@@ -123,6 +103,9 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
 
 
                 })
+
+
+            comment_box.setText("")
         }
 
 
