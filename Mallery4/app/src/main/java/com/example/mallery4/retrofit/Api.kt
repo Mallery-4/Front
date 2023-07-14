@@ -1,6 +1,7 @@
 package com.example.mallery4.retrofit
 
 import com.example.mallery4.datamodel.*
+import com.example.mallery4.recyclerview.CommentR
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -105,4 +106,15 @@ interface Api {
         @Path("postId") postId:Long
     ) : Call<getDetailPostResponse>
 
+    //댓글 달기
+    @Headers("Content-Type: application/json")
+    @POST("comment/new")
+    fun comment(
+        @Body
+        Comment: Comment
+    ): Call<CommentResponse>
+
 }
+
+
+

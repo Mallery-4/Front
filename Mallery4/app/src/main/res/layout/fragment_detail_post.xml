@@ -150,7 +150,7 @@
             android:textColor="@color/browncolor"/>
 
     </LinearLayout>
-    
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentRecyclerView"
         android:layout_width="match_parent"

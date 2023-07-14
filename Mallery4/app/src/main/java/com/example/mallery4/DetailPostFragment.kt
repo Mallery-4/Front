@@ -1,6 +1,6 @@
 package com.example.mallery4
 
-import android.net.Uri
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,26 +8,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.mallery4.datamodel.getAllPostResponse
+import com.example.mallery4.datamodel.Comment
+import com.example.mallery4.datamodel.CommentResponse
 import com.example.mallery4.datamodel.getDetailPostResponse
-import com.example.mallery4.recyclerview.Comment
+import com.example.mallery4.recyclerview.CommentR
 import com.example.mallery4.recyclerview.CommentAdapter
-import com.example.mallery4.recyclerview.PostItem
-import com.example.mallery4.recyclerview.PostItemAdapter
 import com.example.mallery4.retrofit.RetrofitClient
 import com.example.mallery4.viewpager.DetailPostAdapter
-import com.example.mallery4.viewpager.GalleryAdapter
-import com.google.gson.Gson
-import kotlinx.android.synthetic.main.fragment_detail_group.*
 import kotlinx.android.synthetic.main.fragment_detail_post.*
-import kotlinx.android.synthetic.main.fragment_write_post3.*
+import org.chromium.base.Log
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
-import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailPostFragment (groupname: String, groupcount: String, groupmembers: String, groupnicknames: String, groupid: Long, postid: Long) : Fragment(){
 
@@ -60,14 +57,74 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
 
         // 댓글 데이터 생성
         val comments = listOf(
-            Comment("사용자1", "첫 번째 댓글", "10:00 AM"),
-            Comment("사용자2", "두 번째 댓글", "11:30 AM"),
-            Comment("사용자3", "세 번째 댓글", "12:45 PM")
+            CommentR("사용자1", "첫 번째 댓글", "10:00 AM"),
+            CommentR("사용자2", "두 번째 댓글", "11:30 AM"),
+            CommentR("사용자3", "세 번째 댓글", "12:45 PM")
         )
 
         // CommentAdapter 설정
         val adapter = CommentAdapter(comments)
         recyclerView.adapter = adapter
+
+        //현재 시간
+        val now = System.currentTimeMillis()
+        val date = Date(now)
+        val dateFormat = SimpleDateFormat("yyyy/mm/dd hh:mm")
+        val getTime = dateFormat.format(date).toString()
+
+        // 댓글 전송 버튼 클릭 이벤트 처리
+        comment_btn.setOnClickListener {
+            // EditText에서 댓글 내용 가져오기
+            val commentText = comment_box.text.toString()
+
+            // 댓글 데이터 생성
+            val comment = Comment(post_id, "사용자",commentText)
+            println(comment)
+
+            // Retrofit을 사용하여 서버에 댓글 전송
+            RetrofitClient.afterinstance.comment(Comment(post_id, "사용자",commentText))
+                .enqueue(object : retrofit2.Callback<CommentResponse> {
+                override fun onResponse(
+                    call: Call<CommentResponse>,
+                    response: Response<CommentResponse>
+                ) {
+                    val commentResponse = response.body()
+                    println(response.body()?.toString())
+
+                    if (response.body()?.comment_text == commentText){
+
+
+                        if (commentResponse?.comment_text == "200") {
+                            val commentId = commentResponse?.comment_text
+                            if (commentId != null) {
+                                println("댓글 작성 성공! ID: $commentId")
+                            }
+                        }
+
+                        else {
+                            val errorMessage = response.errorBody()?.string()
+                            println("댓글 작성 실패1: $errorMessage")
+                        }
+                    }
+
+                    else if (response.body()?.comment_text.toString() == "200") {
+                        println("ji")
+                    }
+                    else {
+                        // 서버 응답이 실패한 경우 처리
+                        val errorMessage = response.errorBody()?.string()
+                        println("댓글 작성 실패2: $errorMessage")
+                    }
+                }
+
+                override fun onFailure(call: Call<CommentResponse>, t: Throwable) {
+                    Log.e(TAG, "네트워크 요청 실패: ${t.message}")
+                }
+            })
+        }
+
+
+
 
 
         // 뒤로가기 버튼 클릭시, 이전 화면으로 이동

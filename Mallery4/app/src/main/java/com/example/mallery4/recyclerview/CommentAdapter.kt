@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mallery4.R
-import com.example.mallery4.recyclerview.Comment
 
-class CommentAdapter(private val comments: List<Comment>) :
+class CommentAdapter(private val comments: List<CommentR>) :
     RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -16,7 +15,7 @@ class CommentAdapter(private val comments: List<Comment>) :
         private val commentTextView: TextView = itemView.findViewById(R.id.comment_text)
         private val timeTextView: TextView = itemView.findViewById(R.id.comment_date)
 
-        fun bind(comment: Comment) {
+        fun bind(comment: CommentR) {
             userNameTextView.text = comment.comment_name
             commentTextView.text = comment.comment_text
             timeTextView.text = comment.comment_date
