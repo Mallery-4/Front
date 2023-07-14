@@ -82,7 +82,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
             println(comment)
 
             // Retrofit을 사용하여 서버에 댓글 전송
-            RetrofitClient.afterinstance.comment(Comment(post_id, "사용자",commentText))
+            RetrofitClient.afterinstance.comment(Comment(post_id, "mall",commentText))
                 .enqueue(object : retrofit2.Callback<CommentResponse> {
                 override fun onResponse(
                     call: Call<CommentResponse>,
@@ -120,7 +120,9 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                 override fun onFailure(call: Call<CommentResponse>, t: Throwable) {
                     Log.e(TAG, "네트워크 요청 실패: ${t.message}")
                 }
-            })
+
+
+                })
         }
 
 
