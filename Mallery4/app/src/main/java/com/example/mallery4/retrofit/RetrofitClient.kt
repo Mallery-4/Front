@@ -8,7 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object RetrofitClient {
-    
+
+
     var AUTH = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiB1c2VyIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTY4MDI3NzYzNn0.8a1TJ_DYAJN8_vkeRstVfjXW4lS9Wf3mItvqasefTFc"
     var AFTER_AUTH=""
     var LoginUserId = ""
@@ -62,4 +63,5 @@ object RetrofitClient {
             .build()
         retrofit2.create(Api::class.java)
     }
+
 }

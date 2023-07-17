@@ -105,4 +105,22 @@ interface Api {
         @Path("postId") postId:Long
     ) : Call<getDetailPostResponse>
 
+    //댓글 달기
+    @Headers("Content-Type: application/json")
+    @POST("comment/new")
+    fun comment(
+        @Body
+        Comment: Comment
+    ): Call<CommentResponse>
+
+    //댓글 확인하기
+    @Headers("Content-Type: application/json")
+    @GET("comment/{postId}/list")
+    fun getCommentInfo(
+        @Path("postId") postId:Long
+    ) : Call<getCommentInfoResponse>
+
 }
+
+
+
