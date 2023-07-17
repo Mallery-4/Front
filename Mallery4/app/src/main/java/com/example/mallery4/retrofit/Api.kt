@@ -1,7 +1,6 @@
 package com.example.mallery4.retrofit
 
 import com.example.mallery4.datamodel.*
-import com.example.mallery4.recyclerview.CommentR
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -113,6 +112,13 @@ interface Api {
         @Body
         Comment: Comment
     ): Call<CommentResponse>
+
+    //댓글 확인하기
+    @Headers("Content-Type: application/json")
+    @GET("comment/{postId}/list")
+    fun getCommentInfo(
+        @Path("postId") postId:Long
+    ) : Call<getCommentInfoResponse>
 
 }
 

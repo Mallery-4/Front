@@ -12,22 +12,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.mallery4.datamodel.Comment
-import com.example.mallery4.datamodel.CommentResponse
-import com.example.mallery4.datamodel.MypageResponse
-import com.example.mallery4.datamodel.getDetailPostResponse
-import com.example.mallery4.recyclerview.CommentR
+import com.example.mallery4.datamodel.*
 import com.example.mallery4.recyclerview.CommentAdapter
 import com.example.mallery4.retrofit.RetrofitClient
 import com.example.mallery4.retrofit.RetrofitClient.LoginUserId
 import com.example.mallery4.viewpager.DetailPostAdapter
-import kotlinx.android.synthetic.main.comment_item.*
 import kotlinx.android.synthetic.main.fragment_detail_post.*
 import org.chromium.base.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
 import java.util.*
 
 class DetailPostFragment (groupname: String, groupcount: String, groupmembers: String, groupnicknames: String, groupid: Long, postid: Long) : Fragment(){
@@ -76,7 +70,6 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
         // 서버에서 받은 정보로, 해당 홈페이지에 정보 띄우기
         RetrofitClient.afterinstance.getDetailPostInfo(group_id, post_id)
             .enqueue(object : retrofit2.Callback<getDetailPostResponse>{
-
                 // 올바른 응답이었을 경우
                 override fun onResponse(
                     call: Call<getDetailPostResponse>,
@@ -112,24 +105,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                 // 서버 오류 or 올바르지 않은 경우
                 override fun onFailure(call: Call<getDetailPostResponse>, t: Throwable) {}
             })
-
-
-        // RecyclerView 초기화
-        recyclerView = view.findViewById(R.id.commentRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        // 댓글 데이터 생성
-        val comments = listOf(
-            CommentR("사용자1", "첫 번째 댓글", "10:00 AM"),
-            CommentR("사용자2", "두 번째 댓글", "11:30 AM"),
-            CommentR("사용자3", "세 번째 댓글", "12:45 PM")
-        )
-
-        // CommentAdapter 설정
-        val adapter = CommentAdapter(comments)
-        recyclerView.adapter = adapter
-
-
+        
 
         // 댓글 전송 버튼 클릭 이벤트 처리
         comment_btn.setOnClickListener {
@@ -165,6 +141,44 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
 
             comment_box.setText("")
         }
+
+
+        // RecyclerView 초기화
+        recyclerView = view.findViewById(R.id.commentRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // 댓글 불러오기
+        RetrofitClient.afterinstance.getCommentInfo(post_id)
+            .enqueue(object : retrofit2.Callback<getCommentInfoResponse>{
+                // 올바른 응답이었을 경우
+                override fun onResponse(
+                    call: Call<getCommentInfoResponse>,
+                    response: Response<getCommentInfoResponse>
+                ) {
+
+                    // response가 제대로 되었다면,
+                    if (response.body()?.result.toString() == "success"){
+                        // 서버에서 받은 정보로 화면에 정보 띄우기
+
+                        val commentsList = response.body()?.comments
+
+                        if (!commentsList.isNullOrEmpty()) {
+                            for (comment in commentsList) {
+                                // CommentAdapter 설정
+                                val adapter = CommentAdapter(commentsList)
+                                recyclerView.adapter = adapter
+                            }
+                        }
+
+                    }
+
+                }
+
+                // 서버 오류 or 올바르지 않은 경우
+                override fun onFailure(call: Call<getCommentInfoResponse>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
     }
 
 }

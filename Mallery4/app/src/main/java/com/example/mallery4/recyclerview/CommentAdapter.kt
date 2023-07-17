@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mallery4.R
+import com.example.mallery4.datamodel.CommentRes
 
-class CommentAdapter(private val comments: List<CommentR>) :
+class CommentAdapter(private val comments: List<CommentRes>?) :
     RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -15,10 +16,10 @@ class CommentAdapter(private val comments: List<CommentR>) :
         private val commentTextView: TextView = itemView.findViewById(R.id.comment_text)
         private val timeTextView: TextView = itemView.findViewById(R.id.comment_date)
 
-        fun bind(comment: CommentR) {
-            userNameTextView.text = comment.comment_name
-            commentTextView.text = comment.comment_text
-            timeTextView.text = comment.comment_date
+        fun bind(comment: CommentRes) {
+            userNameTextView.text = comment.writer
+            commentTextView.text = comment.content
+            timeTextView.text = comment.date
         }
     }
 
@@ -30,12 +31,14 @@ class CommentAdapter(private val comments: List<CommentR>) :
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        val comment = comments[position]
-        holder.bind(comment)
+        val comment = comments?.get(position)
+        if (comment != null) {
+            holder.bind(comment)
+        }
     }
 
     override fun getItemCount(): Int {
-        return comments.size
+        return comments!!.size
     }
 }
 
