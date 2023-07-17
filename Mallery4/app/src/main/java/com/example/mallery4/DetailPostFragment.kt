@@ -105,7 +105,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                 // 서버 오류 or 올바르지 않은 경우
                 override fun onFailure(call: Call<getDetailPostResponse>, t: Throwable) {}
             })
-        
+
 
         // 댓글 전송 버튼 클릭 이벤트 처리
         comment_btn.setOnClickListener {
@@ -122,6 +122,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                         if (response.body()?.comment_text == commentText) {
                             Toast.makeText(context, "댓글 작성 완료! ", Toast.LENGTH_LONG).show()
 
+                            refreshComments()
                         }
 
                         else {
@@ -134,14 +135,9 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                     override fun onFailure(call: Call<CommentResponse>, t: Throwable) {
                         Log.e(TAG, "네트워크 요청 실패: ${t.message}")
                     }
-
-
                 })
-
-
-            comment_box.setText("")
+            comment_box.setText("")//댓글 박스 초기화
         }
-
 
         // RecyclerView 초기화
         recyclerView = view.findViewById(R.id.commentRecyclerView)
@@ -179,6 +175,25 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                     TODO("Not yet implemented")
                 }
             })
+    }
+
+    private fun refreshComments() {
+        RetrofitClient.afterinstance.getCommentInfo(post_id).enqueue(object : retrofit2.Callback<getCommentInfoResponse> {
+            override fun onResponse(call: Call<getCommentInfoResponse>, response: Response<getCommentInfoResponse>) {
+                if (response.isSuccessful && response.body()?.result == "success") {
+                    val commentsList = response.body()?.comments
+                    if (!commentsList.isNullOrEmpty()) {
+                        // CommentAdapter에 새로운 댓글 목록을 설정합니다.
+                        val adapter = CommentAdapter(commentsList)
+                        recyclerView.adapter = adapter
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<getCommentInfoResponse>, t: Throwable) {
+                // 실패 처리를 수행합니다.
+            }
+        })
     }
 
 }
