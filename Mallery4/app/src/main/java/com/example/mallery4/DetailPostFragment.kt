@@ -56,62 +56,6 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // RecyclerView 초기화
-        recyclerView = view.findViewById(R.id.commentRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        // 댓글 데이터 생성
-        val comments = listOf(
-            CommentR("사용자1", "첫 번째 댓글", "10:00 AM"),
-            CommentR("사용자2", "두 번째 댓글", "11:30 AM"),
-            CommentR("사용자3", "세 번째 댓글", "12:45 PM")
-        )
-
-        // CommentAdapter 설정
-        val adapter = CommentAdapter(comments)
-        recyclerView.adapter = adapter
-
-
-
-        // 댓글 전송 버튼 클릭 이벤트 처리
-        comment_btn.setOnClickListener {
-            // EditText에서 댓글 내용 가져오기
-            val commentText = comment_box.text.toString()
-
-            // Retrofit을 사용하여 서버에 댓글 전송
-            RetrofitClient.afterinstance.comment(Comment(post_id, LoginUserId,commentText))
-                .enqueue(object : Callback<CommentResponse> {
-                override fun onResponse(
-                    call: Call<CommentResponse>,
-                    response: Response<CommentResponse>
-                ) {
-                    if (response.body()?.comment_text == commentText) {
-                        Toast.makeText(context, "댓글 작성 완료! ", Toast.LENGTH_LONG).show()
-
-                    }
-
-                    else {
-                        // 서버 응답이 실패한 경우 처리
-                        val errorMessage = response.errorBody()?.string()
-                        println("댓글 작성 실패: $errorMessage")
-                    }
-                }
-
-                override fun onFailure(call: Call<CommentResponse>, t: Throwable) {
-                    Log.e(TAG, "네트워크 요청 실패: ${t.message}")
-                }
-
-
-                })
-
-
-            comment_box.setText("")
-        }
-
-
-
-
-
         // 뒤로가기 버튼 클릭시, 이전 화면으로 이동
         btn_detail_group_backhome.setOnClickListener {
             (context as MainActivity).MoveGroups (group_name, group_count, group_id, group_members, group_nicknames)
@@ -168,6 +112,59 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                 // 서버 오류 or 올바르지 않은 경우
                 override fun onFailure(call: Call<getDetailPostResponse>, t: Throwable) {}
             })
+
+
+        // RecyclerView 초기화
+        recyclerView = view.findViewById(R.id.commentRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // 댓글 데이터 생성
+        val comments = listOf(
+            CommentR("사용자1", "첫 번째 댓글", "10:00 AM"),
+            CommentR("사용자2", "두 번째 댓글", "11:30 AM"),
+            CommentR("사용자3", "세 번째 댓글", "12:45 PM")
+        )
+
+        // CommentAdapter 설정
+        val adapter = CommentAdapter(comments)
+        recyclerView.adapter = adapter
+
+
+
+        // 댓글 전송 버튼 클릭 이벤트 처리
+        comment_btn.setOnClickListener {
+            // EditText에서 댓글 내용 가져오기
+            val commentText = comment_box.text.toString()
+
+            // Retrofit을 사용하여 서버에 댓글 전송
+            RetrofitClient.afterinstance.comment(Comment(post_id, LoginUserId,commentText))
+                .enqueue(object : Callback<CommentResponse> {
+                    override fun onResponse(
+                        call: Call<CommentResponse>,
+                        response: Response<CommentResponse>
+                    ) {
+                        if (response.body()?.comment_text == commentText) {
+                            Toast.makeText(context, "댓글 작성 완료! ", Toast.LENGTH_LONG).show()
+
+                        }
+
+                        else {
+                            // 서버 응답이 실패한 경우 처리
+                            val errorMessage = response.errorBody()?.string()
+                            println("댓글 작성 실패: $errorMessage")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<CommentResponse>, t: Throwable) {
+                        Log.e(TAG, "네트워크 요청 실패: ${t.message}")
+                    }
+
+
+                })
+
+
+            comment_box.setText("")
+        }
     }
 
 }
