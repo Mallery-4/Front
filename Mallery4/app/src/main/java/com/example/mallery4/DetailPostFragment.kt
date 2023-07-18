@@ -17,6 +17,7 @@ import com.example.mallery4.recyclerview.CommentAdapter
 import com.example.mallery4.retrofit.RetrofitClient
 import com.example.mallery4.retrofit.RetrofitClient.LoginUserId
 import com.example.mallery4.viewpager.DetailPostAdapter
+import kotlinx.android.synthetic.main.comment_item.*
 import kotlinx.android.synthetic.main.fragment_detail_post.*
 import org.chromium.base.Log
 import retrofit2.Call
@@ -121,7 +122,6 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                     ) {
                         if (response.body()?.comment_text == commentText) {
                             Toast.makeText(context, "댓글 작성 완료! ", Toast.LENGTH_LONG).show()
-
                             refreshComments()
                         }
 
@@ -157,12 +157,12 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                         // 서버에서 받은 정보로 화면에 정보 띄우기
 
                         val commentsList = response.body()?.comments
-
                         if (!commentsList.isNullOrEmpty()) {
                             for (comment in commentsList) {
                                 // CommentAdapter 설정
                                 val adapter = CommentAdapter(commentsList)
                                 recyclerView.adapter = adapter
+
                             }
                         }
 
@@ -175,6 +175,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                     TODO("Not yet implemented")
                 }
             })
+
     }
 
     private fun refreshComments() {

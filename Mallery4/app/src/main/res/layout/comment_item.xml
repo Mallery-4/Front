@@ -34,6 +34,16 @@
                 android:text="03/27 18:27"
                 android:textColor="@color/browncolor"
                 android:textSize="14sp" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <ImageView
+                android:id="@+id/comment_erase"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/trash"/>
 
         </LinearLayout>
 
