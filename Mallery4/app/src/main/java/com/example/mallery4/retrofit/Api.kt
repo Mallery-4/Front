@@ -120,6 +120,12 @@ interface Api {
         @Path("postId") postId:Long
     ) : Call<getCommentInfoResponse>
 
+    //댓글 삭제하기
+    @Headers("Content-Type: application/json")
+    //@HTTP(method = "DELETE", path="comment/{commentId}")
+    @DELETE("comment/{commentId}")
+    fun deleteComment(@Path("commentId") commentId:Long): Call<DeleteCommentResponse>
+
 }
 
 
