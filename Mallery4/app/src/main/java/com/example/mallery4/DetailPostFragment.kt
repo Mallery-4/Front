@@ -17,7 +17,6 @@ import com.example.mallery4.recyclerview.CommentAdapter
 import com.example.mallery4.retrofit.RetrofitClient
 import com.example.mallery4.retrofit.RetrofitClient.LoginUserId
 import com.example.mallery4.viewpager.DetailPostAdapter
-import kotlinx.android.synthetic.main.comment_item.*
 import kotlinx.android.synthetic.main.fragment_detail_post.*
 import org.chromium.base.Log
 import retrofit2.Call
