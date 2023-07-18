@@ -56,7 +56,6 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
                             call: Call<DeleteCommentResponse>,
                             response: Response<DeleteCommentResponse>
                         ) {
-
                             //탈퇴 성공
                             if (response.body()?.result == "success") {
                                 Toast.makeText(holder.itemView.context, "댓글 삭제 성공!", Toast.LENGTH_SHORT).show()
