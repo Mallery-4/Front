@@ -9,19 +9,20 @@ import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mallery4.R
-import com.example.mallery4.datamodel.CommentRes
-import com.example.mallery4.datamodel.DeleteCommentResponse
+import com.example.mallery4.datamodel.*
 import com.example.mallery4.retrofit.RetrofitClient
+import kotlinx.android.synthetic.main.fragment_decorate.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.example.mallery4.retrofit.RetrofitClient.LoginUserId
 
 
 class CommentAdapter(private val comments: List<CommentRes>?) :
     RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val userNameTextView: TextView = itemView.findViewById(R.id.comment_name)
+        val userNameTextView: TextView = itemView.findViewById(R.id.comment_name)
         private val commentTextView: TextView = itemView.findViewById(R.id.comment_text)
         private val timeTextView: TextView = itemView.findViewById(R.id.comment_date)
         val comment_erase: ImageView = itemView.findViewById(R.id.comment_erase)
@@ -46,6 +47,35 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
             holder.bind(comment)
         }
 
+        //사용자 name 가져오기
+        RetrofitClient.afterinstance.getUserInfo(RetrofitClient.LoginUserId)
+            .enqueue(object : retrofit2.Callback<MypageResponse>{
+
+                // 올바른 응답이었을 경우
+                override fun onResponse(
+                    call: Call<MypageResponse>,
+                    response: Response<MypageResponse>
+                ) {
+                    //mypage의 text를 user 정보로 저장
+                    RetrofitClient.public_username = response.body()?.username.toString()
+                    val writer = comment?.writer
+                    val user_id=RetrofitClient.public_username
+                    if(writer!=user_id) {
+                        holder.comment_erase.visibility = View.INVISIBLE
+                    }
+
+                }
+
+
+                // 서버 오류 or 올바르지 않은 userid인 경우
+                override fun onFailure(call: Call<MypageResponse>, t: Throwable) {
+
+                }
+
+            })
+
+
+
         holder.comment_erase.setOnClickListener {
             val comment_id = comment?.commentId
             if (comment_id != null) {
@@ -56,7 +86,7 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
                             call: Call<DeleteCommentResponse>,
                             response: Response<DeleteCommentResponse>
                         ) {
-                            //탈퇴 성공
+
                             if (response.body()?.result == "success") {
                                 Toast.makeText(holder.itemView.context, "댓글 삭제 성공!", Toast.LENGTH_SHORT).show()
 
