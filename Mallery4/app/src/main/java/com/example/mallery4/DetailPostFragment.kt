@@ -142,6 +142,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
         recyclerView = view.findViewById(R.id.commentRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+
         // 댓글 불러오기
         RetrofitClient.afterinstance.getCommentInfo(post_id)
             .enqueue(object : retrofit2.Callback<getCommentInfoResponse>{
@@ -152,10 +153,10 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                 ) {
 
                     // response가 제대로 되었다면,
+                    val commentsList = response.body()?.comments
+
                     if (response.body()?.result.toString() == "success"){
                         // 서버에서 받은 정보로 화면에 정보 띄우기
-
-                        val commentsList = response.body()?.comments
                         if (!commentsList.isNullOrEmpty()) {
                             for (comment in commentsList) {
                                 // CommentAdapter 설정
@@ -166,7 +167,6 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
                         }
 
                     }
-
                 }
 
                 // 서버 오류 or 올바르지 않은 경우
