@@ -123,8 +123,10 @@ interface Api {
     //댓글 삭제하기
     @Headers("Content-Type: application/json")
     //@HTTP(method = "DELETE", path="comment/{commentId}")
-    @DELETE("comment/{commentId}")
-    fun deleteComment(@Path("commentId") commentId:Long): Call<DeleteCommentResponse>
+    @DELETE("comment/{commentId}/{userId}")
+    fun deleteComment(
+        @Path("commentId") commentId:Long,
+        @Path("userId") userId:String): Call<DeleteCommentResponse>
 
 }
 
