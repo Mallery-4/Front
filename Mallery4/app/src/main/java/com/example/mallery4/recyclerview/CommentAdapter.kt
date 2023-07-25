@@ -47,7 +47,8 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
             holder.bind(comment)
         }
 
-        //사용자 name 가져오기
+        //사용자 name 가져오기, 쓰레기통 안보이게 하기
+        /*
         RetrofitClient.afterinstance.getUserInfo(RetrofitClient.LoginUserId)
             .enqueue(object : retrofit2.Callback<MypageResponse>{
 
@@ -74,12 +75,13 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
 
             })
 
-
+*/
 
         holder.comment_erase.setOnClickListener {
             val comment_id = comment?.commentId
+
             if (comment_id != null) {
-                RetrofitClient.afterinstance.deleteComment(comment_id)
+                RetrofitClient.afterinstance.deleteComment(comment_id, LoginUserId)
                     .enqueue(object : Callback<DeleteCommentResponse> {
 
                         override fun onResponse(
@@ -87,11 +89,12 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
                             response: Response<DeleteCommentResponse>
                         ) {
 
+
                             if (response.body()?.result == "success") {
-                                Toast.makeText(holder.itemView.context, "댓글 삭제 성공!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(holder.itemView.context, response.body()?.message, Toast.LENGTH_SHORT).show()
 
                             } else {
-                                Toast.makeText(holder.itemView.context, "댓글 삭제 실패!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(holder.itemView.context, "댓글 삭제 실패했습니다.", Toast.LENGTH_SHORT).show()
 
                             }
                         }
