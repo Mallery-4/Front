@@ -126,6 +126,14 @@ interface Api {
     @DELETE("comment/{commentId}")
     fun deleteComment(@Path("commentId") commentId:Long): Call<DeleteCommentResponse>
 
+    //댓글 수정하기
+    @Headers("Content-Type: application/json")
+    @PUT("comment/{commentId}")
+    fun editComment(
+        @Path("commentId") commentId:Long,
+        @Body commentContent:commentContent
+        ): Call<EditCommentResponse>
+
 }
 
 

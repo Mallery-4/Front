@@ -1,11 +1,16 @@
 package com.example.mallery4.recyclerview
 
+import android.content.ContentValues
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mallery4.R
@@ -16,6 +21,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.mallery4.retrofit.RetrofitClient.LoginUserId
+import kotlinx.android.synthetic.main.fragment_detail_post.*
+import org.chromium.base.Log
 
 
 class CommentAdapter(private val comments: List<CommentRes>?) :
@@ -23,9 +30,12 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val userNameTextView: TextView = itemView.findViewById(R.id.comment_name)
-        private val commentTextView: TextView = itemView.findViewById(R.id.comment_text)
+        val commentTextView: TextView = itemView.findViewById(R.id.comment_text)
         private val timeTextView: TextView = itemView.findViewById(R.id.comment_date)
         val comment_erase: ImageView = itemView.findViewById(R.id.comment_erase)
+        val comment_edit: ImageView = itemView.findViewById(R.id.comment_edit)
+        val comment_edit_text: EditText = itemView.findViewById(R.id.comment_edit_text)
+        val comment_edit_btn: AppCompatButton = itemView.findViewById(R.id.comment_edit_btn)
 
         fun bind(comment: CommentRes) {
             userNameTextView.text = comment.writer
@@ -76,6 +86,9 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
 
 
 
+        //삭제
+        holder.comment_edit_text.visibility = View.INVISIBLE
+        holder.comment_edit_btn.visibility=View.INVISIBLE
         holder.comment_erase.setOnClickListener {
             val comment_id = comment?.commentId
             if (comment_id != null) {
@@ -90,6 +103,7 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
                             if (response.body()?.result == "success") {
                                 Toast.makeText(holder.itemView.context, "댓글 삭제 성공!", Toast.LENGTH_SHORT).show()
 
+
                             } else {
                                 Toast.makeText(holder.itemView.context, "댓글 삭제 실패!", Toast.LENGTH_SHORT).show()
 
@@ -102,12 +116,65 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
             }
         }
 
+        //수정
+        holder.comment_edit.setOnClickListener {
+            val comment_id = comment?.commentId
+            holder.commentTextView.visibility = View.GONE
+            holder.comment_edit_text.visibility = View.VISIBLE
+            holder.comment_edit_btn.visibility=View.VISIBLE
+
+            //완료버튼 클릭시
+            holder.comment_edit_btn.setOnClickListener{
+                val commentText = holder.comment_edit_text.text.toString()
+                if (comment_id != null) {
+                    RetrofitClient.afterinstance.editComment(comment_id,commentContent(commentText))
+                        .enqueue(object : Callback<EditCommentResponse> {
+                            override fun onResponse(
+                                call: Call<EditCommentResponse>,
+                                response: Response<EditCommentResponse>
+                            ) {
+                                Log.d(ContentValues.TAG,commentText)
+                                Log.d(ContentValues.TAG,response.body()?.content.toString())
+                                if (response.isSuccessful) {
+                                    Log.d(
+                                        "CommentAdapter",
+                                        response.body()?.content ?: "Response is null"
+                                    )
+                                    if (response.body()?.content == commentText) {
+                                        Toast.makeText(
+                                            holder.itemView.context,
+                                            response.body()?.result,
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        holder.commentTextView.visibility = View.VISIBLE
+                                        holder.comment_edit_text.visibility = View.GONE
+                                        holder.comment_edit_btn.visibility = View.GONE
+                                    }
+                                }
+
+                                else {
+                                    // 서버 응답이 실패한 경우 처리
+                                    val errorMessage = response.errorBody()?.string()
+                                    println("댓글 작성 실패: $errorMessage")
+                                }
+                            }
+
+                            override fun onFailure(call: Call<EditCommentResponse>, t: Throwable) {}
+
+                        })
+                }
+
+            }
+
+
+        }
     }
 
 
     override fun getItemCount(): Int {
         return comments!!.size
     }
+
 }
 
 
