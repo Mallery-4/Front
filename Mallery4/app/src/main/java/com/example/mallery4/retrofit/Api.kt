@@ -105,6 +105,25 @@ interface Api {
         @Path("postId") postId:Long
     ) : Call<getDetailPostResponse>
 
+    // 글쓰기 수정(put)
+    @Headers("Content-Type: application/json")
+    @Multipart
+    @PUT("post/{albumId}/{postId}")
+    fun updateText(
+        @Path("albumId") albumId: Long,
+        @Path("postId") postId:Long,
+        @PartMap map : Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part images: List<MultipartBody.Part?>,
+    ) : Call<PutWriteResponse>
+
+    // 글쓰기 삭제(delete)
+    @Headers("Content-Type: application/json")
+    @HTTP(method = "DELETE", path="post/{albumId}/{postId}")
+    fun deleteText(
+        @Path("albumId") albumId:Long,
+        @Path("postId") postId:Long,
+    ): Call<DeleteWriteResponse>
+
     //댓글 달기
     @Headers("Content-Type: application/json")
     @POST("comment/new")
@@ -129,6 +148,4 @@ interface Api {
         @Path("userId") userId:String): Call<DeleteCommentResponse>
 
 }
-
-
 
