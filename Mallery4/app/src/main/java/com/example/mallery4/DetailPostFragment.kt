@@ -11,10 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.mallery4.datamodel.DeleteAlbumResponse
-import com.example.mallery4.datamodel.DeleteUser
-import com.example.mallery4.datamodel.getAllPostResponse
-import com.example.mallery4.datamodel.getDetailPostResponse
+import com.example.mallery4.datamodel.*
 import com.example.mallery4.recyclerview.PostItem
 import com.example.mallery4.recyclerview.PostItemAdapter
 import com.example.mallery4.retrofit.RetrofitClient
@@ -58,25 +55,35 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
         btn_detail_group_backhome.setOnClickListener {
             (context as MainActivity).MoveGroups (group_name, group_count, group_id, group_members, group_nicknames)
         }
-
+///////////////////////////////////////
+        ///////////////////////////////////////////////////
         // 수정하기 버튼 클릭시, 수정 fragment로 이동
         ch_post.setOnClickListener {
-            (context as MainActivity).PutDetailPage(group_name,group_count, group_id, post_id,group_members, group_nicknames, post_date.text.toString(), post_members.text.split(",").toList())
+            ///(context as MainActivity).PutDetailPage(group_name,group_count, group_id, post_id,group_members, group_nicknames, post_date.text.toString(), post_members.text.split(",").toList())
         }
+        ////////////////////////////////////////
+
 
         // 삭제하기 버튼 클릭시, 삭제후 홈으로 이동
         del_post.setOnClickListener {
             RetrofitClient.afterinstance.deleteText(group_id, post_id)
-                .enqueue(object: Callback<Void> {
+                .enqueue(object: retrofit2.Callback<DeleteWriteResponse> {
 
                     override fun onResponse(
-                        call: Call<Void>,
-                        response: Response<Void>
+                        call: Call<DeleteWriteResponse>,
+                        response: Response<DeleteWriteResponse>
                     ) {
-                        (context as MainActivity).replaceFragment(HomeFragment.newInstance())
+                        // response가 제대로 되었다면,
+                        if (response.body()?.result=="success") {
+                            Toast.makeText(context, "해당 게시물을 삭제하였습니다.", Toast.LENGTH_LONG).show()
+                            (context as MainActivity).replaceFragment(HomeFragment.newInstance())
+                        }
+                        else{
+                            Toast.makeText(context, "다시 시도해주세요.", Toast.LENGTH_LONG).show()
+                        }
                     }
 
-                    override fun onFailure(call: Call<Void>, t: Throwable) {}
+                    override fun onFailure(call: Call<DeleteWriteResponse>, t: Throwable) {}
 
                 })
         }

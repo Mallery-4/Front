@@ -32,6 +32,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
+import java.nio.ByteBuffer
 
 class DetailPutFragment (groupname: String, groupcount: String, groupid: Long, postid: Long,groupmembers: String, groupnicknames:String, postdate: String, participants: List<String>) : Fragment(){
 
@@ -45,7 +46,7 @@ class DetailPutFragment (groupname: String, groupcount: String, groupid: Long, p
     var participants_ = participants
     var imagesource: MutableList<MultipartBody.Part> = mutableListOf()
 
-    val map = HashMap<String, RequestBody>()
+    var map: MutableMap<String, RequestBody> = mutableMapOf()
 
     // external storage 권한 확인받기
     private val REQUEST_EXTERNAL_STORAGE = 1
@@ -137,7 +138,9 @@ class DetailPutFragment (groupname: String, groupcount: String, groupid: Long, p
             val place = post_place2.text.toString().trim()
 
             // Hashmap data
-            var GroupId : RequestBody = RequestBody.create(MediaType.parse("text/plain"), group_id.toString())
+            val byteArray = ByteBuffer.allocate(java.lang.Long.BYTES).putLong(group_id).array()
+            var GroupId = RequestBody.create(MediaType.parse("application/octet-stream"), byteArray)
+            //var GroupId : RequestBody = RequestBody.create(MediaType.parse("text/plain"), group_id)
             var PostLocation : RequestBody = RequestBody.create(MediaType.parse("text/plain"),place)
             var PostDate : RequestBody = RequestBody.create(MediaType.parse("text/plain"),post_date)
             var UserId : RequestBody = RequestBody.create(MediaType.parse("text/plain"), RetrofitClient.LoginUserId)
@@ -205,14 +208,14 @@ class DetailPutFragment (groupname: String, groupcount: String, groupid: Long, p
                     call: Call<PutWriteResponse>,
                     response: Response<PutWriteResponse>
                 ) {
-                    // post 성공
+                    // put 성공
                     if (response?.body()?.state.toString() == "200"){
                         Toast.makeText(context, "게시글을 수정하였습니다.", Toast.LENGTH_LONG).show()
                         // 화면 이동
                         (context as MainActivity).replaceFragment(HomeFragment.newInstance()) // 홈화면으로 이동
                         response.let { it -> Log.d("###############", response.body()?.imagePaths.toString()) }
                     }
-                    // post 실패
+                    // put 실패
                     else{
                         Toast.makeText(context, "다시 한번 시도해주세요.", Toast.LENGTH_LONG).show()
                         response.let { it -> Log.d("###############", it.toString()) }

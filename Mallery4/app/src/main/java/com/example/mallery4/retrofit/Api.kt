@@ -112,15 +112,16 @@ interface Api {
     fun updateText(
         @Path("albumId") albumId: Long,
         @Path("postId") postId:Long,
-        @PartMap data : HashMap<String, RequestBody>,
-        @Part images: List<MultipartBody.Part?>
+        @PartMap map : Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part images: List<MultipartBody.Part?>,
     ) : Call<PutWriteResponse>
 
+    // 글쓰기 삭제(delete)
     @Headers("Content-Type: application/json")
     @HTTP(method = "DELETE", path="post/{albumId}/{postId}")
     fun deleteText(
         @Path("albumId") albumId:Long,
         @Path("postId") postId:Long,
-    ): Call<Void>
+    ): Call<DeleteWriteResponse>
 
 }
