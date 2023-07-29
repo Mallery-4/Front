@@ -1,6 +1,7 @@
 package com.example.mallery4
 
-import android.content.Intent
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import retrofit2.Call
 import retrofit2.Response
+import android.content.Intent
 
 class MypageFragment : Fragment() {
 
@@ -61,9 +63,43 @@ class MypageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 개인정보 변경하기 클릭시
         change_btn.setOnClickListener {
             (context as MainActivity).replaceFragment(MypageFragment2.newInstance()) //변경하는 페이지로 이동
         }
+
+        //logout 버튼 클릭시
+        logout_btn.setOnClickListener { view ->
+            var dialog = AlertDialog.Builder(context,  R.style.alertDialogTheme)
+            dialog.setTitle("로그아웃을 하시겠습니까?")
+            dialog.setMessage("저희 Mallery4을 이용해주셔서 감사합니다.")
+
+            var dialog_listener = object: DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    when(which){
+                        //로그아웃 -> 새롭게 로그인으로 다시 전환
+                        DialogInterface.BUTTON_POSITIVE ->
+                            startNewActivity()
+                    }
+                }
+            }
+
+            dialog.setPositiveButton("YES",dialog_listener)
+            dialog.setNegativeButton("NO",null)
+            dialog.show()
+
+        }
+
+    }
+
+    fun startNewActivity() {
+        // Close the current activity
+        activity?.finish()
+
+        // Start the new activity
+        val intent = Intent(activity, LoginActivity::class.java)
+        startActivity(intent)
     }
 
     companion object {
