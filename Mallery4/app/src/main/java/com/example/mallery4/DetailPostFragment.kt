@@ -67,14 +67,6 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
         btn_detail_group_backhome.setOnClickListener {
             (context as MainActivity).MoveGroups (group_name, group_count, group_id, group_members, group_nicknames)
         }
-///////////////////////////////////////
-        ///////////////////////////////////////////////////
-        // 수정하기 버튼 클릭시, 수정 fragment로 이동
-        ch_post.setOnClickListener {
-            ///(context as MainActivity).PutDetailPage(group_name,group_count, group_id, post_id,group_members, group_nicknames, post_date.text.toString(), post_members.text.split(",").toList())
-        }
-        ////////////////////////////////////////
-
 
         // 삭제하기 버튼 클릭시, 삭제후 홈으로 이동
         del_post.setOnClickListener {

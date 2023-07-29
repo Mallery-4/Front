@@ -48,23 +48,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     // fragment 화면 전환 함수
     fun replaceFragment(fragment: Fragment){
         val fragmentTransition = supportFragmentManager.beginTransaction()
-        fragmentTransition.replace(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
+        fragmentTransition.replace(R.id.fragmentContainer,fragment).addToBackStack(null).commit()
     }
 
     // fragment 화면 전환 함수
     fun addFragment(fragment: Fragment){
         val fragmentTransition = supportFragmentManager.beginTransaction()
-        fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(Fragment::class.java.simpleName).commit()
+        fragmentTransition.add(R.id.fragmentContainer,fragment).addToBackStack(null).commit()
     }
 
     // 그룹 생성 페이지 fragment 이동 함수
     fun MakingGroupFragment(albumid:Long){
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.fragmentContainer,MakeGroupFragment2(albumid)).addToBackStack(Fragment::class.java.simpleName)
+                .replace(R.id.fragmentContainer,MakeGroupFragment2(albumid)).addToBackStack(null)
                 .commit()
     }
 
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     fun AddFriend(albumid: Long){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,AddFriendFragment(albumid)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,AddFriendFragment(albumid)).addToBackStack(null)
             .commit()
     }
 
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     fun MoveGroups(groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames:String){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,DetailGroupFragment(groupname, groupcount, groupid, groupmembers, groupnicknames)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,DetailGroupFragment(groupname, groupcount, groupid, groupmembers, groupnicknames)).addToBackStack(null)
             .commit()
     }
 
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     fun DeleteAlbum(groupid: Long){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,DeleteAlbumFragment(groupid)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,DeleteAlbumFragment(groupid)).addToBackStack(null)
             .commit()
     }
 
@@ -96,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     fun ChangeAlbumName(groupid: Long){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,ChangeAlbumNameFragment(groupid)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,ChangeAlbumNameFragment(groupid)).addToBackStack(null)
             .commit()
     }
 
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     fun Post1(groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames: String){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,WritePostFragment1(groupname, groupcount, groupid, groupmembers, groupnicknames)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,WritePostFragment1(groupname, groupcount, groupid, groupmembers, groupnicknames)).addToBackStack(null)
             .commit()
     }
 
@@ -112,7 +113,7 @@ class MainActivity : AppCompatActivity() {
     fun Post2(groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames: String, postdate: String){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,WritePostFragment2(groupname, groupcount, groupid, groupmembers, groupnicknames, postdate)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,WritePostFragment2(groupname, groupcount, groupid, groupmembers, groupnicknames, postdate)).addToBackStack(null)
             .commit()
     }
 
@@ -120,7 +121,7 @@ class MainActivity : AppCompatActivity() {
     fun Post3(groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames : String, postdate: String, participants: List<String>){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,WritePostFragment3(groupname, groupcount, groupid, groupmembers, groupnicknames, postdate, participants)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,WritePostFragment3(groupname, groupcount, groupid, groupmembers, groupnicknames, postdate, participants)).addToBackStack(null)
             .commit()
     }
 
@@ -128,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     fun MoveDetailPost(groupname: String, groupcount: String, groupmembers: String, groupnicknames : String, groupid: Long, postid: Long){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,DetailPostFragment(groupname, groupcount,groupmembers, groupnicknames,  groupid, postid)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,DetailPostFragment(groupname, groupcount,groupmembers, groupnicknames,  groupid, postid)).addToBackStack(null)
             .commit()
     }
 
@@ -136,7 +137,7 @@ class MainActivity : AppCompatActivity() {
     fun PutDetailPage(groupname: String, groupcount: String, groupid: Long, postid: Long,groupmembers: String, groupnicknames : String, postdate: String, participants: List<String>){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentContainer,DetailPutFragment(groupname, groupcount, groupid, postid,groupmembers, groupnicknames, postdate, participants)).addToBackStack(Fragment::class.java.simpleName)
+            .replace(R.id.fragmentContainer,DetailPutFragment(groupname, groupcount, groupid, postid,groupmembers, groupnicknames, postdate, participants)).addToBackStack(null)
             .commit()
     }
 
