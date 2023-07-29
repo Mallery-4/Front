@@ -12,6 +12,7 @@ import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color.red
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.*
 import android.provider.DocumentsContract
@@ -47,7 +48,7 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Part
 import java.io.*
-
+import android.media.ExifInterface
 
 class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, groupmembers: String, groupnicknames:String, postdate: String, participants: List<String>) : Fragment(){
 
@@ -123,7 +124,24 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
                 for (i in 0 until imageList.size) {
 
                     val imagePath = imageList[i]
+
                     val file: File = File(imagePath.path)
+
+
+                    val absolutePath = file.absolutePath //사진의 절대경로
+                    // 사진 회전 방지용 메타데이터
+                    var exif: ExifInterface? = null
+                    try {
+                        exif = ExifInterface(absolutePath)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                    val orientation = exif?.getAttributeInt(
+                        ExifInterface.TAG_ORIENTATION,
+                        ExifInterface.ORIENTATION_ROTATE_90
+                    ) ?: ExifInterface.ORIENTATION_ROTATE_90
+
+
                     val inputStream: InputStream? =
                         try {
                             requireContext().contentResolver.openInputStream(imagePath)
@@ -134,8 +152,11 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
 
                     // 사진 압축
                     val bitmap: Bitmap? = BitmapFactory.decodeStream(inputStream)
+                    //사진회전
+                    val bmRotated: Bitmap? = bitmap?.let { it1 -> rotateBitmap(it1, orientation) }
+
                     val byteArrayOutputStream = ByteArrayOutputStream()
-                    bitmap?.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
+                    bmRotated?.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream)
                     val requestBody = RequestBody.create(MediaType.parse("image/*"), byteArrayOutputStream.toByteArray())
                     val uploadFile = MultipartBody.Part.createFormData("images", file.name, requestBody)
                     imagesource.add(uploadFile)
@@ -244,5 +265,38 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
                     t.message?.let { it1 -> Log.d("###############", it1) }
                 }
             })
+    }
+
+    //사진 회전 함수
+    fun rotateBitmap(bitmap: Bitmap, orientation: Int): Bitmap {
+        val matrix = Matrix()
+        when (orientation) {
+            ExifInterface.ORIENTATION_NORMAL -> return bitmap
+            ExifInterface.ORIENTATION_FLIP_HORIZONTAL -> matrix.setScale(-1f, 1f)
+            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.setRotate(180f)
+            ExifInterface.ORIENTATION_FLIP_VERTICAL -> {
+                matrix.setRotate(180f)
+                matrix.postScale(-1f, 1f)
+            }
+            ExifInterface.ORIENTATION_TRANSPOSE -> {
+                matrix.setRotate(90f)
+                matrix.postScale(-1f, 1f)
+            }
+            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.setRotate(90f)
+            ExifInterface.ORIENTATION_TRANSVERSE -> {
+                matrix.setRotate(-90f)
+                matrix.postScale(-1f, 1f)
+            }
+            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.setRotate(-90f)
+            else -> return bitmap
+        }
+        return try {
+            val bmRotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+            bitmap.recycle()
+            bmRotated
+        } catch (e: OutOfMemoryError) {
+            e.printStackTrace()
+            bitmap // OutOfMemoryError가 발생할 경우 원본 비트맵을 반환합니다.
+        }
     }
 }
