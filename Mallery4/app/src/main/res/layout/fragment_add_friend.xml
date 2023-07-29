@@ -59,7 +59,7 @@
             android:layout_marginLeft="10dp"
             android:layout_gravity="center"
             android:background="@drawable/rounded_pink"
-            android:text="중복확인"
+            android:text="사용자 확인"
             android:textSize="12dp"
             android:textColor="@color/browncolor"/>
     </LinearLayout>
