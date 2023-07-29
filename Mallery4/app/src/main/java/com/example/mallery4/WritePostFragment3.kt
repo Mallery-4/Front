@@ -1,7 +1,6 @@
 package com.example.mallery4
 
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.Manifest.permission.*
 import android.app.Activity.RESULT_OK
 import android.app.appsearch.SetSchemaRequest.READ_EXTERNAL_STORAGE
 import android.content.ContentResolver
@@ -66,8 +65,12 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
     // external storage 권한 확인받기
     private val REQUEST_EXTERNAL_STORAGE = 1
     private val PERMISSIONS_STORAGE = arrayOf(
+        android.Manifest.permission.READ_MEDIA_VIDEO,
+        android.Manifest.permission.READ_MEDIA_AUDIO,
+        android.Manifest.permission.READ_MEDIA_IMAGES,
         android.Manifest.permission.READ_EXTERNAL_STORAGE,
-        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        android.Manifest.permission.POST_NOTIFICATIONS
     )
 
 

@@ -54,7 +54,6 @@ class LoginActivity : AppCompatActivity() {
                             // 로그인시 받는 access token으로 auth client 토큰, id 갱신
                             RetrofitClient.AFTER_AUTH = "Bearer " + response.body()?.Logindata?.accessToken.toString()
                             RetrofitClient.LoginUserId = response.body()?.userId.toString()
-
                             // 메인 화면으로 이동
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         }else{

@@ -11,12 +11,17 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- diaglog -->
+        <item name="alertDialogTheme">@style/alertDialogTheme</item>
         <!-- Customize your theme here. -->
 
     </style>
 
-    <style name="AlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="colorPrimary">#0000FF</item>
+    <style name="alertDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:textColor">@color/background</item>
+        <item name="android:background">@color/browncolor</item>
     </style>
+
 
 </resources>
