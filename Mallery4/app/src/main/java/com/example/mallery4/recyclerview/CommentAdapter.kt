@@ -32,6 +32,8 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
             commentTextView.text = comment.content
             timeTextView.text = comment.date
         }
+
+
     }
 
 
@@ -88,7 +90,7 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
                             call: Call<DeleteCommentResponse>,
                             response: Response<DeleteCommentResponse>
                         ) {
-
+                            val post_id=response.body()?.postId
 
                             if (response.body()?.result == "success") {
                                 Toast.makeText(holder.itemView.context, response.body()?.message, Toast.LENGTH_SHORT).show()
@@ -111,6 +113,8 @@ class CommentAdapter(private val comments: List<CommentRes>?) :
     override fun getItemCount(): Int {
         return comments!!.size
     }
+
+
 }
 
 

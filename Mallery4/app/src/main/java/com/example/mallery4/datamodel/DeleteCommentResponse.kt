@@ -6,6 +6,7 @@ data class DeleteCommentResponse(
     @SerializedName("result") var result: String,
     @SerializedName("commentId") var commentId:Long,
     @SerializedName("userId") var userId:String,
-    @SerializedName("message") var message:String
+    @SerializedName("message") var message:String,
+    @SerializedName("postId") var postId:Long
 
 )

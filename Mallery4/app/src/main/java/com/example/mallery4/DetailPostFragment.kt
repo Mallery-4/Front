@@ -49,9 +49,20 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
         return inflater.inflate(R.layout.fragment_detail_post, container, false)
     }
 
+    private val handler: Handler = Handler(Looper.getMainLooper())
+    private val refreshCommentsRunnable = object : Runnable {
+        override fun run() {
+            // Fetch comments here
+            refreshComments()
+            // Schedule the next execution in 5 seconds
+            handler.postDelayed(this, 1000)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        startFetchingComments()
         // 뒤로가기 버튼 클릭시, 이전 화면으로 이동
         btn_detail_group_backhome.setOnClickListener {
             (context as MainActivity).MoveGroups (group_name, group_count, group_id, group_members, group_nicknames)
@@ -167,6 +178,7 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
+
         // 댓글 불러오기
         RetrofitClient.afterinstance.getCommentInfo(post_id)
             .enqueue(object : retrofit2.Callback<getCommentInfoResponse>{
@@ -201,7 +213,22 @@ class DetailPostFragment (groupname: String, groupcount: String, groupmembers: S
 
     }
 
-    private fun refreshComments() {
+    override fun onPause() {
+        super.onPause()
+        // Remove any existing callbacks to prevent memory leaks
+        stopFetchingComments()
+    }
+
+    private fun startFetchingComments() {
+        // Post the initial Runnable with 0 delay
+        handler.post(refreshCommentsRunnable)
+    }
+
+    private fun stopFetchingComments() {
+        // Remove the callback when the fragment is paused or destroyed
+        handler.removeCallbacks(refreshCommentsRunnable)
+    }
+    public fun refreshComments() {
         RetrofitClient.afterinstance.getCommentInfo(post_id).enqueue(object : retrofit2.Callback<getCommentInfoResponse> {
             override fun onResponse(call: Call<getCommentInfoResponse>, response: Response<getCommentInfoResponse>) {
                 if (response.isSuccessful && response.body()?.result == "success") {
