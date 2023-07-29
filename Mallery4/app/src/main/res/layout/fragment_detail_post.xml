@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,144 +7,152 @@
     android:background="@color/background"
     tools:context=".DetailPostFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/btn_detail_group_backhome"
-            android:layout_marginTop="10dp"
-            android:layout_width="40dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:background="@color/background" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/post_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:text="0000년 00월 00일"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            android:layout_weight="10"
-            android:layout_marginLeft="8dp"
-            android:textColor="#766563" />
-    </LinearLayout>
+                <ImageButton
+                    android:id="@+id/btn_detail_group_backhome"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:background="@color/background" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="15dp"
-            android:layout_marginLeft="38dp"
-            android:layout_weight="10"
-            android:textColor="#766563" />
+                <TextView
+                    android:id="@+id/post_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="0000년 00월 00일"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    android:layout_weight="10"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#766563" />
+            </LinearLayout>
 
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/del_post"
-            android:layout_width="85dp"
-            android:layout_height="25dp"
-            android:background="@drawable/rounded_pink"
-            android:text="삭제하기"
-            android:textStyle="bold"
-            android:textSize="10dp"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/browncolor"/>
-    </LinearLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/post_viewpager"
-        android:layout_margin="28dp"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_baseline_location_on_24"
-            android:layout_marginLeft="38dp"
-            android:textColor="#766563" />
-        <TextView
-            android:id="@+id/post_destination"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="post할 때 쓴 장소"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:layout_marginLeft="8dp"
-            android:textColor="#766563" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_baseline_person_24"
-            android:layout_marginLeft="38dp"
-            android:textColor="#766563" />
-        <TextView
-            android:id="@+id/post_members"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="함께한 멤버들"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:layout_marginLeft="8dp"
-            android:textColor="#766563" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="15dp"
+                    android:layout_marginLeft="38dp"
+                    android:layout_weight="10"
+                    android:textColor="#766563" />
 
 
-    <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/del_post"
+                    android:layout_width="85dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/rounded_pink"
+                    android:text="삭제하기"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/browncolor"/>
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/comment_box"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/browncolor"
-            android:background="#eeeeee"
-            android:hint="댓글"
-            android:padding="8dp" />
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/post_viewpager"
+                android:layout_margin="28dp"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/comment_btn"
-            android:layout_width="75dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded_pink"
-            android:text="댓글달기"
-            android:textSize="12dp"
-            android:textColor="@color/browncolor"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_location_on_24"
+                    android:layout_marginLeft="38dp"
+                    android:textColor="#766563" />
+                <TextView
+                    android:id="@+id/post_destination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="post할 때 쓴 장소"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#766563" />
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_person_24"
+                    android:layout_marginLeft="38dp"
+                    android:textColor="#766563" />
+                <TextView
+                    android:id="@+id/post_members"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="함께한 멤버들"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#766563" />
+            </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/commentRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+            <LinearLayout
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/comment_box"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/browncolor"
+                    android:background="#eeeeee"
+                    android:hint="댓글"
+                    android:padding="8dp" />
 
-</LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/comment_btn"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_pink"
+                    android:text="댓글달기"
+                    android:textSize="12dp"
+                    android:textColor="@color/browncolor"/>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
