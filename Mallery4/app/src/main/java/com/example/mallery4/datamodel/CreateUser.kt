@@ -5,7 +5,7 @@ import retrofit2.http.Field
 
 data class CreateUser (
     @SerializedName("userId") var userId:String,
-    @SerializedName("username") var username:String,
     @SerializedName("password") var password:String,
-    @SerializedName("phoneNumber") var phoneNumber:String
+    @SerializedName("phoneNumber") var phoneNumber:String,
+    @SerializedName("username") var username:String,
 )
