@@ -44,8 +44,10 @@ class FriendItemAdapter() : RecyclerView.Adapter<FriendItemAdapter.ItemViewHolde
         }
 
         // 선택값에 따른 배경색 설정
-        holder.itemText.setOnClickListener {
+        if (item.selected){
             holder.itemText.setBackgroundColor(Color.parseColor("#F7CCC7"))
+        }else {
+            holder.itemText.setBackgroundColor(Color.parseColor("#F9F8EE"))
         }
 
     }
