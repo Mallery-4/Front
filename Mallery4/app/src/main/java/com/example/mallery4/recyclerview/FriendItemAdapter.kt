@@ -17,6 +17,7 @@ class FriendItemAdapter() : RecyclerView.Adapter<FriendItemAdapter.ItemViewHolde
 
     private lateinit var  friendList : ArrayList<FriendItem>
 
+
     //생성자
     constructor(friendList: ArrayList<FriendItem>): this(){
         this.friendList = friendList
@@ -35,6 +36,7 @@ class FriendItemAdapter() : RecyclerView.Adapter<FriendItemAdapter.ItemViewHolde
         val item : FriendItem = friendList[position]
         holder.itemText.text = item.friendname
 
+
         // 클릭 이벤트
         holder.layout.setOnClickListener{
             // 멀티 선택 함수
@@ -42,11 +44,10 @@ class FriendItemAdapter() : RecyclerView.Adapter<FriendItemAdapter.ItemViewHolde
         }
 
         // 선택값에 따른 배경색 설정
-        if (item.selected){
-            holder.itemView.setBackgroundColor(Color.parseColor("#F7CCC7"))
-        }else{
-            holder.itemView.setBackgroundColor(Color.parseColor("#F9F8EE"))
+        holder.itemText.setOnClickListener {
+            holder.itemText.setBackgroundColor(Color.parseColor("#F7CCC7"))
         }
+
     }
 
     override fun getItemCount(): Int {
