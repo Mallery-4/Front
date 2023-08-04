@@ -29,7 +29,6 @@
         android:textSize="24dp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginLeft="8dp"
         android:textColor="#766563" />
 </LinearLayout>
 
