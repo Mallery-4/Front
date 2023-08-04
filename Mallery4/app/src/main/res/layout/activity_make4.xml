@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    android:orientation="vertical"
-    tools:context=".Make4Activity">
+    tools:context=".Make4Activity"
+    android:orientation="vertical">
+
 
     <!--상단안내-->
     <LinearLayout
@@ -41,7 +42,9 @@
 
     </LinearLayout>
 
+
     <LinearLayout
+        android:id="@+id/frame"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_gravity="center"
@@ -64,187 +67,200 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/cut4"
-        android:layout_marginTop="10dp"
-        android:layout_width="400dp"
-        android:layout_height="650dp"
-        android:layout_gravity="center"
-        android:background="@color/white"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
-        <TextView
-            android:id="@+id/title1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+            android:id="@+id/cut4"
+            android:layout_marginTop="10dp"
+            android:layout_width="400dp"
+            android:layout_height="650dp"
             android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="15dp"
-            android:text="Mallery4"
-            android:textSize="30dp"
-            android:textColor="#99ccff" />
-
-        <!--사진 보이기, frame1-->
-        <LinearLayout
-            android:id="@+id/cut4_frame1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="360dp"
-                android:layout_height="270dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:id="@+id/title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="15dp"
+                android:text="Mallery4"
+                android:textSize="30dp"
+                android:textColor="#99ccff" />
 
-                <ImageView
-                    android:id="@+id/cut4_1"
-                    android:layout_width="180dp"
-                    android:layout_height="270dp"
-                    android:layout_marginRight="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-
-
-                <ImageView
-                    android:id="@+id/cut4_2"
-                    android:layout_width="180dp"
-                    android:layout_height="270dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-            </LinearLayout>
-
+            <!--사진 보이기, frame1-->
             <LinearLayout
-                android:layout_width="360dp"
-                android:layout_height="270dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/cut4_3"
-                    android:layout_width="180dp"
-                    android:layout_height="270dp"
-                    android:layout_marginRight="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-                <ImageView
-                    android:id="@+id/cut4_4"
-                    android:layout_width="180dp"
-                    android:layout_height="270dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <!--사진 보이기, frame2-->
-        <LinearLayout
-            android:id="@+id/cut4_frame2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="180dp"
-                android:layout_height="540dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/cut4_2_1"
-                    android:layout_width="180dp"
-                    android:layout_height="130dp"
-                    android:layout_marginBottom="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-
-
-                <ImageView
-                    android:id="@+id/cut4_2_2"
-                    android:layout_width="180dp"
-                    android:layout_height="130dp"
-                    android:layout_marginBottom="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-
-                <ImageView
-                    android:id="@+id/cut4_2_3"
-                    android:layout_width="180dp"
-                    android:layout_height="130dp"
-                    android:layout_marginBottom="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-
-                <ImageView
-                    android:id="@+id/cut4_2_4"
-                    android:layout_width="180dp"
-                    android:layout_height="130dp"
-                    android:layout_marginBottom="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="180dp"
-                android:layout_height="540dp"
+                android:id="@+id/cut4_frame1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/cut4_22_1"
-                    android:layout_width="180dp"
-                    android:layout_height="130dp"
+                <LinearLayout
+                    android:layout_width="360dp"
+                    android:layout_height="270dp"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/cut4_1"
+                        android:layout_width="180dp"
+                        android:layout_height="270dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
 
 
-                <ImageView
-                    android:id="@+id/cut4_22_2"
-                    android:layout_width="180dp"
-                    android:layout_height="130dp"
+                    <ImageView
+                        android:id="@+id/cut4_2"
+                        android:layout_width="180dp"
+                        android:layout_height="270dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="360dp"
+                    android:layout_height="270dp"
                     android:layout_marginBottom="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/cut4_22_3"
-                    android:layout_width="180dp"
-                    android:layout_height="130dp"
-                    android:layout_marginBottom="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
-
-                <ImageView
-                    android:id="@+id/cut4_22_4"
-                    android:layout_width="180dp"
-                    android:layout_height="130dp"
-                    android:layout_marginBottom="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sticker_save" />
+                    <ImageView
+                        android:id="@+id/cut4_3"
+                        android:layout_width="180dp"
+                        android:layout_height="270dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+                    <ImageView
+                        android:id="@+id/cut4_4"
+                        android:layout_width="180dp"
+                        android:layout_height="270dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+                </LinearLayout>
             </LinearLayout>
+
+
+            <!--사진 보이기, frame2-->
+            <LinearLayout
+                android:id="@+id/cut4_frame2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="180dp"
+                    android:layout_height="530dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/cut4_2_1"
+                        android:layout_width="180dp"
+                        android:layout_height="125dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+
+
+                    <ImageView
+                        android:id="@+id/cut4_2_2"
+                        android:layout_width="180dp"
+                        android:layout_height="125dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+
+                    <ImageView
+                        android:id="@+id/cut4_2_3"
+                        android:layout_width="180dp"
+                        android:layout_height="125dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+
+                    <ImageView
+                        android:id="@+id/cut4_2_4"
+                        android:layout_width="180dp"
+                        android:layout_height="125dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="180dp"
+                    android:layout_height="530dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/cut4_22_1"
+                        android:layout_width="180dp"
+                        android:layout_height="125dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+
+
+                    <ImageView
+                        android:id="@+id/cut4_22_2"
+                        android:layout_width="180dp"
+                        android:layout_height="125dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+
+                    <ImageView
+                        android:id="@+id/cut4_22_3"
+                        android:layout_width="180dp"
+                        android:layout_height="125dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+
+                    <ImageView
+                        android:id="@+id/cut4_22_4"
+                        android:layout_width="180dp"
+                        android:layout_height="125dp"
+                        android:layout_marginBottom="7.5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/sticker_save" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"
+                android:text="Mallery4"
+                android:textSize="30dp"
+                android:textColor="#99ccff" />
+
+
         </LinearLayout>
 
+        </ScrollView>
 
-
-        <TextView
-            android:id="@+id/title2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="25dp"
-            android:text="Mallery4"
-            android:textSize="30dp"
-            android:textColor="#99ccff" />
-
-
-    </LinearLayout>
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>
