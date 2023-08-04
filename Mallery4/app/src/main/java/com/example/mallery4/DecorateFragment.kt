@@ -46,6 +46,7 @@ class DecorateFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_decorate, container, false)
 
+
         val decoLayout = view.findViewById<View>(R.id.deco_layout)
         decoLayout.setOnClickListener {
             val intent = Intent(activity, DecorateActivity::class.java)
@@ -53,9 +54,18 @@ class DecorateFragment : Fragment() {
         }
 
         val cut4Layout = view.findViewById<View>(R.id.cut4_layout)
+        /*
         cut4Layout.setOnClickListener {
             val intent = Intent(activity, Cut4Activity::class.java)
             startActivity(intent)
+        }*/
+        cut4Layout.setOnClickListener {
+            val fragment = Cut4Fragment() // Instantiate your Cut4Fragment
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainer, fragment)
+            fragmentTransaction.addToBackStack(null) // Optional: Add the transaction to the back stack
+            fragmentTransaction.commit()
         }
         return view
 

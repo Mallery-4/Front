@@ -71,6 +71,11 @@
         <activity android:name=".DrawActivity" />
         <activity android:name=".Cut4Activity" />
         <activity android:name=".Make4Activity" />
+        <activity
+            android:name="com.example.mallery4.Cut4Fragment"
+            android:label="Cut4Fragment"
+            tools:ignore="Instantiatable" />
+
     </application>
 
 </manifest>
