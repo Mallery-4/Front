@@ -5,6 +5,7 @@
     <string name="login_logo2"><i>for friends</i></string>
     <string name="signup_style"><u>회원가입</u></string>
     <string name="logout_btn"><u>로그아웃</u></string>
+    <string name="del_btn"><u>삭제하기</u></string>
     <string name="delete_group"><u>탈퇴하기</u></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
