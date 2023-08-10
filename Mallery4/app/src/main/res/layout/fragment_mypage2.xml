@@ -30,19 +30,17 @@
             android:layout_weight="1.5"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="30dp"
             android:textColor="#766563" />
         <TextView
             android:id="@+id/mypage2_nickname"
-            android:layout_width="0px"
-            android:layout_weight="1.5"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="닉네임"
-            android:textSize="25dp"
+            android:textSize="30dp"
             android:textStyle="bold"
             android:gravity="center"
             android:textColor="#766563" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +52,7 @@
             android:layout_weight="1.5"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="30dp"
             android:gravity="left"
             android:textColor="#766563" />
     </LinearLayout>
@@ -112,13 +110,12 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/change2_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
+        android:layout_width="151dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
         android:background="@drawable/rounded_pink"
-        android:text="변경완료"
+        android:text="변경"
         android:textStyle="bold"
         android:textSize="20dp"
         android:textColor="@color/browncolor"/>
