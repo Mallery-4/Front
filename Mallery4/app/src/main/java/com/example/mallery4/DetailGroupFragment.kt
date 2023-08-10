@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -38,6 +39,7 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Long,
     //recycycler view list
     val PostItemList= arrayListOf<PostItem>()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +51,7 @@ class DetailGroupFragment (groupname: String, groupcount: String, groupid: Long,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         // 앞에서 클릭한 해당 detail group 정보로 화면 띄우기
         de_groupname.setText(group_name)

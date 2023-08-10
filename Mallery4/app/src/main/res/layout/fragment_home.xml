@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,22 +17,11 @@
         android:textColor="#766563"
         android:gravity="center"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_makegroup"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="250dp"
-        android:background="@drawable/rounded_pink"
-        android:text="그룹 만들기"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:textColor="@color/browncolor"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp">
         <TextView
             android:id="@+id/home_nickname"
@@ -46,17 +36,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 님의 그룹"
+            android:text="님의 그룹"
             android:textSize="25dp"
             android:textColor="#766563" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_rv"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        tools:listitem="@layout/main_items">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="28dp"
+            tools:listitem="@layout/main_items"></androidx.recyclerview.widget.RecyclerView>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btn_makegroup"
+            android:layout_width="151dp"
+            android:layout_height="53dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:text=" 그룹만들기"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/browncolor"
+            android:backgroundTint="@color/pointcolor"
+            android:contentDescription="new_group"
+            app:shapeAppearanceOverlay="?attr/shapeAppearanceMediumComponent"/>
+    </RelativeLayout>
 </LinearLayout>
