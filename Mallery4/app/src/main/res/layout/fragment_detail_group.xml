@@ -29,7 +29,6 @@
         android:textSize="25dp"
         android:textStyle="bold"
         android:textColor="#766563"
-        android:layout_marginLeft="8dp"
         android:layout_weight="8"
         android:layout_marginTop="20dp" />
 
@@ -47,7 +46,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:orientation="horizontal"
         android:layout_marginTop="18dp"
         android:layout_marginBottom="20dp">
@@ -55,11 +54,18 @@
             android:id="@+id/de_cnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3명"
-            android:textSize="15dp"
-            android:layout_marginLeft="38dp"
-            android:layout_weight="10"
+            android:text="3"
+            android:textSize="21dp"
+            android:layout_marginLeft="48dp"
             android:textColor="#766563" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="명"
+            android:layout_weight="10"
+            android:textColor="#766563"
+            android:textSize="21dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ch_nick"
