@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_cut4.*
 import kotlinx.android.synthetic.main.activity_decorate.*
 import kotlinx.android.synthetic.main.activity_decorate.imagePreview
+import kotlinx.android.synthetic.main.fragment_cut4.*
 
 class Cut4Fragment : Fragment() {
     private val PERMISSION_Album = 101 // Album permission handling
@@ -44,10 +45,11 @@ class Cut4Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //image4?.visibility = View.GONE
         val back = view.findViewById<ImageView>(R.id.back)
         back.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
+
         }
 
         val cameraBtn = view.findViewById<Button>(R.id.camera_btn)

@@ -141,8 +141,8 @@ class WritePostFragment3 (groupname: String, groupcount: String, groupid: Long, 
                     }
                     val orientation = exif?.getAttributeInt(
                         ExifInterface.TAG_ORIENTATION,
-                        ExifInterface.ORIENTATION_ROTATE_90
-                    ) ?: ExifInterface.ORIENTATION_ROTATE_90
+                        ExifInterface.ORIENTATION_NORMAL
+                    ) ?: ExifInterface.ORIENTATION_NORMAL
 
 
                     val inputStream: InputStream? =
