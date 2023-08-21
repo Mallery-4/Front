@@ -8,6 +8,13 @@
     android:background="@color/background">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"/>
+
     <ImageView
         android:layout_marginTop="55dp"
         android:layout_width="match_parent"
@@ -17,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="50dp"
         android:text="그룹에서 정말 탈퇴하시겠습니까?"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -25,37 +32,46 @@
         android:layout_gravity="center"
         android:textColor="#766563" />
 
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:gravity="center">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_margin="20dp"
             android:id="@+id/del_false"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:background="@drawable/round_white"
+            android:layout_margin="15dp"
             android:text="취소하기"
             android:textStyle="bold"
             android:textSize="20dp"
             android:textColor="@color/browncolor"/>
 
+
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_margin="20dp"
             android:id="@+id/del_true"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_pink"
+            android:layout_margin="15dp"
             android:text="탈퇴하기"
             android:textStyle="bold"
             android:textSize="20dp"
             android:textColor="@color/browncolor"/>
 
     </LinearLayout>
+
+
+
 
 </LinearLayout>
